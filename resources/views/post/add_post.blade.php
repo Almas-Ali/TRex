@@ -16,7 +16,7 @@
 
     @include('layouts.navbar')
 
-    
+    <h1 align="center">This is add post...</h1>
 </body>
 
 </html>

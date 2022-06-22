@@ -16,7 +16,7 @@
 
     @include('layouts.navbar')
 
-    
+    <h1 align="center">This is edit post...</h1>
 </body>
 
 </html>
