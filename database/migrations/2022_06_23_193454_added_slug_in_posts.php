@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->string('slug');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('posts', function (Blueprint $table) {
+            Schema::dropIfExists('posts');
+        });
     }
 };

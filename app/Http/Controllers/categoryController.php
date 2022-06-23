@@ -16,8 +16,8 @@ class categoryController extends Controller
 			'add_category' => 'min:4|unique:categories'
 		]);
 
-		$message = 'New Category Added Successfully!';
-		$category = new Category;
+		$message        = 'New Category Added Successfully!';
+		$category       = new Category;
 		$category->name = $request->get('add_category');
 		$category->save();
 
@@ -33,8 +33,8 @@ class categoryController extends Controller
 
         // $category = Category::get($id)->first();
         
-        $message = 'Category Updated Successfully!';
-		$category = Category::findOrFail($id);
+        $message        = 'Category Updated Successfully!';
+		$category       = Category::findOrFail($id);
 		$category->name = $request->get('edit_category_'.$id);
 		$category->update();
 

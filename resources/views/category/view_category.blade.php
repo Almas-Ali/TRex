@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@push('title')
+Categories - Admin@CNPI BLOG
+@endpush
 @section('content')
 
 <div class="container">

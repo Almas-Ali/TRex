@@ -7,18 +7,18 @@ body {
     line-height: 1.6rem;
     /* overflow: hidden; */
 }
-
-a:link {
+/* 
+.nav-tag-cnpi a:link {
     color: #000 !important;
 }
 
-a:active {
+.nav-tag-cnpi a:active {
     color: #000 !important;
 }
 
-a:visited {
+.nav-tag-cnpi a:visited {
     color: #000 !important;
-}
+} */
 
 .hidden {
     display: none;

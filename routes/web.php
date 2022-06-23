@@ -21,6 +21,7 @@ Route::get('about/', [postController::class, 'about'])                  ->name('
 
 // CRUD of post
 Route::get('post/add/', [postController::class, 'add_post'])            ->name('add_post')      ->middleware('auth');
+Route::post('post/create', [postController::class, 'create_post'])      ->name('create_post')    ->middleware('auth');
 Route::get('post/edit/{id}', [postController::class, 'edit_post'])      ->name('edit_post')     ->middleware('auth');
 Route::get('post/', [postController::class, 'view_post'])               ->name('view_post')     ->middleware('auth');
 Route::get('post/delete/{id}', [postController::class, 'delete_post'])  ->name('delete_post')   ->middleware('auth');

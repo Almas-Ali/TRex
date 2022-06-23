@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@push('title')
+Posts - CNPI BLOG
+@endpush
 @section('content')
 
 
