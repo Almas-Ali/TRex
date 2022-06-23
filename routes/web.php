@@ -27,7 +27,7 @@ Route::get('post/delete/{id}', [postController::class, 'delete_post'])  ->name('
 
 // CRUD of category
 Route::get('category/add/', [categoryController::class, 'add_category'])            ->name('add_category')  ->middleware('auth');
-Route::get('category/edit/{id}', [categoryController::class, 'edit_category'])      ->name('edit_category') ->middleware('auth');
+Route::post('category/edit/{id}', [categoryController::class, 'edit_category'])      ->name('edit_category') ->middleware('auth');
 Route::get('category/', [categoryController::class, 'view_category'])               ->name('view_category') ->middleware('auth');
 Route::get('category/delete/{id}', [categoryController::class, 'delete_category'])  ->name('delete_category')->middleware('auth');
 

@@ -11,22 +11,36 @@ class categoryController extends Controller
     public function add_category(Request $request) {
         // $categories = Category::get();
 		// return view('category.view_category', compact('categories'));
-
+        
         $request->validate([
-			'name' => 'min:4|unique:categories'
+			'add_category' => 'min:4|unique:categories'
 		]);
-		$message = 'New category added!';
+
+		$message = 'New Category Added Successfully!';
 		$category = new Category;
 		$category->name = $request->get('add_category');
 		$category->save();
 
         $categories = Category::get();
-        return view('category.view_category', compact('message', 'categories'));
+        // return view('category.view_category', compact('message', 'categories'));
+        return redirect()->route('view_category')->with( ['message' => $message, 'categories' => $categories] );
     }
 
-    public function edit_category() {
-        // $categories = Category::get();
-		// return view('category.view_category', compact('categories'));
+    public function edit_category(Request $request, $id) {
+        $request->validate([
+			'edit_category' => 'min:4|unique:categories'
+		]);
+
+        // $category = Category::get($id)->first();
+        
+        $message = 'Category Updated Successfully!';
+		$category = Category::findOrFail($id);
+		$category->name = $request->get('edit_category_'.$id);
+		$category->update();
+
+        $categories = Category::get();
+		return redirect()->route('view_category')->with( ['message' => $message, 'categories' => $categories] );
+
     }
 
     public function view_category() {
@@ -40,6 +54,7 @@ class categoryController extends Controller
 		$message = 'Deleted Successfully!';
 
         $categories = Category::get();
-		return view('category.view_category', compact('message', 'categories'));
+		// return view('category.view_category', compact('message', 'categories'));
+        return redirect()->route('view_category')->with( ['message' => $message, 'categories' => $categories] );
     }
 }

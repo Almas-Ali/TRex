@@ -5,28 +5,6 @@
     integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
     defer></script>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 <script src="{{ asset('js/app.js') }}" defer></script>
-
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Nunito');
-
-    body {
-        background-color: #ffffff;
-        font-family: 'Nunito', sans-serif;
-        font-size: 0.9rem;
-        line-height: 1.6rem;
-        /* overflow: hidden; */
-    }
-
-    a:link {
-        color: #000 !important;
-    }
-
-    a:active {
-        color: #000 !important;
-    }
-
-    a:visited {
-        color: #000 !important;
-    }
-</style>
+<script src="{{ asset('js/validator.js') }}" defer></script>

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+body {
+    background-color: #ffffff;
+    font-family: "Nunito", sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.6rem;
+    /* overflow: hidden; */
+}
+
+a:link {
+    color: #000 !important;
+}
+
+a:active {
+    color: #000 !important;
+}
+
+a:visited {
+    color: #000 !important;
+}
+
+.hidden {
+    display: none;
+}

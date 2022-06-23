@@ -1,72 +1,112 @@
-<!doctype html>
-<html lang="en">
+@extends('layouts.main')
+@section('content')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Categories - Admin@CNPI BLOG</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
-        defer></script>
-</head>
+<div class="container">
 
-<body>
+    <div class="my-3">
+        <form class="row g-3" method="get" action="{{ route('add_category') }}">
+            @if(isset($message))
+            <p class="alert alert-success">{{ $message }}</p>
+            @endif
 
-    @include('layouts.navbar')
+            @if (session('message'))
+            <div class="alert alert-success">
+                {{ session('message') }}
+            </div>
+            @endif
 
-    <div class="container">
+            <div class="col-auto">
+                {{-- <label for="add_category" class="visually-hidden">Add Category</label> --}}
+                <input type="text" class="form-control is-validation  @error('add_category') is-invalid @enderror"
+                    name="add_category" id="add_category_check" placeholder="Add Category" required>
 
-        <div class="my-3">
-            <form class="row g-3" method="get" action="{{ route('add_category') }}">
-                @if(isset($message))
-				    <p class="alert alert-success">{{ $message }}</p>
-                @endif
-                
-                <div class="col-auto">
-                    <label for="add_category" class="visually-hidden">Add Category</label>
-                    <input type="text" class="form-control" id="add_category" name="add_category"
-                        placeholder="Add Category" required>
-
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-primary mb-3">Add</button>
-                </div>
-            </form>
-        </div>
-
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                @php $i = 1; @endphp
-                @foreach ($categories as $category)    
-                    <tr>
-                        <th scope="row">{{ $i }}</th>
-                        <td>{{ $category->name }}</td>
-                        <td class="text-light">
-                            <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="{{ url('category/delete/'.$category->id) }}" class="btn btn-primary btn-sm">Delete</a>
-                        </td>
-                    </tr>
-                    @php $i++; @endphp
-                @endforeach
-            </tbody>
-        </table>
+                <span class="invalid-feedback hidden" role="alert" id="add_error">
+                    <strong>The add category must be at least 4 characters.</strong>
+                </span>
+                @error('add_category')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3" id="add_btn">Add</button>
+            </div>
+        </form>
     </div>
 
-</body>
 
-</html>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Name</th>
+                <th scope="col">Handle</th>
+            </tr>
+        </thead>
+        <tbody>
+            @php $i = 1; @endphp
+
+            @foreach ($categories as $category)
+            <tr>
+                <th scope="row">{{ $i }}</th>
+                <td>{{ $category->name }}</td>
+                <td class="text-light">
+                    <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-primary btn-sm" type="button"
+                        class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="{{ '#edit_modal_'.$category->id }}">Edit</a>
+                    {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                        data-bs-target="#edit_modal">
+                        Edit
+                    </button> --}}
+
+                    <a href="{{ url('category/delete/'.$category->id) }}" class="btn btn-primary btn-sm">Delete</a>
+                </td>
+            </tr>
+            @php $i++; @endphp
+
+            <div class="modal fade" id="{{ 'edit_modal_'.$category->id }}" tabindex="-1"
+                aria-labelledby="edit_modalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edit_modalLabel">Edit Category</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="my-3">
+                                <form class="row g-3" method="post" action="{{ url('category/edit/'.$category->id) }}">
+                                    @csrf
+                                    <div class="col-auto">
+                                        <label for="edit_category" class="visually-hidden">Add Category</label>
+                                        <input type="text"
+                                            class="form-control @error('edit_category') is-invalid @enderror"
+                                            value="@if(isset($category)){{ $category->name }}@else{{ old('edit_category')}}@endif"
+                                            id="edit_category_check" name="{{ 'edit_category_'.$category->id }}"
+                                            placeholder="Edit Category" required>
+                                        <span class="invalid-feedback hidden" role="alert" id="edit_error">
+                                            <strong>The add category must be at least 4 characters.</strong>
+                                        </span>
+
+                                        @error('edit_category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                    <div class="mt-3" align="right">
+                                        <button type="submit" class="btn btn-primary" id="edit_btn">Update</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @endforeach
+        </tbody>
+    </table>
+</div>
+
+@endsection
