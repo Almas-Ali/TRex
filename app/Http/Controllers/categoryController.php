@@ -45,7 +45,7 @@ class categoryController extends Controller
 
     public function view_category() {
         $categories = Category::get();
-		return view('category.view_category', compact('categories'));
+		return view('frontend.category.view_category', compact('categories'));
     }
 
     public function delete_category(Request $request, $id) {

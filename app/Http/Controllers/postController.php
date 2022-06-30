@@ -11,20 +11,20 @@ use Auth;
 class postController extends Controller
 {
     public function posts() {
-        return view('posts');
+        return view('frontend.posts');
     }
 
     public function index() {
-        return view('index');
+        return view('frontend.index');
     }
 
     public function about() {
-        return view('about');
+        return view('frontend.about');
     }
 
     public function add_post() {
         $categories = Category::get();
-        return view('post.add_post', compact('categories'));
+        return view('frontend.post.add_post', compact('categories'));
     }
     
     public function create_post(Request $request) {
@@ -43,12 +43,12 @@ class postController extends Controller
     }
 
     public function edit_post() {
-        return view('post.edit_post');
+        return view('frontend.post.edit_post');
     }
 
     public function view_post() {
         $posts = Post::get();
-        return view('post.view_post', compact('posts'));
+        return view('frontend.post.view_post', compact('posts'));
     }
 
     public function delete_post() {
