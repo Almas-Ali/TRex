@@ -2,6 +2,8 @@
 @push('title')
 Add Post - Admin@CNPI BLOG
 @endpush
+@push('admin-active')active @endpush
+@push('post-active')active @endpush
 
 @push('scripts')
 <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
@@ -42,13 +44,28 @@ Add Post - Admin@CNPI BLOG
                 });
             }
         });
-
-        // let notify = document.getElementsByClassName('tox')[0];
-        // notify.classList.add('hidden');
 </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" defer></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
+    rel="stylesheet" />
+<style>
+    .bootstrap-tagsinput .tag {
+        margin-right: 2px;
+        color: #ffffff;
+        background: #2196f3;
+        padding: 3px 7px;
+        border-radius: 3px;
+    }
+
+    .bootstrap-tagsinput {
+        width: 100%;
+    }
+</style>
 @endpush
 
+
 @section('content')
+@include('layouts.navbar')
 
 <div class="container-fluid">
 
@@ -66,13 +83,21 @@ Add Post - Admin@CNPI BLOG
                     <div class="form-group my-2">
                         <label for="slug">Post Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="Post Slug" required>
+                        <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm">Genarate</a>
                     </div>
+                    <div class="mb-3">
+                        <input class="form-control" type="text" data-role="tagsinput" name="tags">
+                        @if ($errors->has('tags'))
+                        <span class="text-danger">{{ $errors->first('tags') }}</span>
+                        @endif
+                    </div>
+
                     <select name="category_select" id="category_select" class="form-select">
                         @foreach($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-                    
+
                     <div class="form-group my-3">
                         <textarea id="editor" name="content" required></textarea>
                     </div>
@@ -82,7 +107,6 @@ Add Post - Admin@CNPI BLOG
             </div>
         </div>
     </form>
-
 </div>
 
 @endsection

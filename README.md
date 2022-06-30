@@ -26,3 +26,7 @@ php artisan key:generate
 # set database details in .env & migrate database with this
 php artisan migrate 
 ```
+
+### Credits:
+<p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+<p>Framework By <a href="https://laravel.com">Laravel</a></p>

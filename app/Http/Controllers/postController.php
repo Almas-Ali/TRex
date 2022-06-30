@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
 use Auth;
+use Conner\Tagging\Model\Tag;
 
 class postController extends Controller
 {
@@ -15,7 +16,12 @@ class postController extends Controller
     }
 
     public function index() {
-        return view('frontend.index');
+        $posts       = Post::all();
+        $tags        = Tag::all();
+        $categories  = Category::all() ;
+        $first_news  = Post::first();
+        $all_news  = Post::all();//->except($first_news);
+        return view('frontend.index', compact('posts', 'tags', 'categories', 'first_news', 'all_news'));
     }
 
     public function about() {
@@ -24,11 +30,11 @@ class postController extends Controller
 
     public function add_post() {
         $categories = Category::get();
-        return view('frontend.post.add_post', compact('categories'));
+        return view('backend.post.add_post', compact('categories'));
     }
     
     public function create_post(Request $request) {
-        // return view('post.add_post');
+
         $post = new Post;
         $post->title        = $request->get('title');
         $post->slug         = $request->get('slug');
@@ -36,6 +42,10 @@ class postController extends Controller
         $post->category_id  = $request->get('category_select');
         $post->author       = Auth::user()->id;
         $post->save();
+        
+    	$tags = explode(",", $request->tags);
+    	$post->tag($tags);
+
         $message = "Post Added Successfully!";
 
         $posts = Post::get();
@@ -43,12 +53,12 @@ class postController extends Controller
     }
 
     public function edit_post() {
-        return view('frontend.post.edit_post');
+        return view('backend.post.edit_post');
     }
 
     public function view_post() {
         $posts = Post::get();
-        return view('frontend.post.view_post', compact('posts'));
+        return view('backend.post.view_post', compact('posts'));
     }
 
     public function delete_post() {

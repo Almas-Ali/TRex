@@ -16,7 +16,7 @@ use App\Http\Controllers\categoryController;
 */
 
 Route::get('/', [postController::class, 'index'])                       ->name('index');
-Route::get('posts/', [postController::class, 'posts'])                  ->name('posts');
+Route::get('posts/{slug}', [postController::class, 'posts'])            ->name('posts');
 Route::get('about/', [postController::class, 'about'])                  ->name('about');
 
 // CRUD of post

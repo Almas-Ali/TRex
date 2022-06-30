@@ -2,7 +2,11 @@
 @push('title')
 Categories - Admin@CNPI BLOG
 @endpush
+@push('admin-active')active @endpush
+@push('category-active')active @endpush
 @section('content')
+
+@include('layouts.navbar')
 
 <div class="container">
 

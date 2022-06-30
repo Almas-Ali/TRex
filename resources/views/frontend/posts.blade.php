@@ -2,6 +2,9 @@
 @push('title')
 Posts - CNPI BLOG
 @endpush
+@push('posts-active')active @endpush
+@include('layouts.top_nav')
+@include('layouts.navbar')
 @section('content')
 
 
