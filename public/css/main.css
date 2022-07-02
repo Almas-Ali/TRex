@@ -28,7 +28,21 @@ body {
 a {
     text-decoration: none;
 }
-.cnpi a:hover{
+
+.cnpi a:hover {
     text-decoration: none;
     background-color: #ffc107 !important;
+}
+
+/* 
+.search-box {
+    position: relative !important;
+    top: -39px;
+    right: -493px;
+} */
+
+
+.banner {
+    height: 50%;
+    width: 50%;
 }

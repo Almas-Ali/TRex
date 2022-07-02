@@ -35,8 +35,8 @@
                     <h3 class="title">Get in Touch</h3>
                     <div class="contact-info">
                         <p><i class="fa fa-map-marker"></i>Baroghoria, Chapainawabganj, Bangladesh</p>
-                        <p><i class="fa fa-envelope"></i>cnpi@chapainawabganj.gov.bd</p>
-                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
+                        <p><i class="fa fa-envelope"></i><a href="mailto:chapaipoly@gmail.com" class="text-light" target="_blank">chapaipoly@gmail.com</a></p>
+                        <p><i class="fa fa-phone"></i>+8801724-441634</p>
                         <div class="social">
                             <a href=""><i class="fab fa-twitter mt-1"></i></a>
                             <a href=""><i class="fab fa-facebook mt-1"></i></a>

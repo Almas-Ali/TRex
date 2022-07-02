@@ -1,8 +1,6 @@
-@extends('layouts.main')
-@push('title')
-Add Post - Admin@CNPI BLOG
-@endpush
-@push('admin-active')active @endpush
+@extends('backend.layouts.main')
+@push('title')Add Post @endpush
+@push('add-post-active')active @endpush
 @push('post-active')active @endpush
 
 @push('scripts')
@@ -44,7 +42,19 @@ Add Post - Admin@CNPI BLOG
                 });
             }
         });
+
+        window.onload = function(){
+            //     var tox = document.getElementsByClassName('tox-notification__dismiss')[0];
+            //     tox.click();
+            let tox = document.getElementsByClassName('tox')[1];
+            // console.log(tox);
+            tox.classList.add('hidden');
+    };
+
+   
 </script>
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+<script src="{{ asset('js/validator.js') }}" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js" defer></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"
     rel="stylesheet" />
@@ -65,7 +75,7 @@ Add Post - Admin@CNPI BLOG
 
 
 @section('content')
-@include('layouts.navbar')
+@include('backend.layouts.navbar')
 
 <div class="container-fluid">
 
@@ -83,7 +93,7 @@ Add Post - Admin@CNPI BLOG
                     <div class="form-group my-2">
                         <label for="slug">Post Slug</label>
                         <input type="text" class="form-control" id="slug" name="slug" placeholder="Post Slug" required>
-                        <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm">Genarate</a>
+                        <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
                     </div>
                     <div class="mb-3">
                         <input class="form-control" type="text" data-role="tagsinput" name="tags">

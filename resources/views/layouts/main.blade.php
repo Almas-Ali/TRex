@@ -34,9 +34,6 @@
     <meta charset="utf-8">
     <title>@stack('title')</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Bootstrap Ecommerce Template" name="keywords">
-    <meta content="Bootstrap Ecommerce Template Free Download" name="description">
-
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
 
@@ -54,7 +51,6 @@
     <!-- Template Stylesheet -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-    @include('layouts.links')
     @stack('scripts')
 
     <!-- JavaScript Libraries -->
@@ -66,8 +62,13 @@
     <script src="{{ asset('lib/easing/easing.min.js') }}" defer></script>
     <script src="{{ asset('lib/slick/slick.min.js') }}" defer></script>
 
-    <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}" defer></script>
+
+
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <script src="{{ asset('js/validator.js') }}" defer></script>
 </head>
 
 <body>

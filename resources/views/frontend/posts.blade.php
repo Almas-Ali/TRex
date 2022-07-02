@@ -3,57 +3,73 @@
 Posts - CNPI BLOG
 @endpush
 @push('posts-active')active @endpush
-@include('layouts.top_nav')
-@include('layouts.navbar')
 @section('content')
+@include('layouts.navbar')
 
-
-<div class="mt-2">
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This content is a little bit longer.</p>
+<div class="single-news">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="sn-img">
+                    <img src="img/top-news-1.jpg" />
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+                <div class="sn-content">
+                    <a class="sn-title" href="#">{{ $post->title }}</a>
+                    <a class="sn-date" href="#"><i class="far fa-clock"></i>{{ $post->updated_at }}</a>
+                    <p>{!! $post->content !!}</p>
                 </div>
             </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                        content.
-                    </p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card h-100">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                        additional content. This card has even longer content than the first to show that equal
-                        height
-                        action.</p>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated 3 mins ago</small>
+
+            <div class="col-md-4">
+                <div class="sidebar">
+                    <div class="sidebar-widget">
+                        <h2><i class="fas fa-align-justify"></i>Category</h2>
+                        <div class="category">
+                            <ul class="fa-ul">
+                                @foreach ($categories as $category)
+                                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a
+                                        href="">{{ $category->name }}</a></li>
+
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h2><i class="fas fa-align-justify"></i>Tags</h2>
+                        <div class="tags">
+                            @foreach ($tags as $tag)
+                            <a href="#">{{ $tag->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h2><i class="fas fa-align-justify"></i>Ads 1 column</h2>
+                        <div class="image">
+                            <a href=""><img src="img/adds-1.jpg" alt="Image"></a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-widget">
+                        <h2><i class="fas fa-align-justify"></i>Ads 2 column</h2>
+                        <div class="image">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <a href=""><img src="img/adds-2.jpg" alt="Image"></a>
+                                </div>
+                                <div class="col-sm-6">
+                                    <a href=""><img src="img/adds-2.jpg" alt="Image"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Single News End-->
 
 
 @endsection

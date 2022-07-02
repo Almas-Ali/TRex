@@ -11,16 +11,19 @@ use Conner\Tagging\Model\Tag;
 
 class postController extends Controller
 {
-    public function posts() {
-        return view('frontend.posts');
+    public function posts(Request $request, $slug) {
+        $post        = Post::where('slug', $slug)->first();
+        $tags        = Tag::all();
+        $categories  = Category::all();
+        return view('frontend.posts', compact('post','tags', 'categories'));
     }
 
     public function index() {
         $posts       = Post::all();
         $tags        = Tag::all();
-        $categories  = Category::all() ;
+        $categories  = Category::all();
         $first_news  = Post::first();
-        $all_news  = Post::all();//->except($first_news);
+        $all_news  = Post::all()->except(1);
         return view('frontend.index', compact('posts', 'tags', 'categories', 'first_news', 'all_news'));
     }
 
@@ -52,8 +55,11 @@ class postController extends Controller
         return redirect()->route('view_post')->with( ['message' => $message, 'posts' => $posts] );
     }
 
-    public function edit_post() {
-        return view('backend.post.edit_post');
+    public function edit_post(Request $request, $id) {
+        $categories = Category::get();
+        $post = Post::where('id', $id)->first();
+        // $tags = Tag::withAllTags(['Gardening', 'Cooking'])->get();
+        return view('backend.post.edit_post', compact('categories', 'post'));
     }
 
     public function view_post() {
@@ -63,6 +69,10 @@ class postController extends Controller
 
     public function delete_post() {
         //
+    }
+
+    public function dashboard() {
+        return view('backend.dashboard');
     }
 
 }

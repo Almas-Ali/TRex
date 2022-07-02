@@ -18,6 +18,7 @@ use App\Http\Controllers\categoryController;
 Route::get('/', [postController::class, 'index'])                       ->name('index');
 Route::get('posts/{slug}', [postController::class, 'posts'])            ->name('posts');
 Route::get('about/', [postController::class, 'about'])                  ->name('about');
+Route::get('dashboard/', [postController::class, 'dashboard'])          ->name('dashboard') ->middleware('auth');
 
 // CRUD of post
 Route::get('post/add/', [postController::class, 'add_post'])            ->name('add_post')      ->middleware('auth');
@@ -36,4 +37,6 @@ Route::get('category/delete/{id}', [categoryController::class, 'delete_category'
 // Auth view
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', function(){
+    return redirect('/');
+})->name('home');

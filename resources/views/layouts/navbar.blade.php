@@ -67,19 +67,17 @@
 </nav>
 <!-- Navbar ends here --> --}}
 
-
-
-
 <!-- Header Start -->
+{{-- <img src="{{ url('/img/banner2.jpeg') }}" alt="Banner" class="banner"> --}}
 <div class="header">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
-            <a href="#" class="navbar-brand"> CNPI Campus TV </a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <a href="#" class="navbar-brand">CNPI Blog</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main_navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="collapse navbar-collapse justify-content-between" id="main_navbar">
                 <div class="navbar-nav m-auto">
                     <a href="{{ url('/') }}" class="nav-item nav-link @stack('home-active')">Home</a>
                     <a href="{{ url('posts') }}" class="nav-item nav-link @stack('posts-active')">Posts</a>
@@ -110,11 +108,15 @@
 
                             <div class="dropdown-menu dropdown-menu-end bg-dark rounded cnpi" aria-labelledby="navbarDropdown">
 
-                                <a href="{{ route('view_post') }}" class="dropdown-item text-light @stack('post-active')">
+                                {{-- <a href="{{ route('view_post') }}" class="dropdown-item text-light @stack('post-active')">
                                     Post
                                 </a>
                                 <a href="{{ route('view_category') }}" class="dropdown-item text-light @stack('category-active')">
                                     Category
+                                </a> --}}
+
+                                <a href="{{ route('dashboard') }}" class="dropdown-item text-light @stack('dashboard-active')">
+                                    Dashboard
                                 </a>
 
                                 <a class="dropdown-item text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
