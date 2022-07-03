@@ -2,7 +2,7 @@
 <div class="sidebar pe-4 pb-3">
   <nav class="navbar bg-light navbar-light">
     <a href="index.html" class="navbar-brand mx-4 mb-3">
-      <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>CNPI Blog</h3>
+      <h4 class="text-primary"><i class="fa fa-hashtag me-2"></i>{{ website()->site_name }}</h4>
     </a>
     <div class="d-flex align-items-center ms-4 mb-4">
       <div class="position-relative">
@@ -27,8 +27,16 @@
           <a href="{{ url('post/') }}" class="dropdown-item @stack('all-post-active')">All Posts</a>
         </div>
       </div>
-      <a href="{{ url('category') }}" class="nav-item nav-link  @stack('category-active')"><i
+      <a href="{{ url('category') }}" class="nav-item nav-link @stack('category-active')"><i
           class="fa fa-list-alt"></i>Catrgories</a>
+
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle @stack('settings-active')" data-bs-toggle="dropdown"><i
+            class="fa-solid fa-gears"></i>Settings</a>
+        <div class="dropdown-menu bg-transparent border-0">
+          <a href="{{ url('settings/general') }}" class="dropdown-item @stack('add-post-active')">General</a>
+        </div>
+      </div>
     </div>
   </nav>
 </div>

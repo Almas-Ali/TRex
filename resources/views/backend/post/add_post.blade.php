@@ -79,7 +79,7 @@
 
 <div class="container-fluid">
 
-    <form action="{{ url('post/create') }}" method="post">
+    <form action="{{ url('post/create') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mt-4 mb-4">
             <div class="row justify-content-md-center">
@@ -96,7 +96,7 @@
                         <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="text" data-role="tagsinput" name="tags">
+                        <input class="form-control" type="text" data-role="tagsinput" name="tags" placeholder="Tags">
                         @if ($errors->has('tags'))
                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                         @endif
@@ -107,7 +107,13 @@
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
-
+                    <div class="form-group mt-2">
+                        <label for="image">Please Select Image</label>
+                        <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control">
+                        @error('image')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                      </div>
                     <div class="form-group my-3">
                         <textarea id="editor" name="content" required></textarea>
                     </div>

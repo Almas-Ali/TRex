@@ -59,3 +59,4 @@ try {
 }
 
 news_to_post("news_post");
+

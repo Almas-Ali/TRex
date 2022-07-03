@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\postController;
 use App\Http\Controllers\categoryController;
+use App\Http\Controllers\settingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,11 @@ Route::get('category/add/', [categoryController::class, 'add_category'])        
 Route::post('category/edit/{id}', [categoryController::class, 'edit_category'])      ->name('edit_category') ->middleware('auth');
 Route::get('category/', [categoryController::class, 'view_category'])               ->name('view_category') ->middleware('auth');
 Route::get('category/delete/{id}', [categoryController::class, 'delete_category'])  ->name('delete_category')->middleware('auth');
+
+// Settings of site
+Route::get('settings/general', [settingsController::class, 'general'])  ->name('general_settings')->middleware('auth');
+Route::post('settings/general/update', [settingsController::class, 'save_general'])  ->name('save_general')->middleware('auth');
+
 
 
 // Auth view

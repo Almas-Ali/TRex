@@ -5,21 +5,21 @@
 * 
 */
 
-// if (!function_exists("get_post_from_html")) {
-//     function get_post_from_html($str) 
+// if (!function_exists("almas")) {
+//     function almas($str) 
 //     {
 //         Str::limit(strip_tags($str), 50);
 //     }
 // }
 
+use App\Models\settings;
 
-
-// if (!isset($website)) {
-//     $website = [
-//         "name"          => "CNPI Campus TV",
-//         "author"        => "Md. Almas Ali"
-//     ];
-// }
+if (!function_exists("website")) {
+    function website() {
+        $settings = Settings::orderBy('updated_at', 'desc')->first();
+        return $settings;
+    }
+}
 
 
 

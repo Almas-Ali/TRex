@@ -37,13 +37,23 @@ class postController extends Controller
     }
     
     public function create_post(Request $request) {
+        $validatedData = $request->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+           ]);
 
         $post = new Post;
+        // Post settings
         $post->title        = $request->get('title');
         $post->slug         = $request->get('slug');
         $post->content      = $request->get('content');
         $post->category_id  = $request->get('category_select');
         $post->author       = Auth::user()->id;
+        // Photo settings
+        $name = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->store('public/uploads');
+        $post -> name = $name;
+        $post -> path = $path;
+
         $post->save();
         
     	$tags = explode(",", $request->tags);
@@ -72,7 +82,23 @@ class postController extends Controller
     }
 
     public function dashboard() {
-        return view('backend.dashboard');
+        $total_posts        = Post::all()->count();
+        $total_categories   = Category::all()->count();
+        return view('backend.dashboard', compact('total_posts', 'total_categories'));
     }
-
+    
+    public function upload(Request $request) {
+        
+        $validatedData = $request->validate([
+         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        $name = $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->store('public/uploads');
+        $save = new Image;
+        $save->name = $name;
+        $save->path = $path;
+        $save->save();
+        return redirect('image')->with('status', 'Image Has been uploaded successfully with validation in laravel');
+    }
+    //   $path = $request->file('image')->store('public/uploads');
 }
