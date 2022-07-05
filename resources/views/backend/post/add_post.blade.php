@@ -96,10 +96,12 @@
                         <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="text" data-role="tagsinput" name="tags" placeholder="Tags">
+                        <select multiple data-role="tagsinput" class="bootstrap-tagsinput" name="tags">
+                        </select>
                         @if ($errors->has('tags'))
                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                         @endif
+
                     </div>
 
                     <select name="category_select" id="category_select" class="form-select">

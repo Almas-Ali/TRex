@@ -49,7 +49,7 @@
                             <!-- First news -->
                             <div class="col-lg-6">
                                 <div class="mn-img">
-                                    <img src="img/cat-news-6.jpg" />
+                                    <img src="{{ $first_news->path }}" />
                                 </div>
                                 <div class="mn-content">
                                     <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{ $first_news->title }} </a>
@@ -67,7 +67,7 @@
                                 @foreach ($all_news as $news)
                                 <div class="mn-list">
                                     <div class="mn-img">
-                                        <img src="img/cat-news-6.jpg" />
+                                        <img src="{{ $news->path }}" alt="Image"/>
                                     </div>
                                     <div class="mn-content">
                                         <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }} </a>

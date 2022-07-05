@@ -12,11 +12,11 @@ Categories - Admin@CNPI BLOG
     <div class="my-3">
         <form class="row g-3" method="get" action="{{ route('add_category') }}">
             @if(isset($message))
-            <p class="alert alert-success">{{ $message }}</p>
+            <p class="alert alert-success px-3">{{ $message }}</p>
             @endif
 
             @if (session('message'))
-            <div class="alert alert-success">
+            <div class="alert alert-success px-3">
                 {{ session('message') }}
             </div>
             @endif
@@ -67,16 +67,16 @@ Categories - Admin@CNPI BLOG
                         <td>{{ $category->created_at }}</td>
                         <td>{{ $category->updated_at }}</td>
                         <td class="text-light">
-                            <a href="{{ url('category/edit/'.$category->id) }}" class="btn btn-primary btn-sm"
-                                type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            <a href="javascript:void(0);" class="btn btn-primary btn-sm" type="button"
+                                class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="{{ '#edit_modal_'.$category->id }}">Edit</a>
                             {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#edit_modal">
+                                data-bs-target="{{ '#edit_modal_'.$category->id }}">
                                 Edit
                             </button> --}}
 
                             <a href="{{ url('category/delete/'.$category->id) }}"
-                                class="btn btn-primary btn-sm">Delete</a>
+                                class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
                     @php $i++; @endphp

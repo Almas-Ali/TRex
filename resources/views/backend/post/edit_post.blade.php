@@ -1,7 +1,5 @@
 @extends('backend.layouts.main')
-@push('title')
-Add Post - Admin@CNPI BLOG
-@endpush
+@push('title')Edit Post @endpush
 @push('add-post-active')active @endpush
 @push('post-active')active @endpush
 
@@ -53,8 +51,11 @@ Add Post - Admin@CNPI BLOG
             let tox = document.getElementsByClassName('tox')[1];
             // console.log(tox);
             tox.classList.add('hidden');
+    
     };
-   
+
+    $$("#editor").setValue("<p>some text or code snippet</p>");
+
 </script>
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 <script src="{{ asset('js/validator.js') }}" defer></script>
@@ -82,7 +83,7 @@ Add Post - Admin@CNPI BLOG
 
 <div class="container-fluid">
 
-    <form action="{{ url('post/create') }}" method="post">
+    <form action="{{ url('post/edit/'.$post->id.'/update') }}" method="post">
         @csrf
         <div class="mt-4 mb-4">
             <div class="row justify-content-md-center">
@@ -100,20 +101,14 @@ Add Post - Admin@CNPI BLOG
                         <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
                     </div>
                     <div class="mb-3">
-                        <input class="form-control" type="text" data-role="tagsinput" name="tags" id="">
+                        <select multiple data-role="tagsinput" class="bootstrap-tagsinput" name="tags">
+                            @foreach ($post->tagNames() as $tag)
+                            <option class="tag" value="{{ $tag->slug }}">{{ $tag->name }}</option>
+                            @endforeach
+                        </select>
                         @if ($errors->has('tags'))
                         <span class="text-danger">{{ $errors->first('tags') }}</span>
                         @endif
-
-
-                        @foreach ($post->tags as $tag)
-                        <div id="tt">{{ $tag->name}}</div>
-                        <script defer>
-                            let v = document.getElementById('tt').innerText;
-                            $('#tags').val(v);
-                        </script>
-                        @endforeach
-
 
                     </div>
                     <select name="category_select" id="category_select" class="form-select">
@@ -126,12 +121,10 @@ Add Post - Admin@CNPI BLOG
                         @endforeach
                     </select>
 
-                    <div id="date-post" hidden>
-                        {{ $post->content }}
-                    </div>
                     <div class="form-group my-3">
-                        <textarea id="editor" name="content" required></textarea>
+                        <textarea id="editor" name="content" required>{{ $post->content }}</textarea>
                     </div>
+
 
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>

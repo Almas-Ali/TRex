@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@stack('title') - CNPI Blog</title>
+    <title>@stack('title') - {{ website()->site_name }}</title>
     @stack('scripts')
 
 
@@ -42,10 +42,10 @@
         <div class="bg-light rounded-top p-4">
             <div class="row">
                 <div class="col-12 col-sm-6 text-center text-sm-start">
-                    &copy; <a href="{{ url('/') }}">CNPI Blog</a>, All Rights Reserved.
+                    &copy; <a href="{{ url('/') }}">{{ website()->site_name }}</a>, All Rights Reserved.
                 </div>
                 <div class="col-12 col-sm-6 text-center text-sm-end">
-                    Developer <a href="https://linktr.ee/almasali">Md. Almas Ali</a>
+                    Developer <a href="https://linktr.ee/almasali">{{ website()->site_author_name }}</a>
                 </div>
             </div>
         </div>
@@ -72,6 +72,7 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('backend/js/main.js') }}"></script>
+    <script src="{{ asset('js/validator.js') }}"></script>
 
 </body>
 

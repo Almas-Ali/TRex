@@ -49,15 +49,21 @@ class postController extends Controller
         $post->category_id  = $request->get('category_select');
         $post->author       = Auth::user()->id;
         // Photo settings
-        $name = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->store('public/uploads');
-        $post -> name = $name;
-        $post -> path = $path;
+        // $name = $request->file('image')->getClientOriginalName();
+        // $request->file('image')->move(public_path('uploads'), $name);
+        // $path = $request->file('image')->store('/uploads');
+        // $post -> name = $name;
+        // $post -> path = $path;
 
-        $post->save();
+        $newImageName = time() . '-' . $request->file('image')->getClientOriginalName();
+        $path = $request->file('image')->move(public_path('uploads'), $newImageName);
+        
+        $post -> name = $request->file('image')->getClientOriginalName();
+        $post -> path = $path;
         
     	$tags = explode(",", $request->tags);
     	$post->tag($tags);
+        $post->save();
 
         $message = "Post Added Successfully!";
 
@@ -72,13 +78,36 @@ class postController extends Controller
         return view('backend.post.edit_post', compact('categories', 'post'));
     }
 
+    public function post_update(Request $request, $id) {
+        $post = Post::where('id', $id)->first();
+        $post->title        = $request->get('title');
+        $post->slug         = $request->get('slug');
+        $post->content      = $request->get('content');
+        $post->category_id  = $request->get('category_select');
+        
+        $tags = explode(",", $request->tags);
+    	$post->retag($tags);
+        $post->update();
+
+        $message = "Post Updated Successfully!";
+
+        $posts = Post::get();
+        return redirect()->route('view_post')->with( ['message' => $message, 'posts' => $posts] );
+    }
+
     public function view_post() {
         $posts = Post::get();
         return view('backend.post.view_post', compact('posts'));
     }
 
-    public function delete_post() {
-        //
+    public function delete_post(Request $request, $id) {
+        
+        $post = Post::where('id', $id)->first();
+        $post->delete();
+        $message = "Post Deleted Successfully!";
+
+        $posts = Post::get();
+        return redirect()->route('view_post')->with( ['message' => $message, 'posts' => $posts] );
     }
 
     public function dashboard() {
@@ -87,18 +116,18 @@ class postController extends Controller
         return view('backend.dashboard', compact('total_posts', 'total_categories'));
     }
     
-    public function upload(Request $request) {
+    // public function upload(Request $request) {
         
-        $validatedData = $request->validate([
-         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-        ]);
-        $name = $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->store('public/uploads');
-        $save = new Image;
-        $save->name = $name;
-        $save->path = $path;
-        $save->save();
-        return redirect('image')->with('status', 'Image Has been uploaded successfully with validation in laravel');
-    }
+    //     $validatedData = $request->validate([
+    //      'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+    //     ]);
+    //     $name = $request->file('image')->getClientOriginalName();
+    //     $path = $request->file('image')->store('public/uploads');
+    //     $save = new Image;
+    //     $save->name = $name;
+    //     $save->path = $path;
+    //     $save->save();
+    //     return redirect('image')->with('status', 'Image Has been uploaded successfully with validation in laravel');
+    // }
     //   $path = $request->file('image')->store('public/uploads');
 }

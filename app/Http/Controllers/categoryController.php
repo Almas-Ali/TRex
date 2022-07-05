@@ -12,15 +12,15 @@ class categoryController extends Controller
         // $categories = Category::get();
 		// return view('category.view_category', compact('categories'));
         
-        $request->validate([
-			'add_category' => 'min:4|unique:categories'
-		]);
+        // $request->validate([
+		// 	'add_category' => 'min:4|unique:categories'
+		// ]);
 
-		$message        = 'New Category Added Successfully!';
 		$category       = new Category;
 		$category->name = $request->get('add_category');
 		$category->save();
-
+		$message        = 'New Category Added Successfully!';
+        
         $categories = Category::get();
         // return view('category.view_category', compact('message', 'categories'));
         return redirect()->route('view_category')->with( ['message' => $message, 'categories' => $categories] );
