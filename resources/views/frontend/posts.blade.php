@@ -1,10 +1,8 @@
-@extends('layouts.main')
-@push('title')
-Posts - CNPI BLOG
-@endpush
+@extends('frontend.layouts.main')
+@push('title')Posts @endpush
 @push('posts-active')active @endpush
 @section('content')
-@include('layouts.navbar')
+@include('frontend.layouts.navbar')
 
 <div class="single-news">
     <div class="container-fluid">

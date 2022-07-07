@@ -1,7 +1,5 @@
 @extends('backend.layouts.main')
-@push('title')
-Posts - Admin@CNPI BLOG
-@endpush
+@push('title')Posts @endpush
 @push('all-post-active')active @endpush
 @push('post-active')active @endpush
 

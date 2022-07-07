@@ -10,31 +10,42 @@
         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
         </div>
       </div>
+      @guest
+      @else
       <div class="ms-3">
         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
         <span>Admin</span>
       </div>
+      @endguest
     </div>
     <div class="navbar-nav w-100">
-      <a href="{{ url('dashboard') }}" class="nav-item nav-link @stack('dashboard-active')"><i
+      <a href="{{ route('dashboard') }}" class="nav-item nav-link @stack('dashboard-active')"><i
           class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
       <a href="{{ url('/') }}" class="nav-item nav-link"><i class="fa fa-newspaper"></i>Visit Site</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('post-active')" data-bs-toggle="dropdown"><i
             class="far fa-file-alt me-2"></i>Posts</a>
         <div class="dropdown-menu bg-transparent border-0">
-          <a href="{{ url('post/add/') }}" class="dropdown-item @stack('add-post-active')">Add Post</a>
-          <a href="{{ url('post/') }}" class="dropdown-item @stack('all-post-active')">All Posts</a>
+          <a href="{{ route('add_post') }}" class="dropdown-item @stack('add-post-active')">Add Post</a>
+          <a href="{{ route('view_post') }}" class="dropdown-item @stack('all-post-active')">All Posts</a>
         </div>
       </div>
-      <a href="{{ url('category') }}" class="nav-item nav-link @stack('category-active')"><i
+      <a href="{{ route('view_category') }}" class="nav-item nav-link @stack('category-active')"><i
           class="fa fa-list-alt"></i>Catrgories</a>
+
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle @stack('contacts-active')" data-bs-toggle="dropdown"><i
+            class="far fa-file-alt me-2"></i>Contacts</a>
+        <div class="dropdown-menu bg-transparent border-0">
+          <a href="{{ route('all_contacts') }}" class="dropdown-item @stack('all-contacts-active')">All Contacts</a>
+        </div>
+      </div>
 
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('settings-active')" data-bs-toggle="dropdown"><i
             class="fa-solid fa-gears"></i>Settings</a>
         <div class="dropdown-menu bg-transparent border-0">
-          <a href="{{ url('settings/general') }}" class="dropdown-item @stack('add-post-active')">General</a>
+          <a href="{{ route('general_settings') }}" class="dropdown-item @stack('add-post-active')">General</a>
         </div>
       </div>
     </div>
@@ -57,6 +68,8 @@
       <input class="form-control border-0" type="search" placeholder="Search">
     </form>
     <div class="navbar-nav align-items-center ms-auto">
+      @guest
+      @else
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
           <img class="rounded-circle me-lg-2" src="{{ asset('img/badge.png') }}" alt=""
@@ -76,6 +89,7 @@
           </form>
         </div>
       </div>
+      @endguest
     </div>
   </nav>
   <!-- Navbar End -->

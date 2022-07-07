@@ -30,7 +30,7 @@ class postController extends Controller
     public function about() {
         return view('frontend.about');
     }
-
+    
     public function add_post() {
         $categories = Category::get();
         return view('backend.post.add_post', compact('categories'));
@@ -75,6 +75,7 @@ class postController extends Controller
         $categories = Category::get();
         $post = Post::where('id', $id)->first();
         // $tags = Tag::withAllTags(['Gardening', 'Cooking'])->get();
+        // $tags = $post->tags();
         return view('backend.post.edit_post', compact('categories', 'post'));
     }
 

@@ -12,13 +12,13 @@
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
         defer>
     </script>
-    @include('layouts.links')
+    @include('frontend.layouts.links')
     @stack('scripts')
 </head>
 
 <body>
 
-    @include('layouts.navbar')
+    @include('frontend.layouts.navbar')
 
     @yield('content')
 
@@ -32,7 +32,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@stack('title')</title>
+    <title>@stack('title') - {{ website()->site_name }}</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">

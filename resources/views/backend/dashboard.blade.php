@@ -23,7 +23,7 @@
         <div class="row g-4">
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-line fa-3x text-primary"></i>
+                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Categories</p>
                         <h6 class="mb-0">{{ $total_posts }}</h6>
@@ -32,7 +32,7 @@
             </div>
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-bar fa-3x text-primary"></i>
+                    <i class="far fa-file-alt fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Posts</p>
                         <h6 class="mb-0">{{ $total_categories }}</h6>
@@ -41,10 +41,10 @@
             </div>
             <div class="col-sm-6 col-xl-3">
                 <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                    <i class="fa fa-chart-area fa-3x text-primary"></i>
+                    <i class="fa fa-chart-line fa-3x text-primary"></i>
                     <div class="ms-3">
-                        <p class="mb-2">Today Revenue</p>
-                        <h6 class="mb-0">$1234</h6>
+                        <p class="mb-2">Total Visitors</p>
+                        <h6 class="mb-0">95987</h6>
                     </div>
                 </div>
             </div>
@@ -53,7 +53,7 @@
                     <i class="fa fa-chart-pie fa-3x text-primary"></i>
                     <div class="ms-3">
                         <p class="mb-2">Total Revenue</p>
-                        <h6 class="mb-0">$1234</h6>
+                        <h6 class="mb-0">$595.87</h6>
                     </div>
                 </div>
             </div>
@@ -90,7 +90,7 @@
                             <td>Jhon Doe</td>
                             <td>$123</td>
                             <td>Paid</td>
-                            <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                            <td><a class="btn btn-sm btn-primary" href="#">Detail</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -100,4 +100,4 @@
     <!-- Recent Sales End -->
 
 
-@endsection
+    @endsection

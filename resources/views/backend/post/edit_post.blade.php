@@ -101,9 +101,10 @@
                         <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
                     </div>
                     <div class="mb-3">
+                        <p>{{ $post->tags }}</p>
                         <select multiple data-role="tagsinput" class="bootstrap-tagsinput" name="tags">
-                            @foreach ($post->tagNames() as $tag)
-                            <option class="tag" value="{{ $tag->slug }}">{{ $tag->name }}</option>
+                            @foreach ($tags as $tag)
+                            <option class="tag" value="{{ $tag->name }}">{{ $tag->name }}</option>
                             @endforeach
                         </select>
                         @if ($errors->has('tags'))

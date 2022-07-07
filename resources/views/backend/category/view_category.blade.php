@@ -1,7 +1,5 @@
 @extends('backend.layouts.main')
-@push('title')
-Categories - Admin@CNPI BLOG
-@endpush
+@push('title')Categories @endpush
 @push('category-active')active @endpush
 @section('content')
 

@@ -1,12 +1,10 @@
-@extends('layouts.main')
-@push('title')
-About - CNPI BLOG
-@endpush
+@extends('frontend.layouts.main')
+@push('title')About @endpush
 @push('about-active')active @endpush
-@include('layouts.top_nav')
-@include('layouts.navbar')
 
 @section('content')
+@include('frontend.layouts.navbar')
+@include('frontend.layouts.top_nav')
 
 <h1 align="center">This is about...</h1>
 

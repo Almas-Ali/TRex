@@ -1,4 +1,6 @@
-@extends('layouts.app')
+@extends('backend.layouts.login_layouts')
+@push('title')Login @endpush
+@push('login-active')active @endpush
 
 @section('content')
 <div class="container">

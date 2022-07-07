@@ -38,11 +38,11 @@
                         <p><i class="fa fa-envelope"></i><a href="mailto:chapaipoly@gmail.com" class="text-light" target="_blank">chapaipoly@gmail.com</a></p>
                         <p><i class="fa fa-phone"></i>+8801724-441634</p>
                         <div class="social">
-                            <a href=""><i class="fab fa-twitter mt-1"></i></a>
-                            <a href=""><i class="fab fa-facebook mt-1"></i></a>
-                            <a href=""><i class="fab fa-linkedin mt-1"></i></a>
-                            <a href=""><i class="fab fa-instagram mt-1"></i></a>
-                            <a href=""><i class="fab fa-youtube mt-1"></i></a>
+                            <a href="#"><i class="fab fa-twitter mt-1"></i></a>
+                            <a href="#"><i class="fab fa-facebook mt-1"></i></a>
+                            <a href="#"><i class="fab fa-linkedin mt-1"></i></a>
+                            <a href="#"><i class="fab fa-instagram mt-1"></i></a>
+                            <a href="#"><i class="fab fa-youtube mt-1"></i></a>
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 copyright">
-                <p>Copyright &copy; <a href="{{ url('/') }}">CNPI Blog</a>. All Rights Reserved</p>
+                <p>Copyright &copy; <a href="{{ url('/') }}">{{ website()->site_name }}</a>. All Rights Reserved</p>
             </div>
             <div class="col-md-6 template-by">
                 <p>Developer <a href="https://linktr.ee/almasali">Md. Almas Ali</a></p>

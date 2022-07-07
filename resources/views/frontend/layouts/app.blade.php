@@ -16,14 +16,14 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    @include('layouts.links')
+    @include('frontend.layouts.links')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        @include('layouts.navbar')
+        @include('frontend.layouts.navbar')
 
         <main class="py-4">
             @yield('content')

@@ -1,9 +1,9 @@
-{{-- @include('layouts.links')
+{{-- @include('frontend.layouts.links')
 
 <!-- Navbar starts here -->
 <nav class="navbar navbar-expand-lg bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">CNPI BLOG</a>
+        <a class="navbar-brand" href="#">{{ website()->site_name }}</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@
 <div class="header">
     <div class="container">
         <nav class="navbar navbar-expand-md bg-dark navbar-dark py-2">
-            <a href="#" class="navbar-brand">CNPI Blog</a>
+            <a href="#" class="navbar-brand">{{ website()->site_name }}</a>
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#main_navbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -80,12 +80,13 @@
             <div class="collapse navbar-collapse justify-content-between" id="main_navbar">
                 <div class="navbar-nav m-auto">
                     <a href="{{ url('/') }}" class="nav-item nav-link @stack('home-active')">Home</a>
-                    <a href="{{ url('posts') }}" class="nav-item nav-link @stack('posts-active')">Posts</a>
+                    {{-- <a href="{{ url('posts') }}" class="nav-item nav-link @stack('posts-active')">Posts</a> --}}
                     <a href="{{ url('about') }}" class="nav-item nav-link @stack('about-active')">About</a>
+                    <a href="{{ url('contact') }}" class="nav-item nav-link  @stack('contact-active')">Contact Us</a>
                     {{-- <a href="{{ url('contact') }}" class="nav-item nav-link @stack('contact-active')">Contact</a>
                     --}}
 
-                    <ul class="navbar-nav ms-auto bg-dark-50 rounded">
+                    <ul class="navbar-nav  bg-dark-50 rounded">
                         <!-- Authentication Links -->
                         @guest
                         @if (Route::has('login'))

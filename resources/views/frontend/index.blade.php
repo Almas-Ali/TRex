@@ -1,12 +1,12 @@
-@extends('layouts.main')
-@push('title')Home - CNPI BLOG @endpush
+@extends('frontend.layouts.main')
+@push('title')Home @endpush
 @push('home-active')active @endpush
 @section('content')
 
 {{-- <h1 align="center">This is index page...</h1> --}}
 
-@include('layouts.top_nav')
-@include('layouts.navbar')
+@include('frontend.layouts.top_nav')
+@include('frontend.layouts.navbar')
 
 
 <!-- Top News Start-->
@@ -124,6 +124,6 @@
 
 
 
-@include('layouts.footer')
+@include('frontend.layouts.footer')
 
 @endsection
