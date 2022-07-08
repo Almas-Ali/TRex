@@ -19,7 +19,7 @@
 
 
 <!-- Contact Start -->
-<div class="contact">
+<div class="contact bg_theme">
     <div class="container">
         @if (session('message'))
         <div class="alert alert-success px-3">
@@ -79,5 +79,6 @@
     </div>
 </div>
 <!-- Contact End -->
+@include('frontend.layouts.footer')
 
 @endsection
