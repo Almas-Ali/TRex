@@ -14,7 +14,18 @@
                 <div class="sn-content">
                     <a class="sn-title" href="#">{{ $post->title }}</a>
                     <a class="sn-date" href="#"><i class="far fa-clock"></i>{{ $post->updated_at }}</a>
-                    <p>{!! $post->content !!}</p>
+                    <div>{!! $post->content !!}</div>
+                    <div>
+                        <strong>Tag:</strong>
+                        @if (count($post->tags))
+                        @foreach($post->tags as $tag)
+                        <label class="badge bg-primary">{{ $tag->name }}</label>
+                        @endforeach
+                        @else
+                        <span class="badge bg-secondary">No tags</span>
+                        @endif
+                    </div>
+
                 </div>
             </div>
 

@@ -23,6 +23,8 @@ Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
 
 Route::get('about/', [postController::class, 'about'])->name('about');
 
+Route::get('install/', [postController::class, 'installation'])->name('installation');
+
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
 
 

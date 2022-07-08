@@ -21,7 +21,7 @@
     <div class="navbar-nav w-100">
       <a href="{{ route('dashboard') }}" class="nav-item nav-link @stack('dashboard-active')"><i
           class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-      <a href="{{ url('/') }}" class="nav-item nav-link"><i class="fa fa-newspaper"></i>Visit Site</a>
+      <a href="{{ url('/') }}" class="nav-item nav-link"><i class="fa fa-newspaper me-2"></i>Visit Site</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('post-active')" data-bs-toggle="dropdown"><i
             class="far fa-file-alt me-2"></i>Posts</a>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <a href="{{ route('view_category') }}" class="nav-item nav-link @stack('category-active')"><i
-          class="fa fa-list-alt"></i>Catrgories</a>
+          class="fa fa-list-alt me-2"></i>Catrgories</a>
 
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('contacts-active')" data-bs-toggle="dropdown"><i
@@ -43,7 +43,7 @@
 
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('settings-active')" data-bs-toggle="dropdown"><i
-            class="fa-solid fa-gears"></i>Settings</a>
+            class="fa-solid fa-gears me-2"></i>Settings</a>
         <div class="dropdown-menu bg-transparent border-0">
           <a href="{{ route('general_settings') }}" class="dropdown-item @stack('add-post-active')">General</a>
         </div>
