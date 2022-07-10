@@ -5,6 +5,7 @@ use App\Http\Controllers\postController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\settingsController;
 use App\Http\Controllers\contactController;
+use App\Http\Controllers\installerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +23,6 @@ Route::get('/', [postController::class, 'index'])->name('index');
 Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
 
 Route::get('about/', [postController::class, 'about'])->name('about');
-
-Route::get('install/', [postController::class, 'installation'])->name('installation');
 
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
 
@@ -65,6 +64,15 @@ Route::post('contact/create', [contactController::class, 'contact_create'])->nam
 Route::get('contact/view/all', [contactController::class, 'all_contacts'])->name('all_contacts')->middleware('auth');
 
 Route::get('contact/view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth');
+
+
+// Installer paths
+Route::get('install/', [installerController::class, 'installation'])->name('installation');
+
+Route::get('install/database-connection', [installerController::class, 'db_connection'])->name('db_connection');
+
+Route::post('install/database-connection/submit', [installerController::class, 'db_connection_submit'])->name('db_connection_submit');
+
 
 
 // Auth view

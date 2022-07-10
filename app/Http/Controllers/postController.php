@@ -126,9 +126,5 @@ class postController extends Controller
         $total_categories   = Category::all()->count();
         return view('backend.dashboard', compact('total_posts', 'total_categories'));
     }
-    
-    public function installation() {
-        return view('backend.installation');
-    }
 
 }
