@@ -17,7 +17,7 @@
         <div align="center">
             <h1>Installation of Laravel Blog</h1>
         </div>
-        <div class="card" style="width:18rem;">
+        <div class="card bg-secondary" style="width:18rem;">
           <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
           <div class="card-body">
             <h1>Installation of Laravel Blog</h1>

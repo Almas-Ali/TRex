@@ -9,6 +9,7 @@
 @include('frontend.layouts.navbar')
 
 
+{{--
 <!-- Top News Start-->
 <div class="top-news">
     <div class="container-fluid">
@@ -34,7 +35,7 @@
         </div>
     </div>
 </div>
-<!-- Top News End-->
+<!-- Top News End--> --}}
 
 
 <!-- Main News Start-->
@@ -44,38 +45,53 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="px-3">
-                        <h2 class="ml-3"><i class="fas fa-align-justify"></i>Latest News</h2>
+                        <h3 class="ml-3 mt-2"><strong>Latest Posts</strong></h3>
                         <div class="row">
                             <!-- First news -->
-                            <div class="col-lg-6">
+                            @if (!empty($first_news))
+                            <div class="col-lg-6 mb-3">
                                 <div class="mn-img">
                                     <img src="{{ $first_news->path }}" />
                                 </div>
                                 <div class="mn-content">
-                                    <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{ $first_news->title }} </a>
-                                    <a class="mn-date" href=""><i class="far fa-clock"></i> {{ $first_news->created_at
+                                    <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{
+                                        $first_news->title }} </a>
+                                    <a class="mn-date" href="#"><i class="far fa-clock"></i> {{ dateHuman($first_news->created_at)
                                         }} </a>
                                     <p class="news_post">
-                                        {{  Str::limit(strip_tags($first_news->content), 120) }}
+                                        {{ Str::limit(strip_tags($first_news->content), 120) }}
                                     </p>
                                 </div>
                             </div>
+                            @else
+                            <div>
+                                <h5>No post exist!</h5>
+                            </div>
+                            @endif
+
 
                             <!-- All except first news -->
 
                             <div class="col-lg-6">
+                                @if (!empty($all_news))
                                 @foreach ($all_news as $news)
                                 <div class="mn-list">
                                     <div class="mn-img">
-                                        <img src="{{ $news->path }}" alt="Image"/>
+                                        <img src="{{ $news->path }}" alt="Image" />
                                     </div>
                                     <div class="mn-content">
-                                        <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }} </a>
-                                        <a class="mn-date" href=""><i class="far fa-clock"></i> {{ $news->created_at }}
+                                        <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }}
                                         </a>
+                                        <a class="mn-date" href="#"><i class="far fa-clock"></i> {{ dateHuman($news->created_at) }}
+                                        </a>
+                                        <p class="news_post">
+                                            {{ Str::limit(strip_tags($first_news->content), 40) }}
+                                        </p>
                                     </div>
                                 </div>
                                 @endforeach
+                                @else
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -85,8 +101,9 @@
             <div class="col-md-4 my-2">
                 <div class="sidebar">
                     <div class="sidebar-widget">
-                        <h2><i class="fas fa-align-justify"></i>Category</h2>
+                        <h3><strong>Categories</strong></h3>
                         <div class="category">
+                            @if (!empty($categories))
                             <ul class="fa-ul">
                                 @foreach ($categories as $category)
                                 <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a
@@ -94,20 +111,31 @@
 
                                 @endforeach
                             </ul>
+                            @else
+                            <div>
+                                <h5>No categories exist!</h5>
+                            </div>
+                            @endif
                         </div>
                     </div>
 
                     <div class="sidebar-widget my-2">
-                        <h2><i class="fas fa-align-justify"></i>Tags</h2>
+                        <h3><strong>Tags</strong></h3>
+                        @if (!empty($tags))
                         <div class="tags">
                             @foreach ($tags as $tag)
                             <a href="#">{{ $tag->name }}</a>
                             @endforeach
                         </div>
+                        @else
+                        <div>
+                            <h5>No tags exist!</h5>
+                        </div>
+                        @endif
                     </div>
 
                     <div class="sidebar-widget">
-                        <h2><i class="fas fa-align-justify"></i>Ads</h2>
+                        <h3><strong>Ads</strong></h3>
                         <div class="image">
                             <a
                                 href="http://bteb.gov.bd/sites/default/files/files/admin.portal.gov.bd/npfblock//corona_new.jpg"><img
