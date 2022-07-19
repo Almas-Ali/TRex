@@ -18,7 +18,16 @@ use Carbon\Carbon;
 if (!function_exists("website")) {
     function website() {
         $settings = Settings::orderBy('updated_at', 'desc')->first();
-        return $settings;
+    	if (!is_null($settings)) {
+        	return $settings;
+    	}
+    	return [
+    			'site_name' 		=> 'TRex',
+    			'site_slogan' 		=> 'Don\'t work hard, work smart!',
+    			'site_author_name' 	=> 'TRex',
+    			'site_author_email' => 'support@trex.com'
+    		];
+    	
     }
 }
 
@@ -30,7 +39,6 @@ if (!function_exists("dateHuman")) {
         return $diff_date;
     }
 }
-
 
 
 // 'website_name' => env('WEBSITE_NAME', 'CNPI Blog'),

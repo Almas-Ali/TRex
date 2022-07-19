@@ -58,8 +58,8 @@
           </tr>
         </thead>
         <tbody>
+          @if (!empty($contacts))
           @php $i = 1; @endphp
-
           @foreach ($contacts as $contact)
           <tr>
             <th scope="row">{{ $i }}</th>
@@ -120,6 +120,11 @@
             </div>
           </div>
           @endforeach
+          @else
+          <div>
+            <h5>No contact messages exist!</h5>
+          </div>
+          @endif
         </tbody>
       </table>
     </div>

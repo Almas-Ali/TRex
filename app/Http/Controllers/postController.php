@@ -24,7 +24,11 @@ class postController extends Controller
         $tags        = Tag::all();
         $categories  = Category::all();
         $first_news  = Post::first();
-        $all_news  = Post::all()->except($first_news->id);
+        if (!is_null($first_news)){
+            $all_news  = Post::all()->except($first_news->id);
+        } else {
+            $all_news  = null;
+        }
         return view('frontend.index', compact('posts', 'tags', 'categories', 'first_news', 'all_news'));
     }
 

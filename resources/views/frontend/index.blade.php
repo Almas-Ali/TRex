@@ -51,15 +51,16 @@
                             @if (!empty($first_news))
                             <div class="col-lg-6 mb-3">
                                 <div class="mn-img">
-                                    <img src="{{ $first_news->path }}" />
+                                    <img src="{{ $first_news->path }}" alt="{{ $first_news->name }}" class="rounded border border-dark">
                                 </div>
                                 <div class="mn-content">
                                     <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{
                                         $first_news->title }} </a>
-                                    <a class="mn-date" href="#"><i class="far fa-clock"></i> {{ dateHuman($first_news->created_at)
+                                    <a class="mn-date" href="javascript:void(0);"><i class="far fa-clock"></i> {{
+                                        dateHuman($first_news->created_at)
                                         }} </a>
                                     <p class="news_post">
-                                        {{ Str::limit(strip_tags($first_news->content), 120) }}
+                                        {{ Str::limit(strip_tags($first_news->content), 60) }}
                                     </p>
                                 </div>
                             </div>
@@ -77,12 +78,13 @@
                                 @foreach ($all_news as $news)
                                 <div class="mn-list">
                                     <div class="mn-img">
-                                        <img src="{{ $news->path }}" alt="Image" />
+                                        <img src="{{ $news->path }}" alt="{{ $news->name }}" class="rounded border border-dark">
                                     </div>
                                     <div class="mn-content">
                                         <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }}
                                         </a>
-                                        <a class="mn-date" href="#"><i class="far fa-clock"></i> {{ dateHuman($news->created_at) }}
+                                        <a class="mn-date" href="javascript:void(0);"><i class="far fa-clock"></i> {{
+                                            dateHuman($news->created_at) }}
                                         </a>
                                         <p class="news_post">
                                             {{ Str::limit(strip_tags($first_news->content), 40) }}
@@ -124,7 +126,7 @@
                         @if (!empty($tags))
                         <div class="tags">
                             @foreach ($tags as $tag)
-                            <a href="#">{{ $tag->name }}</a>
+                            <a href="javascript:void(0);">{{ $tag->name }}</a>
                             @endforeach
                         </div>
                         @else
@@ -139,7 +141,7 @@
                         <div class="image">
                             <a
                                 href="http://bteb.gov.bd/sites/default/files/files/admin.portal.gov.bd/npfblock//corona_new.jpg"><img
-                                    src="img/corona_new.jpg" alt="Image" height="350"></a>
+                                    src="{{ url('/').'/img/corona_new.jpg' }}" alt="Image" height="350"></a>
                         </div>
                     </div>
 

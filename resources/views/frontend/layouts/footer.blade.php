@@ -77,7 +77,7 @@
                 <p>Copyright &copy; <a href="{{ url('/') }}">{{ website()->site_name }}</a>. All Rights Reserved</p>
             </div>
             <div class="col-md-6 template-by">
-                <p>Developer <a href="https://linktr.ee/almasali">Md. Almas Ali</a></p>
+                <p>Developer <a href="https://linktr.ee/almasali">{{ website()->site_author_name }}</a></p>
             </div>
         </div>
     </div>

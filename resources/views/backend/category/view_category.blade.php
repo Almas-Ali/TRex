@@ -56,8 +56,8 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @if (!empty($categories))
                     @php $i = 1; @endphp
-
                     @foreach ($categories as $category)
                     <tr>
                         <th scope="row">{{ $i }}</th>
@@ -122,6 +122,11 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <div>
+                        <h5>No categories exist!</h5>
+                    </div>
+                    @endif
                 </tbody>
             </table>
         </div>

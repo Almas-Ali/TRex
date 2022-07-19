@@ -35,8 +35,8 @@
               </tr>
             </thead>
             <tbody>
+              @if (!empty($posts))
               @php $i = 1; @endphp
-
               @foreach ($posts as $post)
               <tr>
                 <td scope="row">{{ $i }}</th>
@@ -76,6 +76,11 @@
 
                 @php $i++; @endphp
                 @endforeach
+                @else
+                <div>
+                  <h5>No post exists!</h5>
+                </div>
+                @endif
             </tbody>
           </table>
         </div>
