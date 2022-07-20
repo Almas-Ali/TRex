@@ -27,7 +27,7 @@ setlocal EnableExtensions EnableDelayedExpansion
     cp .env.example .env
     php artisan key:generate
     php artisan migrate:fresh
-    php artisan setup:install
+    php artisan trex:install
     endlocal
 
 :eof
