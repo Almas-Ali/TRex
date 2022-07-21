@@ -9,22 +9,16 @@ make a database and update it on `.env`, then follow bellow:
 
 ```bash
 # clone the repo
-git clone git@github.com:Almas-Ali/laravel-blog.git laravel-blog
+git clone git@github.com:Almas-Ali/trex.git trex
 
-# change directory to laravel-blog
-cd laravel-blog
+# change directory to trex
+cd trex
 
-# install composer dependency
-composer install
+# install this project with CLI command and fill all requirements.
+install
 
-# create a environment file
-cp .env.example .env
-
-# set the Application key
-php artisan key:generate
-
-# set database details in .env & migrate database with this
-php artisan migrate 
+# start the server with php
+php artisan serve
 ```
 
 ### Credits:
