@@ -30,7 +30,76 @@ class setup extends Command
      */
     public function handle()
     {
-        var_dump(count(Settings::all()));
+
+        // Set DB Connection
+        // $db_connection = (string)readline("Enter database connection (example: mysql/pgsql): ") ? !'' : 'mysql';
+        // $db_host = (string)readline("Enter database host (example: localhost): ") ? !'' : '127.0.0.1';
+        // $db_port = (int)readline("Enter database port (example: 3306): ") ? !'' : '3306';
+        // $db_name = (string)readline("Enter database name (example: trex): ") ? !'' : 'trex';
+        // $db_username = (string)readline("Enter database username (example: root): ") ? !'' : 'root';
+        // $db_password = (string)readline("Enter database password (leave empty for localhost): ") ? !'' : '';
+
+        // $db = `
+        // APP_NAME=TRex
+        // APP_ENV=local
+        // APP_KEY=
+        // APP_DEBUG=true
+        // APP_URL=http://localhost
+        
+        // LOG_CHANNEL=stack
+        // LOG_DEPRECATIONS_CHANNEL=null
+        // LOG_LEVEL=debug
+        
+        // DB_CONNECTION=${db_connection}
+        // DB_HOST=${db_host}
+        // DB_PORT=${db_port}
+        // DB_DATABASE=${db_name}
+        // DB_USERNAME=${db_username}
+        // DB_PASSWORD=${db_password}
+        
+        // BROADCAST_DRIVER=log
+        // CACHE_DRIVER=file
+        // FILESYSTEM_DISK=local
+        // QUEUE_CONNECTION=sync
+        // SESSION_DRIVER=file
+        // SESSION_LIFETIME=120
+        
+        // MEMCACHED_HOST=127.0.0.1
+        
+        // REDIS_HOST=127.0.0.1
+        // REDIS_PASSWORD=null
+        // REDIS_PORT=6379
+        
+        // MAIL_MAILER=smtp
+        // MAIL_HOST=mailhog
+        // MAIL_PORT=1025
+        // MAIL_USERNAME=null
+        // MAIL_PASSWORD=null
+        // MAIL_ENCRYPTION=null
+        // MAIL_FROM_ADDRESS="hello@example.com"
+        // MAIL_FROM_NAME="\${APP_NAME}"
+        
+        // AWS_ACCESS_KEY_ID=
+        // AWS_SECRET_ACCESS_KEY=
+        // AWS_DEFAULT_REGION=us-east-1
+        // AWS_BUCKET=
+        // AWS_USE_PATH_STYLE_ENDPOINT=false
+        
+        // PUSHER_APP_ID=
+        // PUSHER_APP_KEY=
+        // PUSHER_APP_SECRET=
+        // PUSHER_APP_CLUSTER=mt1
+        
+        // MIX_PUSHER_APP_KEY="\${PUSHER_APP_KEY}"
+        // MIX_PUSHER_APP_CLUSTER="\${PUSHER_APP_CLUSTER}"        
+        // `;
+        // var_dump($db);
+        // echo $db_connection;
+        // echo $db_host;
+        // echo $db_port;
+        // echo $db_name;
+        // echo $db_username;
+        // echo $db_password;
         // Settings
         if (count(Settings::all()) == 0) {
             $settings = new Settings;

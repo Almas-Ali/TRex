@@ -24,7 +24,7 @@ setlocal EnableExtensions EnableDelayedExpansion
 :Continue
     echo Starting the installation...
     composer install
-    cp .env.example .env
+    copy .env.example .env
     php artisan key:generate
     php artisan migrate:fresh
     php artisan trex:install
