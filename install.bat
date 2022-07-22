@@ -30,6 +30,7 @@ setlocal EnableExtensions EnableDelayedExpansion
     echo.
     composer install
     php artisan key:generate
+    php artisan passport:install --force
     php artisan migrate:fresh --force
     php artisan trex:install
     endlocal
