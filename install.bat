@@ -30,8 +30,8 @@ setlocal EnableExtensions EnableDelayedExpansion
     echo.
     composer install
     @REM php artisan key:generate
-    @REM php artisan migrate:fresh
-    @REM php artisan trex:install
+    php artisan migrate:fresh --force
+    php artisan trex:install
     endlocal
 
 :eof
