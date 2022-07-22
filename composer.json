@@ -54,7 +54,10 @@
             "@php artisan clear-compiled",
             "@php artisan optimize",
             "@php artisan migrate --force",
-            "@php artisan passport:install --force"
+            "@php artisan key:generate",
+            "@php artisan passport:install --force",
+            "@php artisan config:cache",
+            "@php artisan trex:install"
         ]
     },
     "extra": {
