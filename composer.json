@@ -55,7 +55,7 @@
             "@php artisan optimize",
             "@php artisan key:generate",
             "@php artisan passport:install --force",
-            "@php artisan config:cache",
+            "@php artisan config:cache"
         ]
     },
     "extra": {
