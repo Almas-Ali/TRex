@@ -29,7 +29,7 @@ setlocal EnableExtensions EnableDelayedExpansion
     echo Installing env details DONE!
     echo.
     composer install
-    @REM php artisan key:generate
+    php artisan key:generate
     php artisan migrate:fresh --force
     php artisan trex:install
     endlocal
