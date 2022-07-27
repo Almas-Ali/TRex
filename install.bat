@@ -29,10 +29,13 @@ setlocal EnableExtensions EnableDelayedExpansion
     echo Installing env details DONE!
     echo.
     composer install
+    ssh-keygen -t rsa -b 4096 -f ./storage/id_rsa && mv ./storage/id_rsa ./storage/oauth-private.key && mv ./storage/id_rsa.pub ./storage/oauth-public.key
     php artisan key:generate
     php artisan passport:install --force
     php artisan migrate:fresh --force
     php artisan trex:install
+    php artisan config:cache
+    php artisan optimize:clear
     endlocal
 
 :eof
