@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
     <div class="col d-flex justify-content-center">
-        <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded" style="width:18rem;" align="center">
+        <div class="card my-5 shadow-lg p-3 mb-5 bg-body rounded" style="width:20rem;" align="center">
             <img src="{{ url('/') . '/img/badge.png' }}" class="card-img-top" alt="Profile Image">
             <div class="card-body">
                 <h5 class="card-title">{{ $user->name }}</h5>

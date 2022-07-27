@@ -51,7 +51,8 @@
                             @if (!empty($first_news))
                             <div class="col-lg-6 mb-3">
                                 <div class="mn-img">
-                                    <img src="{{ $first_news->path }}" alt="{{ $first_news->name }}" class="rounded border border-dark">
+                                    <img src="{{ $first_news->path }}" alt="{{ $first_news->name }}"
+                                        class="rounded border border-dark">
                                 </div>
                                 <div class="mn-content">
                                     <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{
@@ -78,7 +79,8 @@
                                 @foreach ($all_news as $news)
                                 <div class="mn-list">
                                     <div class="mn-img">
-                                        <img src="{{ $news->path }}" alt="{{ $news->name }}" class="rounded border border-dark">
+                                        <img src="{{ $news->path }}" alt="{{ $news->name }}"
+                                            class="rounded border border-dark">
                                     </div>
                                     <div class="mn-content">
                                         <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }}
@@ -108,8 +110,9 @@
                             @if (!empty($categories))
                             <ul class="fa-ul">
                                 @foreach ($categories as $category)
-                                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a
-                                        href="">{{ $category->name }}</a></li>
+                                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span>
+                                    <a href="#">{{ $category->name }}</a>
+                                </li>
 
                                 @endforeach
                             </ul>

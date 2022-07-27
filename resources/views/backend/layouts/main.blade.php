@@ -33,36 +33,13 @@
 
 <body>
 
-    <div id="update_notification" style="display:none;" class="alert alert-info">
-        <button type="button" style="margin-left: 20px" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <script>
-        $(document).ready(function() {  
-            $.ajax({
-                type: 'GET',   
-                url: 'updater.check',
-                async: false,
-                success: function(response) {
-                    if(response != ''){
-                        $('#update_notification').append('<strong>Update Available <span class="badge badge-pill badge-info">v. '+response+'</span></strong><a role="button" href="updater.update" class="btn btn-sm btn-info pull-right">Update Now</a>');
-                        $('#update_notification').show();
-                    }
-                }
-            });
-        });
-    </script>
-    {{-- @include('backend.layouts.navbar') --}}
     @yield('content')
 
-
-    <!-- Footer Start -->
     <div class="container-fluid pt-4 px-2">
         <div class="bg-light rounded-top p-4">
             <div class="row">
                 <div class="col-12 col-sm-6 text-center text-sm-start">
-                    &copy; <a href="{{ url('/') }}">{{ website()->site_name }}</a>, All Rights Reserved.
+                    &copy; <a href="{{ url('/about') }}">{{ website()->site_name }}</a>, All Rights Reserved.
                 </div>
                 <div class="col-12 col-sm-6 text-center text-sm-end">
                     Developer <a href="https://linktr.ee/almasali">{{ website()->site_author_name }}</a>
@@ -70,9 +47,6 @@
             </div>
         </div>
     </div>
-    <!-- Footer End -->
-    </div>
-    <!-- Content End -->
 
 
     <!-- Back to Top -->

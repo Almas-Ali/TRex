@@ -121,20 +121,31 @@
             </select>
           </div>
           <div class="form-group mt-2">
-            <label for="image">Please Select Image</label>
-            <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control"
-              required>
-            @error('image')
-            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-            @enderror
+            <div class="form-group mt-2">
+              <img id="output" style="width: 20rem;"> <br>
+              <script>
+                var loadFile = function(event) {
+                var output = document.getElementById('output');
+                output.src = URL.createObjectURL(event.target.files[0]);
+                output.onload = function() {
+                  URL.revokeObjectURL(output.src) // free memory
+                }
+              };
+              </script>
+              <label for="image">Please Select Image</label>
+              <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control"
+                required onchange="loadFile(event)">
+              @error('image')
+              <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+              @enderror
+            </div>
+            <div class="form-group my-3">
+              <textarea id="editor" name="content"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
           </div>
-          <div class="form-group my-3">
-            <textarea id="editor" name="content"></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
-    </div>
   </form>
 </div>
 

@@ -41,9 +41,10 @@
                             @if (!empty($categories))
                             <ul class="fa-ul">
                                 @foreach ($categories as $category)
-                                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span><a
-                                        href="">{{
-                                        $category->name }}</a></li>
+                                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span>
+                                    <a href="javascript:void(0);">{{
+                                        $category->name }}</a>
+                                </li>
 
                                 @endforeach
                             </ul>
@@ -74,7 +75,7 @@
                         <h3><strong>Ads</strong></h3>
                         <div class="image">
                             <a
-                                href="http://bteb.gov.bd/sites/default/files/files/admin.portal.gov.bd/npfblock//corona_new.jpg"><img
+                                href="{{ url('/').'/img/corona_new.jpg' }}"><img
                                     src="{{ url('/').'/img/corona_new.jpg' }}" alt="Image" height="350"></a>
                         </div>
                     </div>
