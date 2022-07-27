@@ -83,7 +83,7 @@
 
 <div class="container-fluid">
 
-  <form action="{{ url('post/edit/'.$post->id.'/update') }}" method="post">
+  <form action="{{ url('post/edit/'.$post->id.'/update') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="mt-4 mb-4">
       <div class="row justify-content-md-center">

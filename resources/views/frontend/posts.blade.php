@@ -11,7 +11,7 @@
             <a class="sn-date text-dark" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                 dateHuman($post->updated_at) }} - ({{ $post->updated_at }}) </a>
             <a class="sn-author text-dark mb-3 mt-1" href="javascript:void(0);">
-                Post by <strong>{{ Auth::user($post->author)->name }}</strong>
+                Post by <strong>{{ getUser($post->author)->name }}</strong>
             </a>
             <div class="p-2">
                 <img src="{{ $post->path }}" alt="{{ $post->name }}" class="rounded border border-dark" height="500px">

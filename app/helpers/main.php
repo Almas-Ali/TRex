@@ -12,6 +12,7 @@
 //     }
 // }
 
+use App\Models\User;
 use App\Models\settings;
 use Carbon\Carbon;
 
@@ -37,6 +38,13 @@ if (!function_exists("dateHuman")) {
         $carbonated_date = Carbon::parse($date);
         $diff_date = $carbonated_date->diffForHumans(Carbon::now());
         return $diff_date;
+    }
+}
+
+if (!function_exists("getUser")) {
+    function getUser($id) {
+        $user = User::find($id);
+		return $user;
     }
 }
 

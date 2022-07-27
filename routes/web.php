@@ -5,6 +5,7 @@ use App\Http\Controllers\postController;
 use App\Http\Controllers\categoryController;
 use App\Http\Controllers\settingsController;
 use App\Http\Controllers\contactController;
+use App\Http\Controllers\profileController;
 use App\Http\Controllers\installerController;
 
 /*
@@ -18,66 +19,90 @@ use App\Http\Controllers\installerController;
 |
 */
 
+// Main frontend routes 
 Route::get('/', [postController::class, 'index'])->name('index');
-
 Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
-
 Route::get('about/', [postController::class, 'about'])->name('about');
-
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
 
 
-// CRUD of post
-Route::get('post/add/', [postController::class, 'add_post'])->name('add_post')->middleware('auth');
-
-Route::post('post/create', [postController::class, 'create_post'])->name('create_post')->middleware('auth');
-
-Route::get('post/edit/{id}', [postController::class, 'edit_post'])->name('edit_post')->middleware('auth');
-
-Route::post('post/edit/{id}/update', [postController::class, 'post_update'])->name('post_update')->middleware('auth');
-
-Route::get('post/', [postController::class, 'view_post'])->name('view_post')->middleware('auth');
-
-Route::get('post/delete/{id}', [postController::class, 'delete_post'])->name('delete_post')->middleware('auth');
+// CRUD of post 
+Route::prefix('post')->group(function () {
+    Route::get('add/', [postController::class, 'add_post'])->name('add_post')->middleware('auth');
+    Route::post('create', [postController::class, 'create_post'])->name('create_post')->middleware('auth');
+    Route::get('edit/{id}', [postController::class, 'edit_post'])->name('edit_post')->middleware('auth');
+    Route::post('edit/{id}/update', [postController::class, 'post_update'])->name('post_update')->middleware('auth');
+    Route::get('/', [postController::class, 'view_post'])->name('view_post')->middleware('auth');
+    Route::get('delete/{id}', [postController::class, 'delete_post'])->name('delete_post')->middleware('auth');
+});
 
 
-// CRUD of category
-Route::get('category/add/', [categoryController::class, 'add_category'])->name('add_category')  ->middleware('auth');
-
-Route::post('category/edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category')->middleware('auth');
-
-Route::get('category/', [categoryController::class, 'view_category'])->name('view_category')->middleware('auth');
-
-Route::get('category/delete/{id}', [categoryController::class, 'delete_category'])->name('delete_category')->middleware('auth');
-
-
-// Settings of site
-Route::get('settings/general', [settingsController::class, 'general'])->name('general_settings')->middleware('auth');
-
-Route::post('settings/general/update', [settingsController::class, 'save_general'])->name('save_general')->middleware('auth');
-
-// Contact in site
-Route::get('contact/', [contactController::class, 'contact'])->name('contact');
-
-Route::post('contact/create', [contactController::class, 'contact_create'])->name('contact_create');
-
-Route::get('contact/view/all', [contactController::class, 'all_contacts'])->name('all_contacts')->middleware('auth');
-
-Route::get('contact/view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth');
+// CRUD of category 
+Route::prefix('category')->group(function () {
+    Route::get('add/', [categoryController::class, 'add_category'])->name('add_category')  ->middleware('auth');
+    Route::post('edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category')->middleware('auth');
+    Route::get('/', [categoryController::class, 'view_category'])->name('view_category')->middleware('auth');
+    Route::get('delete/{id}', [categoryController::class, 'delete_category'])->name('delete_category')->middleware('auth');
+});
 
 
-// Installer paths
-Route::get('install/', [installerController::class, 'installation'])->name('installation');
+// Settings of site 
+Route::prefix('settings')->group(function () {
+    Route::get('general', [settingsController::class, 'general'])->name('general_settings')->middleware('auth');
+    Route::post('general/update', [settingsController::class, 'save_general'])->name('save_general')->middleware('auth');
+});
 
-Route::get('install/database-connection', [installerController::class, 'db_connection'])->name('db_connection');
+// Contact in site 
+Route::prefix('contact')->group(function () {
+    Route::get('/', [contactController::class, 'contact'])->name('contact');
+    Route::post('create', [contactController::class, 'contact_create'])->name('contact_create');
+    Route::get('view/all', [contactController::class, 'all_contacts'])->name('all_contacts')->middleware('auth');
+    Route::get('view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth');
+});
 
-Route::post('install/database-connection/submit', [installerController::class, 'db_connection_submit'])->name('db_connection_submit');
+Route::prefix('profile')->group(function() {
+    Route::get('/', [profileController::class, 'profile'])->name('profile')->middleware('auth');
+    Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings')->middleware('auth');
+    Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile')->middleware('auth');
+});
+
+
+// Installer paths 
+Route::prefix('install')->group(function () {
+    Route::get('/', [installerController::class, 'installation'])->name('installation');
+    Route::get('database-connection', [installerController::class, 'db_connection'])->name('db_connection');
+    Route::post('database-connection/submit', [installerController::class, 'db_connection_submit'])->name('db_connection_submit');
+});
 
 
 
-// Auth view
+// Auth view 
 Auth::routes();
 
 Route::get('/home', function(){
     return redirect('/');
 })->name('home');
+
+
+Route::get('/update', function (\Codedge\Updater\UpdaterManager $updater) {
+
+    // Check if new version is available
+    if($updater->source()->isNewVersionAvailable()) {
+
+        // Get the current installed version
+        echo $updater->source()->getVersionInstalled();
+
+        // Get the new version available
+        $versionAvailable = $updater->source()->getVersionAvailable();
+
+        // Create a release
+        $release = $updater->source()->fetch($versionAvailable);
+
+        // Run the update process
+        $updater->source()->update($release);
+
+    } else {
+        echo "No new version available.";
+    }
+
+});

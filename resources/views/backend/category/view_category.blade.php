@@ -9,15 +9,17 @@
 
     <div class="my-3">
         <form class="row g-3" method="get" action="{{ route('add_category') }}">
-            @if(isset($message))
-            <p class="alert alert-success px-3">{{ $message }}</p>
-            @endif
-
-            @if (session('message'))
-            <div class="alert alert-success px-3">
-                {{ session('message') }}
+            <div class="container mt-3">
+                @if(isset($message))
+                <p class="alert alert-success">{{ $message }}</p>
+                @endif
+        
+                @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+                @endif
             </div>
-            @endif
 
             <div class="col-auto">
                 {{-- <label for="add_category" class="visually-hidden">Add Category</label> --}}
