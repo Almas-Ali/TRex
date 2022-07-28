@@ -6,7 +6,7 @@
     </a>
     <div class="d-flex align-items-center ms-4 mb-4">
       <div class="position-relative">
-        <img class="rounded-circle" src="{{ asset('img/badge.png') }}" alt="" style="width: 40px; height: 40px;">
+        <img class="rounded-circle" src="{{ url('/').Auth::user()->photo_path }}" alt="{{ Auth::user()->photo_name }}" style="width: 50px; height: 50px;">
         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
         </div>
       </div>
@@ -72,7 +72,7 @@
       @else
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-          <img class="rounded-circle me-lg-2" src="{{ asset('img/badge.png') }}" alt=""
+          <img class="rounded-circle me-lg-2" src="{{ url('/').Auth::user()->photo_path }}" alt="{{ Auth::user()->photo_name }}"
             style="width: 40px; height: 40px;">
           <span class="d-none d-lg-inline-flex">{{ Auth::user()->name }}</span>
         </a>

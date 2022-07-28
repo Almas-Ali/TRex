@@ -64,7 +64,7 @@ class postController extends Controller
         $path = $request->file('image')->move(public_path('uploads'), $newImageName);
         
         $post -> name = $request->file('image')->getClientOriginalName();
-        $post -> path = "/uploads/".$newImageName;
+        $post -> path = "/uploads/post/".$newImageName;
         
         $post->save();
     	$tags = explode(",", $request->tags_arr);

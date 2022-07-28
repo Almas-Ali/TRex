@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use App\Models\settings;
 use App\Models\post;
 use App\Models\category;
+use App\Models\User;
 
 class setup extends Command
 {
@@ -137,6 +138,19 @@ class setup extends Command
             $post->save();
             $post->tag('test');
             echo "[+] Successfully installed site posts!\n";
+        } else {
+            echo "[!] Warning! requirements already satisfied!\n";
+        }
+
+        if (count(User::all()) == 0) {
+            $user       = new User;
+            $user->name = 'TRex';
+            $user->username = 'trex';
+            $user->is_admin = 1;
+            $user->email = 'support@trex.com';
+            $user->password = \Illuminate\Support\Facades\Hash::make('12345678');
+            $user->save();
+            echo "[+] Successfully installed site default user!\n";
         } else {
             echo "[!] Warning! requirements already satisfied!\n";
         }

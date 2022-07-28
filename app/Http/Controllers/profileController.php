@@ -27,6 +27,15 @@ class profileController extends Controller
         $user = Auth::user();
         $user->name  = $request->get('name');
         $user->email = $request->get('email');
+        $user->username = $request->get('username');
+
+        $image_name = $request->file('user_image')->getClientOriginalName();
+        $newImageName = time() . '-' . $image_name;
+        $path = $request->file('user_image')->move(public_path('uploads/user'), $newImageName);
+        
+        $user -> photo_name = $image_name;
+        $user -> photo_path = "/uploads/user/".$newImageName;
+        
         $user->save();
         return redirect()->back()->with(['message' => 'Successfully updated!']);
     }
