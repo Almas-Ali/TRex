@@ -11,6 +11,20 @@ use Conner\Tagging\Model\Tag;
 
 class postController extends Controller
 {
+    public function resize_calc($height, $width) {
+        if ($height >= 1920 && $width >= 1080) {
+            (int)$height = $height / 6;
+            (int)$width = $width / 6;
+        } elseif ($height >= 1024 && $width >= 720) {
+            (int)$height = $height / 4;
+            (int)$width = $width / 4;
+        } elseif ($height >= 600 && $width >= 360) {
+            (int)$height = $height / 3;
+            (int)$width = $width / 3;
+        }
+
+        return [$height, $width];
+    }
 
     public function posts(Request $request, $slug) {
         $post        = Post::where('slug', $slug)->first();
@@ -51,8 +65,8 @@ class postController extends Controller
         $post->title        = $request->get('title');
         $post->slug         = $request->get('slug');
         $post->content      = $request->get('content');
-        $post->category_id  = $request->get('category_select');
-        $post->author       = Auth::user()->id;
+        $post->category     = $request->get('category_select');
+        $post->user         = Auth::user()->id;
         // Photo settings
         // $name = $request->file('image')->getClientOriginalName();
         // $request->file('image')->move(public_path('uploads'), $name);
@@ -61,10 +75,16 @@ class postController extends Controller
         // $post -> path = $path;
 
         $newImageName = time() . '-' . $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->move(public_path('uploads'), $newImageName);
+        $path = $request->file('image')->move(public_path('uploads/posts/'), $newImageName);
         
         $post -> name = $request->file('image')->getClientOriginalName();
-        $post -> path = "/uploads/post/".$newImageName;
+        $post -> path = "/uploads/posts/".$newImageName;
+
+        $img = \Image::make(public_path('uploads/posts/').$newImageName);
+        // $size = $this->resize_calc( $img->height(), $img->width() );
+        // $img -> resize($size[0], $size[1]);
+        // return dd($size);
+        $img->save(public_path('uploads/posts/').$newImageName, 30);
         
         $post->save();
     	$tags = explode(",", $request->tags_arr);
@@ -89,13 +109,19 @@ class postController extends Controller
         $post->title        = $request->get('title');
         $post->slug         = $request->get('slug');
         $post->content      = $request->get('content');
-        $post->category_id  = $request->get('category_select');
+        $post->category     = $request->get('category_select');
 
         $newImageName = time() . '-' . $request->file('image')->getClientOriginalName();
-        $path = $request->file('image')->move(public_path('uploads'), $newImageName);
+        $path = $request->file('image')->move(public_path('uploads/posts/'), $newImageName);
+        
+        $img = \Image::make(public_path('uploads/posts/').$newImageName);
+        // $size = $this->resize_calc( $img->height(), $img->width() );
+        // $img -> resize($size[1], $size[0]);
+        // return dd($size);
+        $img->save(public_path('uploads/posts/').$newImageName, 30);
         
         $post -> name = $request->file('image')->getClientOriginalName();
-        $post -> path = "/uploads/".$newImageName;
+        $post -> path = "/uploads/posts/".$newImageName;
         
         $tags = explode(",", $request->tags_arr);
         // return dd($tags);

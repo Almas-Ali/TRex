@@ -15,7 +15,7 @@
             <a class="sn-date text-dark" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                 dateHuman($post->updated_at) }} - ({{ $post->updated_at }}) </a>
             <a class="sn-author text-dark mb-3 mt-1" href="javascript:void(0);">
-                Post by <strong>{{ getUser($post->author)->name }}</strong>
+                Post by <strong>{{ getUser($post->user)->name }}</strong>
             </a>
             {{-- <div class="col-md-8"> --}}
                 <div class="sn-content">

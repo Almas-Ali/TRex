@@ -21,6 +21,10 @@ install
 php artisan serve
 ```
 
+Need to change in xampp: 
+    - goto : C:\xampp\php\php.ini
+    - change : ";extension=gd" to "extension=gd"
+
 ### Credits:
 <p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
 <p>Framework By <a href="https://laravel.com">Laravel</a></p>

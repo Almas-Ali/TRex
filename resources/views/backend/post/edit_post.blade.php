@@ -19,32 +19,32 @@
 </script>
 
 <script>
-  // tinymce.init({
-  //           selector: 'textarea#editor',
-  //           menubar: false,
-  //           statusbar: false,
-  //           plugins: 'autoresize anchor autolink charmap code codesample directionality fullpage help hr image imagetools insertdatetime link lists media nonbreaking pagebreak preview print searchreplace table template textpattern toc visualblocks visualchars',
-  //           toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help fullscreen ',
+  tinymce.init({
+            selector: 'textarea#editor',
+            menubar: false,
+            statusbar: false,
+            plugins: 'autoresize anchor autolink charmap code codesample directionality fullpage help hr image imagetools insertdatetime link lists media nonbreaking pagebreak preview print searchreplace table template textpattern toc visualblocks visualchars',
+            toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help fullscreen ',
             
-  //           skin: 'bootstrap',
-  //           toolbar_drawer: 'floating',
-  //           min_height: 200,           
-  //           autoresize_bottom_margin: 16,
-  //           setup: (editor) => {
-  //               editor.on('init', () => {
-  //                   editor.getContainer().style.transition="border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out"
-  //                   editor.setContent('<p>Hello world!</p>');
-  //               });
-  //               editor.on('focus', () => {
-  //                   editor.getContainer().style.boxShadow="0 0 0 .2rem rgba(0, 123, 255, .25)",
-  //                   editor.getContainer().style.borderColor="#80bdff"
-  //               });
-  //               editor.on('blur', () => {
-  //                   editor.getContainer().style.boxShadow="",
-  //                   editor.getContainer().style.borderColor=""
-  //               });
-  //           }
-  //       });
+            skin: 'bootstrap',
+            toolbar_drawer: 'floating',
+            min_height: 300,           
+            autoresize_bottom_margin: 16,
+            setup: (editor) => {
+                editor.on('init', () => {
+                    editor.getContainer().style.transition="border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out"
+                    editor.setContent('<p>Hello world!</p>');
+                });
+                editor.on('focus', () => {
+                    editor.getContainer().style.boxShadow="0 0 0 .2rem rgba(0, 123, 255, .25)",
+                    editor.getContainer().style.borderColor="#80bdff"
+                });
+                editor.on('blur', () => {
+                    editor.getContainer().style.boxShadow="",
+                    editor.getContainer().style.borderColor=""
+                });
+            }
+        });
 
         window.onload = function(){
             //     var tox = document.getElementsByClassName('tox-notification__dismiss')[0];
@@ -123,7 +123,7 @@
 
           <select name="category_select" id="category_select" class="form-select">
             @foreach($categories as $category)
-            @if($category == $post->category)
+            @if($category->id == $post->category)
             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
             @else
             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -131,10 +131,11 @@
             @endforeach
           </select>
           <div class="form-group mt-2">
-            <img id="output" style="width: 20rem;"> <br>
+            <img id="output" style="width: 20rem;" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded hidden"> <br>
             <script>
               var loadFile = function(event) {
               var output = document.getElementById('output');
+              output.classList.remove('hidden');
               output.src = URL.createObjectURL(event.target.files[0]);
               output.onload = function() {
                 URL.revokeObjectURL(output.src) // free memory
@@ -143,7 +144,7 @@
             </script>
             <label for="image">Please Select Image</label>
             <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control"
-              value="{{ url('/').$post->path }}" required onchange="loadFile(event)">
+              value="{{ url('/').$post->path }}" required onchange="loadFile(event)" accept="image/png, image/jpeg">
             @error('image')
             <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
             @enderror

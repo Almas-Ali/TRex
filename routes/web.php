@@ -38,18 +38,18 @@ Route::prefix('post')->group(function () {
 
 
 // CRUD of category 
-Route::prefix('category')->group(function () {
-    Route::get('add/', [categoryController::class, 'add_category'])->name('add_category')  ->middleware('auth');
-    Route::post('edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category')->middleware('auth');
-    Route::get('/', [categoryController::class, 'view_category'])->name('view_category')->middleware('auth');
-    Route::get('delete/{id}', [categoryController::class, 'delete_category'])->name('delete_category')->middleware('auth');
+Route::middleware('auth')->prefix('category')->group(function () {
+    Route::get('add/', [categoryController::class, 'add_category'])->name('add_category');
+    Route::post('edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category');
+    Route::get('/', [categoryController::class, 'view_category'])->name('view_category');
+    Route::get('delete/{id}', [categoryController::class, 'delete_category'])->name('delete_category');
 });
 
 
 // Settings of site 
-Route::prefix('settings')->group(function () {
-    Route::get('general', [settingsController::class, 'general'])->name('general_settings')->middleware('auth');
-    Route::post('general/update', [settingsController::class, 'save_general'])->name('save_general')->middleware('auth');
+Route::middleware('auth')->prefix('settings')->group(function () {
+    Route::get('general', [settingsController::class, 'general'])->name('general_settings');
+    Route::post('general/update', [settingsController::class, 'save_general'])->name('save_general');
 });
 
 // Contact in site 
@@ -60,10 +60,10 @@ Route::prefix('contact')->group(function () {
     Route::get('view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth');
 });
 
-Route::prefix('profile')->group(function() {
-    Route::get('/', [profileController::class, 'profile'])->name('profile')->middleware('auth');
-    Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings')->middleware('auth');
-    Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile')->middleware('auth');
+Route::middleware('auth')->prefix('profile')->group(function() {
+    Route::get('/', [profileController::class, 'profile'])->name('profile');
+    Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings');
+    Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile');
 });
 
 
