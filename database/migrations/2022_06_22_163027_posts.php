@@ -20,9 +20,9 @@ return new class extends Migration
             $table->unsignedBigInteger('category');
             $table->foreign('category')->references('id')->on('categories')->onDelete('cascade')->onUpdate('cascade');
             $table->string('title');
-            $table->string('slug');
-            $table->string('name');
-            $table->string('path');
+            $table->string('slug')->unique();
+            $table->string('photo_name');
+            $table->string('photo_path');
             $table->longText('content');
             $table->timestamps();
         });

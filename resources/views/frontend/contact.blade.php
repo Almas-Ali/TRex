@@ -4,7 +4,6 @@
 
 @section('content')
 @include('frontend.layouts.navbar')
-@include('frontend.layouts.top_nav')
 
 <!-- Breadcrumb Start -->
 <div class="breadcrumb-wrap">

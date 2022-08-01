@@ -38,8 +38,8 @@ class profileController extends Controller
         $newImageName = time() . '-' . $image_name;
         
         $path = $request->file('user_image')->move(public_path('uploads/user'), $newImageName);
-        $img = \Image::make(public_path('uploads/user/').$newImageName)->resize(100, 100);
-        $img->save(public_path('uploads/user/').$newImageName, 50);
+        $img = \Image::make(public_path('uploads/user/').$newImageName)->resize(120, 120);
+        $img->save(public_path('uploads/user/').$newImageName, 70);
         
         $user -> photo_name = $image_name;
         $user -> photo_path = "/uploads/user/".$newImageName;

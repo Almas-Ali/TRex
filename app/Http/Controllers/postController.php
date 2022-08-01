@@ -71,14 +71,14 @@ class postController extends Controller
         // $name = $request->file('image')->getClientOriginalName();
         // $request->file('image')->move(public_path('uploads'), $name);
         // $path = $request->file('image')->store('/uploads');
-        // $post -> name = $name;
-        // $post -> path = $path;
+        // $post -> photo_name = $name;
+        // $post -> photo_path = $path;
 
         $newImageName = time() . '-' . $request->file('image')->getClientOriginalName();
         $path = $request->file('image')->move(public_path('uploads/posts/'), $newImageName);
         
-        $post -> name = $request->file('image')->getClientOriginalName();
-        $post -> path = "/uploads/posts/".$newImageName;
+        $post -> photo_name = $request->file('image')->getClientOriginalName();
+        $post -> photo_path = "/uploads/posts/".$newImageName;
 
         $img = \Image::make(public_path('uploads/posts/').$newImageName);
         // $size = $this->resize_calc( $img->height(), $img->width() );
@@ -120,8 +120,8 @@ class postController extends Controller
         // return dd($size);
         $img->save(public_path('uploads/posts/').$newImageName, 30);
         
-        $post -> name = $request->file('image')->getClientOriginalName();
-        $post -> path = "/uploads/posts/".$newImageName;
+        $post -> photo_name = $request->file('image')->getClientOriginalName();
+        $post -> photo_path = "/uploads/posts/".$newImageName;
         
         $tags = explode(",", $request->tags_arr);
         // return dd($tags);

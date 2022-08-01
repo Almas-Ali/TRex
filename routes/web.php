@@ -6,6 +6,7 @@ use App\Http\Controllers\categoryController;
 use App\Http\Controllers\settingsController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\userController;
 use App\Http\Controllers\installerController;
 
 /*
@@ -23,17 +24,18 @@ use App\Http\Controllers\installerController;
 Route::get('/', [postController::class, 'index'])->name('index');
 Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
 Route::get('about/', [postController::class, 'about'])->name('about');
+Route::get('categories/', [categoryController::class, 'list_category'])->name('list_category');
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
 
 
 // CRUD of post 
-Route::prefix('post')->group(function () {
-    Route::get('add/', [postController::class, 'add_post'])->name('add_post')->middleware('auth');
-    Route::post('create', [postController::class, 'create_post'])->name('create_post')->middleware('auth');
-    Route::get('edit/{id}', [postController::class, 'edit_post'])->name('edit_post')->middleware('auth');
-    Route::post('edit/{id}/update', [postController::class, 'post_update'])->name('post_update')->middleware('auth');
-    Route::get('/', [postController::class, 'view_post'])->name('view_post')->middleware('auth');
-    Route::get('delete/{id}', [postController::class, 'delete_post'])->name('delete_post')->middleware('auth');
+Route::middleware('auth')->prefix('post')->group(function () {
+    Route::get('add/', [postController::class, 'add_post'])->name('add_post');
+    Route::post('create', [postController::class, 'create_post'])->name('create_post');
+    Route::get('edit/{id}', [postController::class, 'edit_post'])->name('edit_post');
+    Route::post('edit/{id}/update', [postController::class, 'post_update'])->name('post_update');
+    Route::get('/', [postController::class, 'view_post'])->name('view_post');
+    Route::get('delete/{id}', [postController::class, 'delete_post'])->name('delete_post');
 });
 
 
@@ -50,6 +52,11 @@ Route::middleware('auth')->prefix('category')->group(function () {
 Route::middleware('auth')->prefix('settings')->group(function () {
     Route::get('general', [settingsController::class, 'general'])->name('general_settings');
     Route::post('general/update', [settingsController::class, 'save_general'])->name('save_general');
+});
+
+// Users of site 
+Route::middleware('auth')->prefix('users')->group(function () {
+    Route::get('/', [userController::class, 'all_users'])->name('all_users');
 });
 
 // Contact in site 
@@ -77,7 +84,7 @@ Route::prefix('install')->group(function () {
 
 
 // Auth view 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::get('/home', function(){
     return redirect('/');

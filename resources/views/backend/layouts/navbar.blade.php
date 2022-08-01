@@ -42,6 +42,13 @@
       </div>
 
       <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle @stack('users-active')" data-bs-toggle="dropdown"><i class="fa fa-users" aria-hidden="true"></i>Users</a>
+        <div class="dropdown-menu bg-transparent border-0">
+          <a href="{{ route('all_users') }}" class="dropdown-item @stack('all_users-active')">Users List</a>
+        </div>
+      </div>
+
+      <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle @stack('settings-active')" data-bs-toggle="dropdown"><i
             class="fa-solid fa-gears me-2"></i>Settings</a>
         <div class="dropdown-menu bg-transparent border-0">

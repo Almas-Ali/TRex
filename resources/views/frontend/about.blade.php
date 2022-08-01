@@ -4,7 +4,6 @@
 
 @section('content')
 @include('frontend.layouts.navbar')
-@include('frontend.layouts.top_nav')
 
 <div class="container-fluid">
     <div class="card mt-3 p-2">

@@ -26,5 +26,6 @@ Need to change in xampp:
     - change : ";extension=gd" to "extension=gd"
 
 ### Credits:
-<p>Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+<p>Frontend & Backend Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
+<p>Navbar By <a href="https://codepen.io/acarlie/pen/JjPKmmV">Codepen</a></p>
 <p>Framework By <a href="https://laravel.com">Laravel</a></p>

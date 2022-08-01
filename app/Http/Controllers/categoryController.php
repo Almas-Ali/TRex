@@ -8,18 +8,29 @@ use App\Models\Category;
 
 class categoryController extends Controller
 {
+    public function list_category () {
+
+        $categories = Category::all();
+        return view('frontend.categories', compact('categories'));
+    }
+
     public function add_category(Request $request) {
         // $categories = Category::get();
 		// return view('category.view_category', compact('categories'));
         
-        // $request->validate([
-		// 	'add_category' => 'min:4|unique:categories'
-		// ]);
+        $request->validate([
+			'category_name' => ['min:4', 'max:50', 'unique:categories', 'required'],
+            'category_slug' => ['min:4', 'max:50', 'unique:categories', 'required'],
+            'category_dsc'  => ['min:4', 'max:50', 'required'],
+		]);
 
-		$category       = new Category;
-		$category->name = $request->get('add_category');
+		$category               = new Category;
+		$category->name         = $request->get('category_name');
+		$category->slug         = $request->get('category_slug');
+		$category->description  = $request->get('category_dsc');
 		$category->save();
-		$message        = 'New Category Added Successfully!';
+		
+        $message = 'New Category Added Successfully!';
         
         $categories = Category::get();
         // return view('category.view_category', compact('message', 'categories'));

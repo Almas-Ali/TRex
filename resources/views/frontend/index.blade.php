@@ -5,7 +5,6 @@
 
 {{-- <h1 align="center">This is index page...</h1> --}}
 
-@include('frontend.layouts.top_nav')
 @include('frontend.layouts.navbar')
 
 
@@ -51,7 +50,7 @@
                             @if (!empty($first_news))
                             <div class="col-lg-6 mb-3">
                                 <div class="mn-img">
-                                    <img src="{{ $first_news->path }}" alt="{{ $first_news->name }}"
+                                    <img src="{{ $first_news->photo_path }}" alt="{{ $first_news->photo_name }}"
                                         class="rounded border border-dark">
                                 </div>
                                 <div class="mn-content">
@@ -79,7 +78,7 @@
                                 @foreach ($all_news as $news)
                                 <div class="mn-list">
                                     <div class="mn-img">
-                                        <img src="{{ $news->path }}" alt="{{ $news->name }}"
+                                        <img src="{{ $news->photo_path }}" alt="{{ $news->photo_name }}"
                                             class="rounded border border-dark">
                                     </div>
                                     <div class="mn-content">

@@ -44,6 +44,12 @@ try {
     //
 }
 
+try {
+    auto_tag_genaretor("auto-tag-genarate", "category_slug", "category_name");
+} catch {
+    //
+}
+
 function news_to_post(cls_name) {
     var post = document.getElementsByClassName(cls_name);
     for (var i = 0; i < post.length; i++) {

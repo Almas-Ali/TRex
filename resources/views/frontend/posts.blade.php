@@ -10,7 +10,7 @@
             <h1 class="sn-title my-3">{{ $post->title }}</h1>
 
             <div class="p-2">
-                <img src="{{ $post->path }}" alt="{{ $post->name }}" class="rounded" height="500px">
+                <img src="{{ $post->photo_path }}" alt="{{ $post->photo_name }}" class="rounded" height="500px">
             </div>
             <a class="sn-date text-dark" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                 dateHuman($post->updated_at) }} - ({{ $post->updated_at }}) </a>
