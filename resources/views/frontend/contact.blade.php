@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ website()->site_name }}">Home</a></li>
-            <li class="breadcrumb-item active">Contact</li>
+            <li class="breadcrumb-item">Contact</li>
         </ul>
     </div>
 </div>

@@ -28,4 +28,5 @@ Need to change in xampp:
 ### Credits:
 <p>Frontend & Backend Template By <a href="https://htmlcodex.com">HTML Codex</a></p>
 <p>Navbar By <a href="https://codepen.io/acarlie/pen/JjPKmmV">Codepen</a></p>
+<p>Login By <a href="https://codepen.io/KY64/pen/jJdwBp">Codepen</a></p>
 <p>Framework By <a href="https://laravel.com">Laravel</a></p>

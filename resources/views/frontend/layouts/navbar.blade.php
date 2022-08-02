@@ -67,7 +67,7 @@
 </nav>
 <!-- Navbar ends here --> --}}
 
-<header id="nav-wrapper mb-5">
+<header id="nav-wrapper">
   <nav id="nav">
     <div class="nav left">
       <span class="gradient skew">
@@ -82,22 +82,30 @@
     <div class="nav right mx-5">
       <a href="{{ route('home') }}" class="nav-link @stack('home-active')">
         <span class="nav-link-span">
-          <span class="u-nav">Home</span>
+          <span class="u-nav">
+            <i class="fa fa-home" aria-hidden="true"></i> Home
+          </span>
         </span>
       </a>
       <a href="{{ route('list_category') }}" class="nav-link @stack('categories-active')">
         <span class="nav-link-span">
-          <span class="u-nav">Categories</span>
+          <span class="u-nav">
+            <i class="fa fa-list-alt me-2"></i> Categories
+          </span>
         </span>
       </a>
       <a href="{{ route('about') }}" class="nav-link @stack('about-active')">
         <span class="nav-link-span">
-          <span class="u-nav">About</span>
+          <span class="u-nav">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> About
+          </span>
         </span>
       </a>
       <a href="{{ route('contact') }}" class="nav-link @stack('contact-active')">
         <span class="nav-link-span">
-          <span class="u-nav">Contact</span>
+          <span class="u-nav">
+            <i class="fa fa-envelope" aria-hidden="true"></i> Contact
+          </span>
         </span>
       </a>
       <div>
@@ -107,15 +115,19 @@
             <span class="u-nav">{{ __('Login') }}</span>
           </span>
         </a> --}}
-        <a href="#!" class="btn-grad rounded text-light text-decoration-none">Log</a>
-        
+        <a href="{{ route('login') }}" class="btn-grad rounded text-light text-decoration-none mx-3">Login</a>
+
         {{-- <a href="{{ route('register') }}" class="nav-link @stack('register-active')">
           <span class="nav-link-span">
             <span class="u-nav">{{ __('Register') }}</span>
           </span>
         </a> --}}
         @else
-        <li class="nav-item dropdown">
+        <a href="{{ route('dashboard') }}" class="btn-grad rounded text-light text-decoration-none mx-3">
+          <i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard
+        </a>
+
+        {{-- <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link @stack('admin-active') dropdown-toggle" href="#" role="button"
             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
             {{ Auth::user()->name }}
@@ -136,7 +148,7 @@
               @csrf
             </form>
           </div>
-        </li>
+        </li> --}}
         @endguest
       </div>
     </div>
