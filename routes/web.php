@@ -25,6 +25,7 @@ Route::get('/', [postController::class, 'index'])->name('index');
 Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
 Route::get('about/', [postController::class, 'about'])->name('about');
 Route::get('categories/', [categoryController::class, 'list_category'])->name('list_category');
+Route::get('privacy-policy/', [postController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
 
 

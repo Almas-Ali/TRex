@@ -112,6 +112,10 @@ h1.logo {
   color: #fff;
 }
 
+nav a {
+  border-radius: 0 !important;
+}
+
 h1.logoa,
 a:active,
 a:hover,
@@ -237,6 +241,28 @@ a:hover {
 }
 
 .btn-grad:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-theme {
+  background-image: linear-gradient(to right, #1FA2FF 0%, #12D8FA 51%, #1FA2FF 100%) !important;
+  margin: 3px;
+  padding: 10px 15px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 1px #eee;
+  border-radius: 10px;
+  /* display: block; */
+  box-shadow: 0 0 5px #2ba0ff;
+}
+
+.btn-theme:hover {
   background-position: right center;
   /* change the direction of the change here */
   color: #fff;

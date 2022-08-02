@@ -14,6 +14,7 @@
 
 use App\Models\User;
 use App\Models\settings;
+use App\Models\Category;
 use Carbon\Carbon;
 
 if (!function_exists("website")) {
@@ -45,6 +46,13 @@ if (!function_exists("getUser")) {
     function getUser($id) {
         $user = User::find($id);
 		return $user;
+    }
+}
+
+if (!function_exists("getAllCategories")) {
+    function getAllCategories() {
+        $categories = Category::all();
+		return $categories;
     }
 }
 

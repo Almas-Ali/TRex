@@ -51,6 +51,13 @@
 
 <body>
 
+    {{-- <div class="loader-back">
+        <div class="loader"></div>
+    </div> --}}
+    <div class="containerX loader-back">
+        <div class="loader loader3"></div>
+    </div>
+
     <div style="padding-top: 57px !important;">
         @yield('content')
     </div>

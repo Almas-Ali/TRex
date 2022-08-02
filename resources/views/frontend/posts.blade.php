@@ -4,13 +4,13 @@
 @section('content')
 @include('frontend.layouts.navbar')
 
-<div class="">
+<div style="max-width: 800px; margin: auto;">
     <div class="container">
         <div class="row">
             <h1 class="sn-title my-3">{{ $post->title }}</h1>
 
             <div class="p-2">
-                <img src="{{ $post->photo_path }}" alt="{{ $post->photo_name }}" class="rounded" height="500px">
+                <img src="{{ $post->photo_path }}" alt="{{ $post->photo_name }}" class="rounded responsive">
             </div>
             <a class="sn-date text-dark" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                 dateHuman($post->updated_at) }} - ({{ $post->updated_at }}) </a>

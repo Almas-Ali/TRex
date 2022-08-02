@@ -157,4 +157,8 @@ class postController extends Controller
         return view('backend.dashboard', compact('total_posts', 'total_categories'));
     }
 
+    public function privacy_policy () {
+        return view('frontend.privacy_policy');
+    }
+
 }

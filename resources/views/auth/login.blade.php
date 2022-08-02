@@ -120,6 +120,8 @@
                     </label>
                 </div>
 
+                <p>by sign-in, you agree to our <a href="#!">Terms and Privacy Policy</a></p>
+
                 @if (Route::has('password.request'))
                 <a href="{{ route('password.request') }}">
                     <legend id="forgot-pass">{{ __('Forgotten password?') }}</legend>
@@ -128,7 +130,7 @@
 
                 <input id="submit-btn" type="submit" name="submit" value="{{ __('Login') }}" />
 
-                <a href="{{ route('register') }}" id="signup">Don't have account yet?</a>
+                <a href="{{ route() }}" id="signup">Don't have account yet?</a>
             </form>
         </div>
     </div>

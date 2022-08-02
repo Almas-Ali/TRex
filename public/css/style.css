@@ -9,8 +9,10 @@ body {
 }
 
 a {
-    color: #E47A2E;
+    color: #1FA2FF;
     transition: 0.5s;
+    text-decoration: none !important;
+    border-radius: 10px;
 }
 
 a:hover,
@@ -18,7 +20,7 @@ a:active,
 a:focus {
     color: #353535;
     outline: none;
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 p {
@@ -55,7 +57,7 @@ h6 {
 }
 
 .back-to-top:hover {
-    background: #E47A2E;
+    background: #1FA2FF;
 }
 
 .back-to-top i {
@@ -74,14 +76,14 @@ h6 {
     padding: 0 15px;
     color: #666666;
     border: 1px solid #353535;
-    border-radius: 0;
+    border-radius: 10px;
     margin-bottom: 15px
 }
 
 .form-control:focus,
 .custom-select:focus {
     box-shadow: none;
-    border-color: #E47A2E;
+    border-color: #1FA2FF;
 }
 
 .custom-radio,
@@ -92,26 +94,26 @@ h6 {
 .custom-radio .custom-control-label::before,
 .custom-checkbox .custom-control-label::before {
     border-color: #353535;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 .custom-radio .custom-control-input:checked~.custom-control-label::before,
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     color: #ffffff;
-    background: #E47A2E;
+    background: #1FA2FF;
 }
 
 button.btn {
     color: #353535;
     background: #ffffff;
     border: 1px solid #353535;
-    border-radius: 0;
+    border-radius: 10px;
 }
 
 button.btn:hover {
     color: #ffffff;
-    background: #E47A2E;
-    border-color: #E47A2E;
+    background: #1FA2FF;
+    border-color: #1FA2FF;
 }
 
 
@@ -146,7 +148,7 @@ button.btn:hover {
 }
 
 .top-header .search input[type=text]:focus {
-    border-color: #E47A2E;
+    border-color: #1FA2FF;
 }
 
 .top-header .search button {
@@ -162,7 +164,7 @@ button.btn:hover {
 }
 
 .top-header .search button:hover {
-    background: #E47A2E;
+    background: #1FA2FF;
     color: #ffffff;
 }
 
@@ -185,8 +187,8 @@ button.btn:hover {
 }
 
 .top-header .social a:hover {
-    background: #E47A2E;
-    border: 1px solid #E47A2E;
+    background: #1FA2FF;
+    border: 1px solid #1FA2FF;
 }
 
 .top-header .social a i {
@@ -204,13 +206,14 @@ button.btn:hover {
 }
 
 @media (max-width: 767.98px) {
+
     .top-header .logo,
     .top-header .search,
     .top-header .social {
         text-align: center;
         margin-bottom: 15px;
     }
-    
+
     .top-header .social {
         margin-bottom: 0;
     }
@@ -248,27 +251,28 @@ button.btn:hover {
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .navbar-nav .nav-link.active {
     background: rgba(228, 122, 46, .2);
-    border-bottom: 2px solid #E47A2E;
+    border-bottom: 2px solid #1FA2FF;
     transition: none;
 }
 
 .header .dropdown-menu {
     margin-top: 0;
     border: 0;
-    border-radius: 0;
+    border-radius: 10px;
     background: #f8f9fa;
 }
 
 @media (min-width: 768px) {
+
     .header,
     .header .navbar {
         background: #353535 !important;
     }
-    
+
     .header .navbar-brand {
         display: none;
     }
-    
+
     .header a.nav-link {
         padding: 8px 15px;
         font-size: 15px;
@@ -276,16 +280,17 @@ button.btn:hover {
     }
 }
 
-@media (max-width: 768px) {   
+@media (max-width: 768px) {
+
     .header,
     .header .navbar {
         background: #333333 !important;
     }
-    
+
     .header a.nav-link {
         padding: 5px;
     }
-    
+
     .header .dropdown-menu {
         box-shadow: none;
     }
@@ -321,9 +326,9 @@ button.btn:hover {
 
 .top-news .tn-content {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
     background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
@@ -331,7 +336,7 @@ button.btn:hover {
     align-items: flex-end;
 }
 
-.top-news .tn-content a.tn-date{
+.top-news .tn-content a.tn-date {
     display: block;
     width: 100%;
     margin-bottom: 5px;
@@ -365,7 +370,7 @@ button.btn:hover {
 }
 
 .top-news .tn-content a.tn-title:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 
@@ -412,9 +417,9 @@ button.btn:hover {
 
 .cat-news .cn-content {
     position: absolute;
-    top: 0; 
+    top: 0;
     right: 0;
-    bottom: 0; 
+    bottom: 0;
     left: 0;
     padding: 15px 10px 15px 20px;
     background-image: linear-gradient(rgba(0, 0, 0, .0), rgba(0, 0, 0, .3), rgba(0, 0, 0, .9));
@@ -451,7 +456,7 @@ button.btn:hover {
 }
 
 .cat-news .cn-content a.cn-title:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 .cat-news .slick-prev,
@@ -478,7 +483,7 @@ button.btn:hover {
 .cat-news .slick-next:hover,
 .cat-news .slick-next:focus {
     color: #ffffff;
-    background: #E47A2E;
+    background: #1FA2FF;
 }
 
 .cat-news .slick-prev::before,
@@ -552,7 +557,7 @@ button.btn:hover {
 }
 
 .main-news .mn-content a.mn-title:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 .main-news .mn-content a.mn-date {
@@ -615,7 +620,7 @@ button.btn:hover {
 }
 
 .main-news .mn-list .mn-content a.mn-title:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 .main-news .mn-list .mn-content a.mn-date {
@@ -687,7 +692,7 @@ button.btn:hover {
 }
 
 .sidebar .sidebar-widget .category .fa-ul li a:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 .sidebar .sidebar-widget .tags {
@@ -705,8 +710,8 @@ button.btn:hover {
 
 .sidebar .sidebar-widget .tags a:hover {
     color: #ffffff;
-    background: #E47A2E;
-    border: 1px solid #E47A2E;
+    background: #1FA2FF;
+    border: 1px solid #1FA2FF;
 }
 
 .sidebar .sidebar-widget .image a {
@@ -742,7 +747,7 @@ button.btn:hover {
     background: none;
 }
 
-.breadcrumb-wrap .breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+.breadcrumb-wrap .breadcrumb .breadcrumb-item+.breadcrumb-item::before {
     color: #353535;
 }
 
@@ -786,7 +791,7 @@ button.btn:hover {
 }
 
 .single-news .sn-content a.sn-title:hover {
-    color: #E47A2E;
+    color: #1FA2FF;
 }
 
 .single-news .sn-content a.sn-date {
@@ -859,8 +864,8 @@ button.btn:hover {
 }
 
 .contact .social a:hover {
-    background: #E47A2E;
-    border-color: #E47A2E;
+    background: #1FA2FF;
+    border-color: #1FA2FF;
 }
 
 .contact .social a:hover i {
@@ -902,7 +907,7 @@ button.btn:hover {
 
 .footer .footer-widget h1 {
     color: #ffffff;
-    margin-bottom: 18px; 
+    margin-bottom: 18px;
 }
 
 .footer .footer-widget .title {
@@ -921,11 +926,11 @@ button.btn:hover {
 }
 
 .footer .footer-widget ul li {
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
 }
 
 .footer .footer-widget ul li:last-child {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .footer .footer-widget ul li a {
@@ -943,7 +948,7 @@ button.btn:hover {
 }
 
 .footer .footer-widget ul li a:hover {
-    padding-left: 10px; 
+    padding-left: 10px;
 }
 
 .footer .contact-info p {
@@ -979,8 +984,8 @@ button.btn:hover {
 }
 
 .footer .social a:hover {
-    background: #E47A2E;
-    border: 1px solid #E47A2E;
+    background: #1FA2FF;
+    border: 1px solid #1FA2FF;
 }
 
 .footer .newsletter {
@@ -1014,7 +1019,7 @@ button.btn:hover {
 }
 
 .footer .newsletter .btn:hover {
-    background: #E47A2E;
+    background: #1FA2FF;
 }
 
 .footer .newsletter input:focus,
@@ -1058,8 +1063,9 @@ button.btn:hover {
 }
 
 @media (max-width: 768.98px) {
+
     .footer-bottom .copyright,
     .footer-bottom .template-by {
-        text-align: center; 
-    } 
+        text-align: center;
+    }
 }
