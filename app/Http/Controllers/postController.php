@@ -157,6 +157,14 @@ class postController extends Controller
         return view('backend.dashboard', compact('total_posts', 'total_categories'));
     }
 
+    public function user_dashboard () {
+        if (Auth::user()->is_admin == 0) {
+            return view('backend.user.user_dashboard');
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function privacy_policy () {
         return view('frontend.privacy_policy');
     }

@@ -26,11 +26,12 @@ Route::get('posts/{slug}', [postController::class, 'posts'])->name('posts');
 Route::get('about/', [postController::class, 'about'])->name('about');
 Route::get('categories/', [categoryController::class, 'list_category'])->name('list_category');
 Route::get('privacy-policy/', [postController::class, 'privacy_policy'])->name('privacy_policy');
-Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth');
+Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth', 'isAdminCheck');
+Route::get('user/dashboard/', [postController::class, 'user_dashboard'])->name('user_dashboard') ->middleware('auth');
 
 
 // CRUD of post 
-Route::middleware('auth')->prefix('post')->group(function () {
+Route::middleware('auth', 'isAdminCheck')->prefix('post')->group(function () {
     Route::get('add/', [postController::class, 'add_post'])->name('add_post');
     Route::post('create', [postController::class, 'create_post'])->name('create_post');
     Route::get('edit/{id}', [postController::class, 'edit_post'])->name('edit_post');
@@ -41,7 +42,7 @@ Route::middleware('auth')->prefix('post')->group(function () {
 
 
 // CRUD of category 
-Route::middleware('auth')->prefix('category')->group(function () {
+Route::middleware('auth', 'isAdminCheck')->prefix('category')->group(function () {
     Route::get('add/', [categoryController::class, 'add_category'])->name('add_category');
     Route::post('edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category');
     Route::get('/', [categoryController::class, 'view_category'])->name('view_category');
@@ -50,13 +51,13 @@ Route::middleware('auth')->prefix('category')->group(function () {
 
 
 // Settings of site 
-Route::middleware('auth')->prefix('settings')->group(function () {
+Route::middleware('auth', 'isAdminCheck')->prefix('settings')->group(function () {
     Route::get('general', [settingsController::class, 'general'])->name('general_settings');
     Route::post('general/update', [settingsController::class, 'save_general'])->name('save_general');
 });
 
 // Users of site 
-Route::middleware('auth')->prefix('users')->group(function () {
+Route::middleware('auth', 'isAdminCheck')->prefix('users')->group(function () {
     Route::get('/', [userController::class, 'all_users'])->name('all_users');
 });
 
@@ -64,11 +65,11 @@ Route::middleware('auth')->prefix('users')->group(function () {
 Route::prefix('contact')->group(function () {
     Route::get('/', [contactController::class, 'contact'])->name('contact');
     Route::post('create', [contactController::class, 'contact_create'])->name('contact_create');
-    Route::get('view/all', [contactController::class, 'all_contacts'])->name('all_contacts')->middleware('auth');
-    Route::get('view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth');
+    Route::get('view/all', [contactController::class, 'all_contacts'])->name('all_contacts')->middleware('auth', 'isAdminCheck');
+    Route::get('view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth', 'isAdminCheck');
 });
 
-Route::middleware('auth')->prefix('profile')->group(function() {
+Route::middleware('auth', 'isAdminCheck')->prefix('profile')->group(function() {
     Route::get('/', [profileController::class, 'profile'])->name('profile');
     Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings');
     Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile');
@@ -85,7 +86,8 @@ Route::prefix('install')->group(function () {
 
 
 // Auth view 
-Auth::routes(['verify' => true]);
+// Auth::routes(['verify' => true]);
+Auth::routes();
 
 Route::get('/home', function(){
     return redirect('/');
