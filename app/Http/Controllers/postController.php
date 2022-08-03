@@ -31,8 +31,9 @@ class postController extends Controller
         $post        = Post::where('slug', $slug)->first();
         $tags        = Tag::all();
         $categories  = Category::all();
-        $comments    = Comment::where('post', '=', $post->id)->get();//->exclude('parent', 'NULL');
-        $replies    = Comment::where('parent', '!=', 'NULL')->get();//->exclude('parent', 'NULL');
+        $comments    = Comment::where('post', '=', $post->id)
+                                ->whereNull('parent')->get();
+        $replies     = Comment::whereNotNull('parent')->get();
         return view('frontend.posts', compact('post','tags', 'categories', 'comments', 'replies'));
     }
 

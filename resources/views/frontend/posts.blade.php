@@ -89,10 +89,6 @@
                 </a>
               </div>
 
-              @foreach ($replies as $reply)
-
-              @if ($comment->parent == $reply->parent)
-
               <div class="collapse" id="reply">
                 <div class="replies">
                   <form action="{{ route('create_reply') }}" method="post"
@@ -109,11 +105,12 @@
                   </form>
                 </div>
               </div>
-              @endif
-          @endforeach
             </div>
           </div>
           <hr>
+
+          @foreach ($replies as $reply)
+          @if ($comment->id == $reply->parent)
 
           <div class="d-flex flex-direction-row mx-5 mt-2" id="replies">
             <div class="mx-2">
@@ -121,9 +118,9 @@
                 width="50px">
             </div>
             <div class="">
-              <h5>User Y</h5>
-              <span class="text-muted">2 seconds ago</span>
-              <p><strong>@User X</strong> This is a reply.</p>
+              <h5>{{ getUser($reply->user)->name }}</h5>
+              <span class="text-muted">{{ dateHuman($reply->created_at) }}</span>
+              <p>{{ $reply->comment }}</p>
 
               <div class="likes my-3">
                 <a href="#!" class="btn btn-primary rounded">
@@ -140,7 +137,9 @@
               </div>
             </div>
           </div>
-
+          <hr>
+          @endif
+          @endforeach
           @endforeach
         </div>
       </div>
