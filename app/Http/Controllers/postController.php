@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Comment;
 use Auth;
 use Conner\Tagging\Model\Tag;
 
@@ -30,7 +31,9 @@ class postController extends Controller
         $post        = Post::where('slug', $slug)->first();
         $tags        = Tag::all();
         $categories  = Category::all();
-        return view('frontend.posts', compact('post','tags', 'categories'));
+        $comments    = Comment::where('post', '=', $post->id)->get();//->exclude('parent', 'NULL');
+        $replies    = Comment::where('parent', '!=', 'NULL')->get();//->exclude('parent', 'NULL');
+        return view('frontend.posts', compact('post','tags', 'categories', 'comments', 'replies'));
     }
 
     public function index() {
@@ -167,6 +170,33 @@ class postController extends Controller
 
     public function privacy_policy () {
         return view('frontend.privacy_policy');
+    }
+
+    public function LikePost(Request $request){
+
+        $post = Post::find($request->id);
+        $response = auth()->user()->toggleLike($post);
+
+        return response()->json(['success'=>$response]);
+    }
+
+    public function create_comment (Request $request) {
+        $comment = new Comment;
+        $comment -> user    = Auth::user()->id;
+        $comment -> post    = $request->post_id;
+        $comment -> comment = $request->cmt;
+        $comment -> save();
+        return redirect()->back();
+    }
+
+    public function create_reply (Request $request) {
+        $comment = new Comment;
+        $comment -> user    = Auth::user()->id;
+        $comment -> post    = $request->post_id;
+        $comment -> comment = $request->reply;
+        $comment -> parent  = $request->cmt_id;
+        $comment -> save();
+        return redirect()->back();
     }
 
 }

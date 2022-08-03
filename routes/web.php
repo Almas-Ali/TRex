@@ -27,8 +27,10 @@ Route::get('about/', [postController::class, 'about'])->name('about');
 Route::get('categories/', [categoryController::class, 'list_category'])->name('list_category');
 Route::get('privacy-policy/', [postController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth', 'isAdminCheck');
-Route::get('user/dashboard/', [postController::class, 'user_dashboard'])->name('user_dashboard') ->middleware('auth');
-
+Route::get('users/dashboard/', [postController::class, 'user_dashboard'])->name('user_dashboard') ->middleware('auth');
+Route::post('like', [postController::class, 'LikePost'])->name('like')->middleware('auth');
+Route::post('comment', [postController::class, 'create_comment'])->name('create_comment')->middleware('auth');
+Route::post('reply', [postController::class, 'create_reply'])->name('create_reply')->middleware('auth');
 
 // CRUD of post 
 Route::middleware('auth', 'isAdminCheck')->prefix('post')->group(function () {
@@ -69,7 +71,7 @@ Route::prefix('contact')->group(function () {
     Route::get('view', [contactController::class, 'view_contact'])->name('view_contact')->middleware('auth', 'isAdminCheck');
 });
 
-Route::middleware('auth', 'isAdminCheck')->prefix('profile')->group(function() {
+Route::middleware('auth')->prefix('profile')->group(function() {
     Route::get('/', [profileController::class, 'profile'])->name('profile');
     Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings');
     Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile');

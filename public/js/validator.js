@@ -67,14 +67,14 @@ try {
 news_to_post("news_post");
 
 
-window.addEventListener("load", function(){
-    // const loader_back = document.querySelector(".loader-back");
-    const loader = document.querySelector(".loader");
-    const loader_one = document.querySelector(".one");
-    const loader_two = document.querySelector(".two");
-    // console.log(loader);
-    loader.className.add("hidden");
-    loader_one.className.add("hidden");
-    loader_two.className.add("hidden");
-    // loader_back.className.add("hidden");
-});
+// window.addEventListener("load", function(){
+//     // const loader_back = document.querySelector(".loader-back");
+//     const loader = document.querySelector(".loader");
+//     const loader_one = document.querySelector(".one");
+//     const loader_two = document.querySelector(".two");
+//     // console.log(loader);
+//     loader.className.add("hidden");
+//     loader_one.className.add("hidden");
+//     loader_two.className.add("hidden");
+//     // loader_back.className.add("hidden");
+// });

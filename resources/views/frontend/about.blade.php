@@ -5,7 +5,7 @@
 @section('content')
 @include('frontend.layouts.navbar')
 
-<div class="container-fluid">
+<div class="container">
     <div class="card my-3 p-2">
         <h1 class="text-center fw-semibold">About us</h1>
         <p class="fw-lighter">Trex is a CMS developed for education purpose. We have built this to help people who wants to host there

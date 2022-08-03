@@ -52,6 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'gender' => ['required'],
             'username' => ['required', 'string', 'min:4', 'max:50', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -65,10 +66,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // if ($data['gender'] == "male") {
+        //     $photo_name = 'male';
+        //     $photo_path = '/img/male.png';
+        // } else if ($data['gender'] == "female") {
+        //     $photo_name = 'female';
+        //     $photo_path = '/img/female.png';
+        // } else {
+        //     $photo_name = 'other';
+        //     $photo_path = '/img/other.png';
+        // }
+        // $bar = ($foo == 1) ? "1" : (($foo == 2)  ? "2" : "other");
+        // $photo_path = ($data['gender'] == 'male') ? '/img/male.png' : (($data['gender'] == 'female') ? '/img/female.png' : '/img/other.png');
+        // $photo_name = ($data['gender'] == 'male') ? 'male' : (($data['gender'] == 'female') ? 'female' : 'other');
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'username' => $data['username'],
+            'gender' => $data['gender'],
+            'photo_name' => ($data['gender'] == 'male') ? 'male' : (($data['gender'] == 'female') ? 'female' : 'other'),
+            'photo_path' => ($data['gender'] == 'male') ? '/img/male.png' : (($data['gender'] == 'female') ? '/img/female.png' : '/img/other.png'),
             'password' => Hash::make($data['password']),
         ]);
     }

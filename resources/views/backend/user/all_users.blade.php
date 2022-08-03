@@ -31,12 +31,11 @@
                 <th scope="col">Email</th>
                 <th scope="col">Username</th>
                 <th scope="col">Photo</th>
-                <th scope="col">Is Admin</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
-              @if (!empty($posts))
+              {{-- @if (!empty($posts))
               @php $i = 1; @endphp
               @foreach ($posts as $post)
               <tr>
@@ -49,12 +48,34 @@
                 <td class="text-light">
                   <a href="{{ url('post/edit/'.$post->id) }}" class="btn btn-primary btn-sm" type="button">Edit</a>
 
-                  {{-- <a href="{{ url('post/delete/'.$post->id) }}" class="btn btn-primary btn-sm">Delete</a> --}}
+                  <a href="{{ url('post/delete/'.$post->id) }}" class="btn btn-primary btn-sm">Delete</a>
                   <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                     data-bs-target="#post_delete_{{$post->id}}">Delete</a>
                 </td>
-              </tr>
+              </tr> --}}
 
+              @foreach ($users as $user)
+              <tr>
+                <td>
+                  {{ $user->name }}
+                  @if ( $user->is_admin == 1 )
+                  <i class="fa fa-crown" aria-hidden="true" style="color: #996515;"></i>
+                  @else
+                  @endif
+                </td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->username }}</td>
+                <td>
+                  <img src="{{ $user->photo_path }}" alt="{{ $user->photo_name }}" height="50px" width="50px">
+                </td>
+                <td>
+                  <a href="#!" class="btn btn-primary btn-sm">Edit</a>
+                  <a href="#!" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+              </tr>
+              @endforeach
+
+              {{--
               <!-- Modal -->
               <div class="modal fade" id="post_delete_{{$post->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
@@ -72,16 +93,8 @@
                       <a href="{{ url('post/delete/'.$post->id) }}" class="btn btn-danger">Delete</a>
                     </div>
                   </div>
-                </div>
+                </div> --}}
 
-
-                @php $i++; @endphp
-                @endforeach
-                @else
-                <div>
-                  <h5>No post exists!</h5>
-                </div>
-                @endif
             </tbody>
           </table>
         </div>

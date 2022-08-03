@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('photo_path');
             $table->longText('content');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

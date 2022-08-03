@@ -20,7 +20,7 @@ class isAdminCheck
         if (Auth::user()->is_admin == 1) {
             return $next($request);
         } else {
-            return redirect('/user/dashboard');
+            return redirect('/users/dashboard');
         }
     }
 }

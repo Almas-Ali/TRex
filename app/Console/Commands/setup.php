@@ -131,6 +131,7 @@ class setup extends Command
             $user = new User;
             $user -> name         = 'TRex';
             $user -> username     = 'trex';
+            $user -> gender       = 'male';
             $user -> is_admin     = 1;
             $user -> email        = 'support@trex.com';
             $user -> password     = \Illuminate\Support\Facades\Hash::make('12345678');

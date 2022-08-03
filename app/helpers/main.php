@@ -15,6 +15,7 @@
 use App\Models\User;
 use App\Models\settings;
 use App\Models\Category;
+use App\Models\Comment;
 use Carbon\Carbon;
 
 if (!function_exists("website")) {
@@ -53,6 +54,13 @@ if (!function_exists("getAllCategories")) {
     function getAllCategories() {
         $categories = Category::all();
 		return $categories;
+    }
+}
+
+if (!function_exists("getCommentCount")) {
+    function getCommentCount($id) {
+        $comment = Comment::find($id)->count();
+		return $comment;
     }
 }
 
