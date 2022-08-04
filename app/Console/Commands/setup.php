@@ -159,6 +159,6 @@ class setup extends Command
             echo "[!] Warning! requirements already satisfied!\n";
         }
 
-        return True;
+        // return True;
     }
 }
