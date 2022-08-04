@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('username')->unique();
-            $table->string('photo_name')->nullable();
-            $table->string('photo_path')->nullable();
+            $table->string('photo_name')->default('user');
+            $table->string('photo_path')->default('/img/user.png');
             $table->string('gender');
             $table->boolean('is_admin')->default(0);
             $table->timestamp('email_verified_at')->nullable();

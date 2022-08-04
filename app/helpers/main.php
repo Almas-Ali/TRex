@@ -16,6 +16,7 @@ use App\Models\User;
 use App\Models\settings;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Post;
 use Carbon\Carbon;
 
 if (!function_exists("website")) {
@@ -59,8 +60,19 @@ if (!function_exists("getAllCategories")) {
 
 if (!function_exists("getCommentCount")) {
     function getCommentCount($id) {
-        $comment = Comment::find($id)->count();
+        $comment = Comment::where('post', $id)->count();
 		return $comment;
+    }
+}
+
+if (!function_exists("getMetaTags")) {
+    function getMetaTags($id) {
+        $post = Post::where('id', $id)->first();
+        $tags = [];
+        foreach($post->tags as $tag) {
+            array_push($tags, $tag->name);
+        }
+		return $tags;
     }
 }
 

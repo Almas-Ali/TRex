@@ -3,10 +3,30 @@
 @push('home-active')active @endpush
 @push('scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
+<link rel="canonical" href="{{ url('/').'/'.$post->slug }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ $post->title }} - {{ website()->site_name }}">
+<meta property="og:description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
+<meta property="og:url" content="{{ url('/').'/'.$post->slug }}">
+<meta property="og:site_name" content="{{ website()->site_name }}">
+<meta property="article:published_time" content="{{ $post->created_at }}">
+<meta property="article:modified_time" content="{{ $post->updated_at }}">
+<meta property="og:image" content="{{ url('/').$post->photo_path }}">
+<meta name="author" content="{{ getUser($post->user)->name }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:label1" content="Written by">
+<meta name="twitter:data1" content="{{ getUser($post->user)->name }}">
+<meta name="twitter:title" content="{{ $post->title }} - {{ website()->site_name }}">
+<meta name="twitter:description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
+<meta name="twitter:image" content="{{ url('/').$post->photo_path }}">
+<meta name="description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
+<meta name="keywords" content="{{ $post->tags }}">
 @endpush
 @section('content')
 @include('frontend.layouts.navbar')
-
+{{getMetaTags($post->id)}}
 <div style="max-width: 800px; margin: auto;">
   <div class="container">
     <div class="row">
@@ -40,10 +60,15 @@
       </div>
 
       <div class="my-3 panel" data-id="{{ $post->id }}">
-        <a href="#!" class="like-btn btn btn-theme text-light rounded @if ($post->isLikedBy(Auth::user()))liked @endif">
-          <span id="like-count">{{ $post->likers()->count() }}</span>
-          <i class="fa fa-thumbs-up" aria-hidden="true"></i>
-        </a>
+        @guest
+        <a href="#!" class="like-btn btn btn-theme text-light rounded disabled" disabled>
+          @else
+          <a href="#!"
+            class="like-btn btn btn-theme text-light rounded @if ($post->isLikedBy(Auth::user()))liked @endif">
+            @endguest
+            <span id="like-count">{{ $post->likers()->count() }}</span>
+            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+          </a>
       </div>
 
       <div class="comments">
@@ -57,7 +82,7 @@
             <textarea name="cmt" id="cmt" rows="5" class="form-control h-100"></textarea>
           </div>
           <input type="hidden" name="post_id" value="{{ $post->id }}">
-          <button class="btn btn-theme w-25">Submit</button>
+          <button class="btn btn-theme text-light w-25">Submit</button>
         </form>
         @endguest
         <h4>{{ getCommentCount($post->id) }} Comments</h4>
@@ -65,31 +90,43 @@
           @foreach ($comments as $comment)
           <div class="d-flex flex-direction-row" id="comments">
             <div class="mx-2">
-              <img src="{{ url('/').'/img/badge.png' }}" alt="User Photo" class="rounded-circle" height="50px"
+              <img src="{{ getUser($comment->user)->photo_path }}" alt="User Photo" class="rounded-circle" height="50px"
                 width="50px">
             </div>
             <div class="">
-              <h5>{{ getUser($comment->user)->name }}</h5>
+              <h5>
+                {{ getUser($comment->user)->name }}
+                @if (getUser($comment->user)->id == getUser($post->user)->id)
+                <span class="badge bg-primary badge-sm">Author</span>
+                @endif
+              </h5>
               <span class="text-muted">{{ dateHuman($comment->created_at) }}</span>
               <p>{{ $comment->comment }}</p>
 
 
               <div class="likes my-3">
-                <a href="#!" class="btn btn-primary rounded">
+                @guest
+                <a href="#!" class="btn btn-theme btn-sm text-light rounded disabled" disabled>
                   5
                   <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                 </a>
-                <a href="#!" class="btn btn-danger rounded">
-                  1
-                  <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                </a>
-                <a href="#reply" class="btn btn-primary rounded" data-bs-toggle="collapse" role="button"
-                  aria-expanded="false" aria-controls="reply">
+                <a href="#reply_{{ $comment->id }}" class="btn btn-theme btn-sm text-light rounded disabled"
+                  data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply" disabled>
                   <i class="fa fa-reply" aria-hidden="true"></i> Reply
                 </a>
+                @else
+                <a href="#!" class="btn btn-theme btn-sm text-light rounded">
+                  5
+                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                </a>
+                <a href="#reply_{{ $comment->id }}" class="btn btn-theme btn-sm text-light rounded"
+                  data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply">
+                  <i class="fa fa-reply" aria-hidden="true"></i> Reply
+                </a>
+                @endguest
               </div>
 
-              <div class="collapse" id="reply">
+              <div class="collapse" id="reply_{{ $comment->id }}">
                 <div class="replies">
                   <form action="{{ route('create_reply') }}" method="post"
                     class="responsive2 shadow-lg p-3 mb-5 rounded">
@@ -101,7 +138,7 @@
                     </div>
                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                     <input type="hidden" name="cmt_id" value="{{ $comment->id }}">
-                    <button class="btn btn-theme w-25">Submit</button>
+                    <button class="btn btn-theme btn-sm text-light w-25">Submit</button>
                   </form>
                 </div>
               </div>
@@ -114,26 +151,55 @@
 
           <div class="d-flex flex-direction-row mx-5 mt-2" id="replies">
             <div class="mx-2">
-              <img src="{{ url('/').'/img/badge.png' }}" alt="User Photo" class="rounded-circle" height="50px"
+              <img src="{{ getUser($comment->user)->photo_path }}" alt="User Photo" class="rounded-circle" height="50px"
                 width="50px">
             </div>
             <div class="">
-              <h5>{{ getUser($reply->user)->name }}</h5>
+              <h5>
+                {{ getUser($reply->user)->name }}
+                @if (getUser($reply->user)->id == getUser($post->user)->id)
+                <span class="badge bg-primary badge-sm">Author</span>
+                @endif
+              </h5>
               <span class="text-muted">{{ dateHuman($reply->created_at) }}</span>
               <p>{{ $reply->comment }}</p>
 
               <div class="likes my-3">
-                <a href="#!" class="btn btn-primary rounded">
+                @guest
+                <a href="#!" class="btn btn-theme btn-sm text-light rounded disabled" disabled>
                   5
                   <i class="fa fa-thumbs-up" aria-hidden="true"></i>
                 </a>
-                <a href="#!" class="btn btn-danger rounded">
-                  1
-                  <i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                </a>
-                <a href="#!" class="btn btn-primary rounded">
+                <a href="#reply_{{ $reply->id }}" class="btn btn-theme btn-sm text-light rounded disabled"
+                  data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply" disabled>
                   <i class="fa fa-reply" aria-hidden="true"></i> Reply
                 </a>
+                @else
+                <a href="#!" class="btn btn-theme btn-sm text-light rounded">
+                  5
+                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                </a>
+                <a href="#reply_{{ $reply->id }}" class="btn btn-theme btn-sm text-light rounded"
+                  data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply">
+                  <i class="fa fa-reply" aria-hidden="true"></i> Reply
+                </a>
+                @endguest
+              </div>
+              <div class="collapse" id="reply_{{ $reply->id }}">
+                <div class="replies">
+                  <form action="{{ route('create_reply') }}" method="post"
+                    class="responsive2 shadow-lg p-3 mb-5 rounded">
+                    @csrf
+                    <h5>Add a reply</h5>
+                    <div class="form-group">
+                      <textarea name="reply" rows="5"
+                        class="form-control h-100">#{{ getUser($reply->user)->name }} </textarea>
+                    </div>
+                    <input type="hidden" name="post_id" value="{{ $post->id }}">
+                    <input type="hidden" name="cmt_id" value="{{ $comment->id }}">
+                    <button class="btn btn-theme btn-sm text-light w-25">Submit</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
@@ -143,54 +209,6 @@
           @endforeach
         </div>
       </div>
-
-      {{-- <div class="col-md-4">
-        <div class="sidebar mt-3">
-          <div class="sidebar-widget">
-            <h3><strong>Categories</strong></h3>
-            <div class="category">
-              @if (!empty($categories))
-              <ul class="fa-ul">
-                @foreach ($categories as $category)
-                <li><span class="fa-li"><i class="far fa-arrow-alt-circle-right"></i></span>
-                  <a href="javascript:void(0);">{{
-                    $category->name }}</a>
-                </li>
-
-                @endforeach
-              </ul>
-              @else
-              <div>
-                <h5>No categories exist!</h5>
-              </div>
-              @endif
-            </div>
-          </div>
-
-          <div class="sidebar-widget my-2">
-            <h3><strong>Tags</strong></h3>
-            @if (!empty($tags))
-            <div class="tags">
-              @foreach ($tags as $tag)
-              <a href="javascript:void(0);">{{ $tag->name }}</a>
-              @endforeach
-            </div>
-            @else
-            <div>
-              <h5>No tags exist!</h5>
-            </div>
-            @endif
-          </div>
-
-          <div class="sidebar-widget">
-            <h3><strong>Ads</strong></h3>
-            <div class="image">
-              <a href="{{ url('/').'/img/corona_new.jpg' }}"><img src="{{ url('/').'/img/corona_new.jpg' }}" alt="Image"
-                  height="350"></a>
-            </div>
-          </div>
-        </div>
-      </div> --}}
     </div>
   </div>
 </div>
@@ -217,10 +235,10 @@
               success:function(data){
                 if(jQuery.isEmptyObject(data.success.attached)){
                   if ($(this).hasClass('liked')) {
-                    $('#like-count').html(parseInt($('#like-count').text())+1);
+                    $('#like-count').html(parseInt($('#like-count').text())-1);
                     $(this).removeClass('liked');
                   } else {
-                    $('#like-count').html(parseInt($('#like-count').html())-1);
+                    $('#like-count').html(parseInt($('#like-count').html())+1);
                     $(this).addClass('liked');
                   }
                 }

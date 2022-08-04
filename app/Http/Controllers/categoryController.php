@@ -19,8 +19,8 @@ class categoryController extends Controller
 		// return view('category.view_category', compact('categories'));
         
         $request->validate([
-			'category_name' => ['min:4', 'max:50', 'unique:categories', 'required'],
-            'category_slug' => ['min:4', 'max:50', 'unique:categories', 'required'],
+			'category_name' => ['min:4', 'max:50', 'unique:categories,name', 'required'],
+            'category_slug' => ['min:4', 'max:50', 'unique:categories,slug', 'required'],
             'category_dsc'  => ['min:4', 'max:50', 'required'],
 		]);
 
@@ -39,14 +39,18 @@ class categoryController extends Controller
 
     public function edit_category(Request $request, $id) {
         $request->validate([
-			'edit_category' => 'min:4|unique:categories'
+			'edit_category_name_'.$id => ['min:4', 'max:50', 'unique:categories,name', 'required'],
+            'edit_category_slug_'.$id => ['min:4', 'max:50', 'unique:categories,slug', 'required'],
+            'edit_category_dsc_'.$id  => ['min:4', 'max:50', 'required'],
 		]);
 
         // $category = Category::get($id)->first();
         
-        $message        = 'Category Updated Successfully!';
-		$category       = Category::findOrFail($id);
-		$category->name = $request->get('edit_category_'.$id);
+        $message = 'Category Updated Successfully!';
+		$category              = Category::where('id', $id)->first();
+		$category->name        = $request->get('edit_category_name_'.$id);
+		$category->slug        = $request->get('edit_category_slug_'.$id);
+		$category->description = $request->get('edit_category_dsc_'.$id);
 		$category->update();
 
         $categories = Category::get();

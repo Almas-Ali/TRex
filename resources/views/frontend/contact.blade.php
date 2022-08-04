@@ -1,7 +1,22 @@
 @extends('frontend.layouts.main')
 @push('title')Contact @endpush
 @push('contact-active')active @endpush
-
+@push('scripts')
+<meta name="description" content="Contact info of {{ website()->site_name }}">
+<link rel="canonical" href="{{ route('contact') }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="Contact">
+<meta property="og:title" content="Contact - {{ website()->site_name }}">
+<meta property="og:description" content="Contact info of {{ website()->site_name }}">
+<meta property="og:url" content="{{ route('privacy_policy') }}">
+<meta property="og:site_name" content="{{ website()->site_name }}">
+<meta property="og:image" content="{{ url('/').'/img/trex-01.png' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact - {{ website()->site_name }}">
+<meta name="twitter:description" content="Contact info of {{ website()->site_name }}">
+<meta name="twitter:image" content="{{ url('/').'/img/trex-01.png' }}">
+<meta name="description" content="Contact info of {{ website()->site_name }}">
+@endpush
 @section('content')
 @include('frontend.layouts.navbar')
 

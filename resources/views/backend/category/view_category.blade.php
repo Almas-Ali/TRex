@@ -14,6 +14,12 @@
         <p class="alert alert-success">{{ $message }}</p>
         @endif
 
+        @if(count($errors->all()) > 0)
+        @foreach ($errors->all() as $error)
+        <p class="alert alert-success">{{ $error }}</p>
+        @endforeach
+        @endif
+
         @if (session('message'))
         <div class="alert alert-success">
           {{ session('message') }}
@@ -72,7 +78,6 @@
                       <input type="text" name="category_slug" id="category_slug"
                         class="form-control @error('category_slug')is-invalid @enderror"
                         value="{{ old('category_slug') }}" required>
-                      <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
 
                       @error('category_slug')
                       <span class="invalid-feedback" role="alert">
@@ -107,7 +112,7 @@
   </div>
 
 
-  <div class="bg-light text-center rounded p-4">
+  <div class="bg-light rounded p-4">
     <div class="d-flex align-items-center justify-content-between mb-4">
       <h6 class="mb-0">All Categories</h6>
     </div>
@@ -155,9 +160,9 @@
                   <div class="my-3">
                     <form class="row g-3" method="post" action="{{ url('category/edit/'.$category->id) }}">
                       @csrf
-                      <div class="col-auto">
-                        <label for="edit_category" class="visually-hidden">Add
-                          Category</label>
+                      <label for="edit_category" class="visually-hidden">Add
+                        Category</label>
+                      {{-- <div class="col-auto">
                         <input type="text" class="form-control @error('edit_category') is-invalid @enderror"
                           value="@if(isset($category)){{ $category->name }}@else{{ old('edit_category')}}@endif"
                           id="edit_category_check" name="{{ 'edit_category_'.$category->id }}"
@@ -166,6 +171,50 @@
                           <strong>The add category must be at least 4 characters.</strong>
                         </span>
                         @error('edit_category')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div> --}}
+                      <div class="">
+                        <label for="edit_category_check_name">Name</label>
+                        <input type="text" class="form-control my-2 @error('edit_category') is-invalid @enderror"
+                          value="@if(isset($category)){{ $category->name }}@else{{ old('edit_category')}}@endif"
+                          id="edit_category_check_name" name="{{ 'edit_category_name_'.$category->id }}"
+                          placeholder="Edit Category" required>
+                        <span class="invalid-feedback hidden" role="alert" id="edit_error">
+                          <strong>The add category must be at least 4 characters.</strong>
+                        </span>
+                        @error('edit_category')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+
+                      <div class="">
+                        <label for="edit_category_check_slug">Slug</label>
+                        <input type="text" name="{{ 'edit_category_slug_'.$category->id }}"
+                          id="edit_category_check_slug"
+                          class="form-control my-2 @error('category_slug')is-invalid @enderror"
+                          value="@if(isset($category)){{ $category->slug }}@else{{ old('edit_category')}}@endif"
+                          required>
+
+                        @error('category_slug')
+                        <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                      </div>
+
+                      <div class="">
+                        <label for="edit_category_check_dsc">Description</label>
+                        <input type="text" name="{{ 'edit_category_dsc_'.$category->id }}" id="edit_category_check_dsc"
+                          class="form-control my-2 @error('category_dsc')is-invalid @enderror"
+                          value="@if(isset($category)){{ $category->description }}@else{{ old('edit_category')}}@endif"
+                          required>
+
+                        @error('category_dsc')
                         <span class="invalid-feedback" role="alert">
                           <strong>{{ $message }}</strong>
                         </span>

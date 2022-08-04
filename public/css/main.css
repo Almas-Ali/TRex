@@ -88,7 +88,7 @@ a {
     inset: 0;
     background: #fff;
     position: fixed;
-    animation: fadeOut 1s;
+    animation: fadeOut 10s;
     animation-fill-mode: forwards;
 }
 
@@ -143,7 +143,7 @@ a {
     border-radius: 50%;
     border: 15px solid blue;
     border-color: #1565C0 #26C6DA;
-    animation: load3 2s infinite;
+    animation: load3 5s infinite;
 }
 
 
@@ -164,4 +164,19 @@ a {
     width: 650px;
     max-width: 90%;
     height: auto;
+}
+
+
+/*** Spinner ***/
+#spinner {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .5s ease-out, visibility 0s linear .5s;
+    z-index: 99999;
+}
+
+#spinner.show {
+    transition: opacity .5s ease-out, visibility 0s linear 0s;
+    visibility: visible;
+    opacity: 1;
 }

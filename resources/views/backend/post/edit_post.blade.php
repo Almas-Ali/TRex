@@ -98,7 +98,6 @@
             <label for="slug">Post Slug</label>
             <input type="text" class="form-control" id="slug" name="slug" placeholder="Post Slug"
               value="{{ $post->slug }}" required>
-            <a type="button" id="auto-tag-genarate" class="btn btn-primary btn-sm my-2">Genarate</a>
           </div>
           <div class="mb-3">
             {{-- <p>{{ $post->tags }}</p> --}}

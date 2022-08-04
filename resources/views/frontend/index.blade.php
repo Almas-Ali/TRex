@@ -1,43 +1,25 @@
 @extends('frontend.layouts.main')
 @push('title')Home @endpush
 @push('home-active')active @endpush
+@push('scripts')
+<meta name="description" content="Home page of {{ website()->site_name }}">
+<link rel="canonical" href="{{ route('home') }}">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="Home">
+<meta property="og:title" content="Home - {{ website()->site_name }}">
+<meta property="og:description" content="Home page of {{ website()->site_name }}">
+<meta property="og:url" content="{{ route('privacy_policy') }}">
+<meta property="og:site_name" content="{{ website()->site_name }}">
+<meta property="og:image" content="{{ url('/').'/img/trex-01.png' }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Home - {{ website()->site_name }}">
+<meta name="twitter:description" content="Home page of {{ website()->site_name }}">
+<meta name="twitter:image" content="{{ url('/').'/img/trex-01.png' }}">
+<meta name="description" content="Home page of {{ website()->site_name }}">
+@endpush
 @section('content')
-
-{{-- <h1 align="center">This is index page...</h1> --}}
-
 @include('frontend.layouts.navbar')
 
-
-{{--
-<!-- Top News Start-->
-<div class="top-news">
-    <div class="container-fluid">
-        <div class="row">
-
-            <div class="col-md-12">
-                <div class="row">
-                    @foreach ($posts as $post)
-                    <div class="col-md-4 my-2">
-                        <div class="tn-img">
-                            <img src="img/cat-news-6.jpg" />
-                            <div class="tn-content">
-                                <div class="tn-content-inner">
-                                    <a class="tn-date" href=""><i class="far fa-clock"></i> {{ $post->created_at }} </a>
-                                    <a class="tn-title" href="{{ url('posts/'. $post->slug) }}">{{ $post->title }}</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Top News End--> --}}
-
-
-<!-- Main News Start-->
 <div class="main-news">
     <div class="container-fluid">
         <div class="row">
@@ -46,7 +28,6 @@
                     <div class="px-3">
                         <h3 class="ml-3 mt-2"><strong>Latest Posts</strong></h3>
                         <div class="row">
-                            <!-- First news -->
                             @if (!empty($first_news))
                             <div class="col-lg-6 mb-3">
                                 <div class="mn-img">
@@ -69,9 +50,6 @@
                                 <h5>No post exist!</h5>
                             </div>
                             @endif
-
-
-                            <!-- All except first news -->
 
                             <div class="col-lg-6">
                                 @if (!empty($all_news))
@@ -152,10 +130,6 @@
         </div>
     </div>
 </div>
-<!-- Main News End-->
-
-
 
 @include('frontend.layouts.footer')
-
 @endsection

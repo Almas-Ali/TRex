@@ -45,7 +45,6 @@
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
     <script src="{{ asset('js/validator.js') }}" defer></script>
     <script src="{{ asset('js/nav.js') }}" defer></script>
-
     @stack('scripts')
 </head>
 
@@ -54,8 +53,14 @@
     {{-- <div class="loader-back">
         <div class="loader"></div>
     </div> --}}
-    <div class="containerX loader-back">
+    {{-- <div class="containerX loader-back">
         <div class="loader loader3"></div>
+    </div> --}}
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
     </div>
 
     <div style="padding-top: 57px !important;">

@@ -45,7 +45,7 @@ Route::middleware('auth', 'isAdminCheck')->prefix('post')->group(function () {
 
 // CRUD of category 
 Route::middleware('auth', 'isAdminCheck')->prefix('category')->group(function () {
-    Route::get('add/', [categoryController::class, 'add_category'])->name('add_category');
+    Route::post('add/', [categoryController::class, 'add_category'])->name('add_category');
     Route::post('edit/{id}', [categoryController::class, 'edit_category'])->name('edit_category');
     Route::get('/', [categoryController::class, 'view_category'])->name('view_category');
     Route::get('delete/{id}', [categoryController::class, 'delete_category'])->name('delete_category');
