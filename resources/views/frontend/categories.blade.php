@@ -33,7 +33,11 @@
         <tbody>
           @foreach ($categories as $category)
           <tr>
-            <td>{{ $category->name }}</td>
+            <td>
+              <a href="{{ route('single_category', ['slug' => $category->slug]) }}" class="text-dark">
+                {{ $category->name }}
+              </a>
+            </td>
           </tr>
           @endforeach
         </tbody>

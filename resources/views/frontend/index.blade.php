@@ -106,7 +106,7 @@
                         @if (!empty($tags))
                         <div class="tags">
                             @foreach ($tags as $tag)
-                            <a href="javascript:void(0);">{{ $tag->name }}</a>
+                            <a href="{{ route('single_tag', ['slug'=>$tag->slug]) }}">{{ $tag->name }}</a>
                             @endforeach
                         </div>
                         @else

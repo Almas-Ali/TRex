@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Category;
+use Conner\Tagging\Model\Tag;
 
 class categoryController extends Controller
 {
@@ -64,12 +64,22 @@ class categoryController extends Controller
     }
 
     public function delete_category(Request $request, $id) {
-        $category = Category::findOrFail($id);
+        $category = Category::findOrFail('id', $id);
 		$category->delete();
 		$message = 'Deleted Successfully!';
 
         $categories = Category::get();
 		// return view('category.view_category', compact('message', 'categories'));
         return redirect()->route('view_category')->with( ['message' => $message, 'categories' => $categories] );
+    }
+
+    public function single_category (Request $request, $slug) {
+        $category = Category::where('slug', $slug)->first();
+        return view('frontend.single_category', compact('category'));
+    }
+
+    public function single_tag (Request $request, $slug) {
+        $tag = Tag::where('slug', $slug)->first();
+        return view('frontend.single_tag', compact('tag'));
     }
 }
