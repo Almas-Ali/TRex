@@ -58,15 +58,19 @@
         <div>{!! $post->content !!}</div>
       </div>
 
-      <div class="my-3 panel" data-id="{{ $post->id }}">
+      <div class="my-3 post-like" data-id="{{ $post->id }}">
         @guest
-        <a href="#!" class="like-btn btn btn-theme text-light rounded disabled" disabled>
+        <a href="#!" class="btn btn-theme text-light rounded disabled" disabled>
           @else
-          <a href="#!"
+          <a href="javascript:void(0);"
             class="like-btn btn btn-theme text-light rounded @if ($post->isLikedBy(Auth::user()))liked @endif">
             @endguest
-            <span id="like-count">{{ $post->likers()->count() }}</span>
-            <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+            @if ($post->isLikedBy(Auth::user()))
+            <i class="fas fa-thumbs-up post-like-btn" aria-hidden="true"></i>
+            @else
+            <i class="far fa-thumbs-up post-like-btn" aria-hidden="true"></i>
+            @endif
+            <span id="post-like-count">{{ $post->likers()->count() }}</span>
           </a>
       </div>
 
@@ -81,7 +85,7 @@
             <textarea name="cmt" id="cmt" rows="5" class="form-control h-100"></textarea>
           </div>
           <input type="hidden" name="post_id" value="{{ $post->id }}">
-          <button class="btn btn-theme text-light w-25">Submit</button>
+          <button class="btn-theme text-light w-25">Submit</button>
         </form>
         @endguest
         <h4>{{ getCommentCount($post->id) }} Comments</h4>
@@ -103,7 +107,7 @@
               <p>{{ $comment->comment }}</p>
 
 
-              <div class="likes my-3">
+              <div class="likes my-3 comment-like" data-id="{{ $comment->id }}">
                 @guest
                 <a href="#!" class="btn btn-theme btn-sm text-light rounded disabled" disabled>
                   5
@@ -114,9 +118,14 @@
                   <i class="fa fa-reply" aria-hidden="true"></i> Reply
                 </a>
                 @else
-                <a href="#!" class="btn btn-theme btn-sm text-light rounded">
-                  5
-                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <a href="javascript:void(0);"
+                  class="likeCMT-btn likeCMT-btn-{{ $comment->id }} btn-theme text-light rounded @if ($comment->isLikedBy(Auth::user()))liked @endif">
+                  @if ($comment->isLikedBy(Auth::user()))
+                  <i class="fas fa-thumbs-up cmt-like-{{ $comment->id }}" aria-hidden="true"></i>
+                  @else
+                  <i class="far fa-thumbs-up cmt-like-{{ $comment->id }}" aria-hidden="true"></i>
+                  @endif
+                  <span id="cmt-like-count-{{ $comment->id }}">{{ $comment->likers()->count() }}</span>
                 </a>
                 <a href="#reply_{{ $comment->id }}" class="btn btn-theme btn-sm text-light rounded"
                   data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply">
@@ -163,7 +172,7 @@
               <span class="text-muted">{{ dateHuman($reply->created_at) }}</span>
               <p>{{ $reply->comment }}</p>
 
-              <div class="likes my-3">
+              <div class="likes my-3 reply-like" data-id="{{ $reply->id }}">
                 @guest
                 <a href="#!" class="btn btn-theme btn-sm text-light rounded disabled" disabled>
                   5
@@ -174,9 +183,14 @@
                   <i class="fa fa-reply" aria-hidden="true"></i> Reply
                 </a>
                 @else
-                <a href="#!" class="btn btn-theme btn-sm text-light rounded">
-                  5
-                  <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+                <a href="javascript:void(0);"
+                  class="likeRly-btn likeRly-btn-{{ $reply->id }} btn-theme text-light rounded @if ($reply->isLikedBy(Auth::user()))liked @endif">
+                  @if ($reply->isLikedBy(Auth::user()))
+                  <i class="fas fa-thumbs-up rly-like-{{ $reply->id }}" aria-hidden="true"></i>
+                  @else
+                  <i class="far fa-thumbs-up rly-like-{{ $reply->id }}" aria-hidden="true"></i>
+                  @endif
+                  <span id="rly-like-count-{{ $reply->id }}">{{ $reply->likers()->count() }}</span>
                 </a>
                 <a href="#reply_{{ $reply->id }}" class="btn btn-theme btn-sm text-light rounded"
                   data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="reply">
@@ -224,8 +238,8 @@
         });
 
         $('.like-btn').click(function(){    
-            let id = $(this).parents(".panel").data('id');
-            let btn = $('#like-count').html();
+            let id = $(this).parents(".post-like").data('id');
+            // let btn = $('#post-like-count').html();
           $.ajax({
               type:'POST',
               url:'/like',
@@ -233,17 +247,77 @@
               
               success:function(data){
                 if(jQuery.isEmptyObject(data.success.attached)){
-                  if ($(this).hasClass('liked')) {
-                    $('#like-count').html(parseInt($('#like-count').text())-1);
-                    $(this).removeClass('liked');
+                  if ($('.like-btn').hasClass('liked')) {
+                    $('#post-like-count').html(parseInt($('#post-like-count').text())-1);
+                    $('.like-btn').removeClass('liked');
+                    $('.post-like-btn').removeClass('fas');
+                    $('.post-like-btn').addClass('far');
                   } else {
-                    $('#like-count').html(parseInt($('#like-count').html())+1);
-                    $(this).addClass('liked');
+                    $('#post-like-count').html(parseInt($('#post-like-count').text())+1);
+                    $('.like-btn').addClass('liked');
+                    $('.post-like-btn').removeClass('far');
+                    $('.post-like-btn').addClass('fas');
                   }
                 }
               }
           });                                        
-        });                                        
+        });
+
+        // let id = $(this).parents(".comment-like").data('id');
+        
+        $('.likeCMT-btn').click(function(){    
+            let id = $(this).parents(".comment-like").data('id');
+            // let btn = $('#cmt-like-count').html();
+          $.ajax({
+              type:'POST',
+              url:'/likecmt',
+              data:{id:id},
+              
+              success:function(data){
+                if(jQuery.isEmptyObject(data.success.attached)){
+                  if ($('.likeCMT-btn-'+id).hasClass('liked')) {
+                    $('#cmt-like-count-'+id).html(parseInt($('#cmt-like-count-'+id).text())-1);
+                    $('.likeCMT-btn-'+id).removeClass('liked');
+                    $('.cmt-like-'+id).removeClass('fas');
+                    $('.cmt-like-'+id).addClass('far');
+                  } else {
+                    $('#cmt-like-count-'+id).html(parseInt($('#cmt-like-count-'+id).text())+1);
+                    $('.likeCMT-btn-'+id).addClass('liked');
+                    $('.cmt-like-'+id).removeClass('far');
+                    $('.cmt-like-'+id).addClass('fas');
+                  }
+                }
+              }
+          });                                        
+        });
+
+        $('.likeRly-btn').click(function(){    
+            let id = $(this).parents(".reply-like").data('id');
+            // let btn = $('#cmt-like-count').html();
+          $.ajax({
+              type:'POST',
+              url:'/likecmt',
+              data:{id:id},
+              
+              success:function(data){
+                if(jQuery.isEmptyObject(data.success.attached)){
+                  if ($('.likeRly-btn-'+id).hasClass('liked')) {
+                    $('#rly-like-count-'+id).html(parseInt($('#rly-like-count-'+id).text())-1);                    
+                    $('.likeRly-btn-'+id).removeClass('liked');
+                    $('.rly-like-'+id).removeClass('fas');
+                    $('.rly-like-'+id).addClass('far');
+                  } else {
+                    $('#rly-like-count-'+id).html(parseInt($('#rly-like-count-'+id).text())+1);
+                    $('.likeRly-btn-'+id).addClass('liked');
+                    $('.rly-like-'+id).removeClass('far');
+                    $('.rly-like-'+id).addClass('fas');
+                  }
+                }
+              }
+          });                                        
+        });
+
+
     }); 
 
   //   let count = document.getElementById('like-count');

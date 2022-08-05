@@ -174,9 +174,15 @@ class postController extends Controller
     }
 
     public function LikePost(Request $request){
-
         $post = Post::find($request->id);
         $response = auth()->user()->toggleLike($post);
+
+        return response()->json(['success'=>$response]);
+    }
+
+    public function LikeComments(Request $request){
+        $comment = Comment::find($request->id);
+        $response = auth()->user()->toggleLike($comment);
 
         return response()->json(['success'=>$response]);
     }
