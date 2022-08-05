@@ -54,7 +54,7 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "copy .env.example .env",
+            "cp .env.example .env",
             "@php artisan key:generate",
 
             "@php artisan migrate",
