@@ -22,11 +22,10 @@
 <meta name="twitter:description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
 <meta name="twitter:image" content="{{ url('/').$post->photo_path }}">
 <meta name="description" content="{{ Str::limit(strip_tags($post->content), 120) }}">
-<meta name="keywords" content="{{ $post->tags }}">
+<meta name="keywords" content="{{getMetaTags($post->id)}}">
 @endpush
 @section('content')
 @include('frontend.layouts.navbar')
-{{getMetaTags($post->id)}}
 <div style="max-width: 800px; margin: auto;">
   <div class="container">
     <div class="row">

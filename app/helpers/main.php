@@ -68,11 +68,12 @@ if (!function_exists("getCommentCount")) {
 if (!function_exists("getMetaTags")) {
     function getMetaTags($id) {
         $post = Post::where('id', $id)->first();
-        $tags = [];
+        $tags = array();
         foreach($post->tags as $tag) {
             array_push($tags, $tag->name);
         }
-		return $tags;
+        $keywords = implode(",",$tags);
+		return $keywords;
     }
 }
 
