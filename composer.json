@@ -13,7 +13,7 @@
         "laravel/passport": "^10.4",
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^4.0",
+        "laravel/ui": "^3.4",
         "overtrue/laravel-like": "^5.0",
         "rtconner/laravel-tagging": "^4.1"
     },
@@ -54,10 +54,10 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "cp .env.example .env",
+            "copy .env.example .env",
             "@php artisan key:generate",
 
-            "@php artisan migrate:fresh --force",
+            "@php artisan migrate",
             "@php artisan passport:install --force",
             "@php artisan trex:install",
             
