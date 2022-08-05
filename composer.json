@@ -57,7 +57,7 @@
             "cp .env.example .env",
             "@php artisan key:generate",
 
-            "@php artisan migrate",
+            "@php artisan migrate:fresh --force",
             "@php artisan passport:install --force",
             "@php artisan trex:install",
             
