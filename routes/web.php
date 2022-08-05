@@ -8,6 +8,7 @@ use App\Http\Controllers\contactController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\installerController;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
