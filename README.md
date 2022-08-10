@@ -31,7 +31,6 @@ Need to change in XAMPP:
 ## Installation:
 
 To install this project:
-make a database and update it on `.env.example` on project folder, then follow bellow:
 
 ```bash
 # Clone the repository
@@ -39,9 +38,15 @@ git clone git@github.com:Almas-Ali/TRex.git TRex
 
 # Change directory to TRex
 cd TRex
+```
 
+make a database and update it on `.env.example` on project folder, then follow bellow:
+
+
+```bash
 # Install this project with CLI command and fill all requirements.
 install
+# Press y to continue.
 
 # Start the server with php
 php artisan serve
