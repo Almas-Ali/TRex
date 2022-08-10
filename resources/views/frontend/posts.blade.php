@@ -159,7 +159,7 @@
 
           <div class="d-flex flex-direction-row mx-5 mt-2" id="replies">
             <div class="mx-2">
-              <img src="{{ getUser($comment->user)->photo_path }}" alt="User Photo" class="rounded-circle" height="50px"
+              <img src="{{ getUser($reply->user)->photo_path }}" alt="User Photo" class="rounded-circle" height="50px"
                 width="50px">
             </div>
             <div class="">

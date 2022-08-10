@@ -29,11 +29,16 @@ Route::get('category/{slug}', [categoryController::class, 'single_category'])->n
 Route::get('tag/{slug}', [categoryController::class, 'single_tag'])->name('single_tag');
 Route::get('privacy-policy/', [postController::class, 'privacy_policy'])->name('privacy_policy');
 Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth', 'isAdminCheck');
-Route::get('users/dashboard/', [postController::class, 'user_dashboard'])->name('user_dashboard') ->middleware('auth');
 Route::post('like', [postController::class, 'LikePost'])->name('like')->middleware('auth');
 Route::post('likecmt', [postController::class, 'LikeComments'])->name('LikeComments')->middleware('auth');
 Route::post('comment', [postController::class, 'create_comment'])->name('create_comment')->middleware('auth');
 Route::post('reply', [postController::class, 'create_reply'])->name('create_reply')->middleware('auth');
+
+Route::middleware('auth')->prefix('users')->group(function () {
+    Route::get('dashboard/', [userController::class, 'user_dashboard'])->name('user_dashboard');
+    Route::get('profile/', [userController::class, 'user_profile'])->name('user_profile');
+    Route::get('profile/settings', [userController::class, 'user_profile_settings'])->name('user_profile_settings');
+});
 
 // CRUD of post 
 Route::middleware('auth', 'isAdminCheck')->prefix('post')->group(function () {

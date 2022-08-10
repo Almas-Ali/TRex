@@ -1,18 +1,19 @@
 @extends('frontend.layouts.main')
 @push('title')Profile @endpush
-@push('dashboard-active')active @endpush
+@push('user_profile_settings-active')active @endpush
 @push('scripts')
 <style>
     .hidden {
         display: none;
     }
 </style>
+
 @endpush
 @section('content')
 @include('frontend.layouts.navbar')
+@include('backend.user.nav')
 
-
-<div class="container-fluid">
+<div class="container">
     <div class="container mt-3">
         @if(isset($message))
         <p class="alert alert-success">{{ $message }}</p>
@@ -26,7 +27,7 @@
     </div>
     <form action="{{ route('update_profile') }}" method="POST" class="p-2" enctype="multipart/form-data">
         @csrf
-        <div class="form-control">
+        <div class="form-group">
             <div>
                 <label for="name">Name</label>
                 <input type="text" id="name" name="name" class="form-control my-2" value="{{ $user->name }}" required>
