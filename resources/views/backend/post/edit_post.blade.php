@@ -130,23 +130,31 @@
             @endforeach
           </select>
           <div class="form-group mt-2">
-            <img id="output" style="width: 20rem;" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded hidden"> <br>
-            <script>
-              var loadFile = function(event) {
-              var output = document.getElementById('output');
-              output.classList.remove('hidden');
-              output.src = URL.createObjectURL(event.target.files[0]);
-              output.onload = function() {
-                URL.revokeObjectURL(output.src) // free memory
-              }
-            };
-            </script>
-            <label for="image">Please Select Image</label>
-            <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control"
-              value="{{ url('/').$post->path }}" required onchange="loadFile(event)" accept="image/png, image/jpeg">
-            @error('image')
-            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-            @enderror
+            <div class="row">
+              <div class="col-md-8" id="pto">
+                <label for="image">Please Select Image</label>
+                <input type="file" id="image" name="image" class="@error('image') is-invalid @enderror form-control mb-3"
+                  required onchange="loadFile(event)" accept="image/png, image/jpeg">
+                @error('image')
+                <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                @enderror
+              </div>
+              <div class="col-md-4">
+                <img id="output" style="width: 20rem;" class="mt-3 shadow-lg p-3 mb-5 bg-body rounded hidden"> <br>
+                <script>
+                  var loadFile = function(event) {
+                      var output = document.getElementById('output');
+                      var pto = document.getElementById('pto');
+                      pto.style = "margin-top: 84px";
+                      output.classList.remove('hidden');
+                      output.src = URL.createObjectURL(event.target.files[0]);
+                      output.onload = function() {
+                        URL.revokeObjectURL(output.src) // free memory
+                      }
+                    };
+                </script>
+              </div>
+            </div>
           </div>
           <div class="form-group my-3">
             <textarea id="editor" name="content">{{ $post->content }}</textarea>

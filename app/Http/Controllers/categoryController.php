@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Post;
 use Conner\Tagging\Model\Tag;
 
 class categoryController extends Controller
@@ -75,11 +76,22 @@ class categoryController extends Controller
 
     public function single_category (Request $request, $slug) {
         $category = Category::where('slug', $slug)->first();
-        return view('frontend.single_category', compact('category'));
+        $posts    = Post::where('category', $category->id)->get();
+        return view('frontend.single_category', compact('category', 'posts'));
     }
 
     public function single_tag (Request $request, $slug) {
         $tag = Tag::where('slug', $slug)->first();
-        return view('frontend.single_tag', compact('tag'));
+        $postss    = Post::all();
+        $posts = [];
+        foreach ($postss as $post) {
+            foreach ($post->tagNames() as $ta) {   
+                if ($ta == $tag->name) {
+                    array_push($posts, $post);
+                }
+            }
+        }
+
+        return view('frontend.single_tag', compact('tag', 'posts'));
     }
 }
