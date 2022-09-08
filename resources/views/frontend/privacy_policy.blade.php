@@ -21,7 +21,7 @@
 @include('frontend.layouts.navbar')
 
 <div class="container">
-  <div class="card my-3 p-2">
+  <div class="my-3 p-2">
 
     <div class="page">
       <div class="h1">
@@ -39,7 +39,7 @@
               rights and how the law protects You.</p>
             <p>We use Your Personal data to provide and improve the Service. By using the Service, You agree
               to the collection and use of information in accordance with this Privacy Policy.</p>
-            <h1>Interpretation and Definitions</h1>
+            <h2>Interpretation and Definitions</h2>
             <h2>Interpretation</h2>
             <p>The words of which the initial letter is capitalized have meanings defined under the
               following conditions. The following definitions shall have the same meaning regardless of
@@ -97,8 +97,8 @@
                   using the Service, as applicable.</p>
               </li>
             </ul>
-            <h1>Collecting and Using Your Personal Data</h1>
-            <h2>Types of Data Collected</h2>
+            <h2>Collecting and Using Your Personal Data</h2>
+            <h3>Types of Data Collected</h3>
             <h3>Personal Data</h3>
             <p>While using Our Service, We may ask You to provide Us with certain personally identifiable
               information that can be used to contact or identify You. Personally identifiable information
@@ -306,7 +306,7 @@
               transmission over the Internet, or method of electronic storage is 100% secure. While We
               strive to use commercially acceptable means to protect Your Personal Data, We cannot
               guarantee its absolute security.</p>
-            <h1>Children's Privacy</h1>
+            <h2>Children's Privacy</h2>
             <p>Our Service does not address anyone under the age of 13. We do not knowingly collect
               personally identifiable information from anyone under the age of 13. If You are a parent or
               guardian and You are aware that Your child has provided Us with Personal Data, please
@@ -316,13 +316,13 @@
             <p>If We need to rely on consent as a legal basis for processing Your information and Your
               country requires consent from a parent, We may require Your parent's consent before We
               collect and use that information.</p>
-            <h1>Links to Other Websites</h1>
+            <h2>Links to Other Websites</h2>
             <p>Our Service may contain links to other websites that are not operated by Us. If You click on
               a third party link, You will be directed to that third party's site. We strongly advise You
               to review the Privacy Policy of every site You visit.</p>
             <p>We have no control over and assume no responsibility for the content, privacy policies or
               practices of any third party sites or services.</p>
-            <h1>Changes to this Privacy Policy</h1>
+            <h2>Changes to this Privacy Policy</h2>
             <p>We may update Our Privacy Policy from time to time. We will notify You of any changes by
               posting the new Privacy Policy on this page.</p>
             <p>We will let You know via email and/or a prominent notice on Our Service, prior to the change
@@ -330,7 +330,7 @@
               Policy.</p>
             <p>You are advised to review this Privacy Policy periodically for any changes. Changes to this
               Privacy Policy are effective when they are posted on this page.</p>
-            <h1>Contact Us</h1>
+            <h2>Contact Us</h2>
             <p>If you have any questions about this Privacy Policy, You can contact us:</p>
             <ul>
               <li>
