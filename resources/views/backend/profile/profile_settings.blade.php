@@ -15,11 +15,11 @@
 <div class="container-fluid">
     <div class="container mt-3">
         @if(isset($message))
-        <p class="alert alert-success">{{ $message }}</p>
+        <p class="alert alert-{{ session('message_type') }}">{{ $message }}</p>
         @endif
 
         @if (session('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-{{ session('message_type') }}">
             {{ session('message') }}
         </div>
         @endif
