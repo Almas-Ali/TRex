@@ -110,45 +110,11 @@
       </a>
       <div>
         @guest
-        {{-- <a href="{{ route('login') }}" class="nav-link @stack('login-active')">
-          <span class="nav-link-span">
-            <span class="u-nav">{{ __('Login') }}</span>
-          </span>
-        </a> --}}
         <a href="{{ route('login') }}" class="btn-grad rounded text-light text-decoration-none mx-3">Login</a>
-
-        {{-- <a href="{{ route('register') }}" class="nav-link @stack('register-active')">
-          <span class="nav-link-span">
-            <span class="u-nav">{{ __('Register') }}</span>
-          </span>
-        </a> --}}
         @else
         <a href="{{ route('dashboard') }}" class="btn-grad rounded text-light text-decoration-none mx-3">
           <i class="fa fa-dashboard" aria-hidden="true"></i> Dashboard
         </a>
-
-        {{-- <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link @stack('admin-active') dropdown-toggle" href="#" role="button"
-            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
-          </a>
-
-          <div class="dropdown-menu dropdown-menu-end bg-dark rounded cnpi" aria-labelledby="navbarDropdown">
-
-            <a href="{{ route('dashboard') }}" class="dropdown-item text-light @stack('dashboard-active')">
-              Dashboard
-            </a>
-
-            <a class="dropdown-item text-light" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-              {{ __('Logout') }}
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-              @csrf
-            </form>
-          </div>
-        </li> --}}
         @endguest
       </div>
     </div>
