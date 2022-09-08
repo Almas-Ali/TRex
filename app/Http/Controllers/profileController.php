@@ -31,21 +31,29 @@ class profileController extends Controller
         $user->username = $request->get('username');
 
 
-        
         // $info = getimagesize($request->file('user_image'));
         
-        $image_name = $request->file('user_image')->getClientOriginalName();
-        $newImageName = time() . '-' . $image_name;
+        $image_name = $request->file('user_image');
         
-        $path = $request->file('user_image')->move(public_path('uploads/user'), $newImageName);
-        $img = \Image::make(public_path('uploads/user/').$newImageName)->resize(120, 120);
-        $img->save(public_path('uploads/user/').$newImageName, 70);
-        
-        $user -> photo_name = $image_name;
-        $user -> photo_path = "/uploads/user/".$newImageName;
+        if($image_name) {
 
+            $fileSize = \File::size(public_path($image_name)); // Get file size
+            if ($fileSize > 2048) {
+                return redirect()->back()->with(['message'=> 'Image size is too large. Please upload image less than 1MB', 'message_type' => 'danger']);
+            }
+
+            $image_name = $image_name->getClientOriginalName();
+            $newImageName = time() . '-' . $image_name;
+            
+            $path = $request->file('user_image')->move(public_path('uploads/user'), $newImageName);
+            $img = \Image::make(public_path('uploads/user/').$newImageName)->resize(120, 120);
+            $img->save(public_path('uploads/user/').$newImageName, 70);
+            
+            $user -> photo_name = $image_name;
+            $user -> photo_path = "/uploads/user/".$newImageName;
+        }
         $user->save();
         
-        return redirect()->back()->with(['message' => 'Successfully updated!']);
+        return redirect()->back()->with(['message' => 'Successfully updated!', 'message_type' => 'success']);
     }
 }
