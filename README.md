@@ -23,30 +23,15 @@ Need to change in XAMPP:
 
 ### Linux:
 
-- Install PHP Git cURL Composer
-- Install PHP extensions
-- Fix PHP configurations
+- Easy to install with `make`
 
 
 ```bash
-# Update source list
-sudo apt update
+# Install all requirements with make
+make install
 
-# Install main apps
-sudo apt install php git curl composer -y
-
-# Install extensions
-sudo apt install php-common php-curl php-json php-readline php-fpm php-cli php-xml php-zip php-mbstring php-gd build-essential php-pear php-dev libmcrypt-dev -y
-
-# Install mcrypt extension
-sudo pecl channel-update pecl.php.net
-sudo pecl update-channels
-sudo pecl search mcrypt
-sudo pecl install mcrypt
-sudo phpenmod mcrypt
-
-# Clear all caches
-sudo apt autoremove
+# To see help type
+make help
 ```
 
 
