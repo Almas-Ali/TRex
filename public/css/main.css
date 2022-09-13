@@ -180,3 +180,42 @@ a {
     visibility: visible;
     opacity: 1;
 }
+
+
+.post-view {
+    box-shadow: 0 0 5px #0003;
+    margin-left: 3px;
+    background-color: #fff;
+}
+
+.post-img {
+    height: 100px;
+    object-fit: fill;
+    margin-left: 10px;
+}
+
+@media screen and (max-width: 960px) {
+    .post-view {
+        display: block;
+    }
+
+    .post-img {
+        height: 50vw;
+        object-fit: fill;
+        margin-left: 10px;
+    }
+
+    .post-elements {
+        display: inline;
+    }
+}
+
+.home-page {
+    background: #de6161;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2657eb, #de6161);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2657eb, #de6161);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}

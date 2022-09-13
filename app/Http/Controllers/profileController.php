@@ -17,12 +17,16 @@ class profileController extends Controller
     }
 
     public function profile_settings () {
-        // $id = Auth::user()->id;
-        $user = Auth::user();
-        return view('backend.profile.profile_settings', compact('user'));
+        return view('backend.profile.profile_settings');
     }
 
-    public function update_profile(Request $request) {
+    public function profile_update () {
+        // $id = Auth::user()->id;
+        $user = Auth::user();
+        return view('backend.profile.profile_update', compact('user'));
+    }
+
+    public function profile_update_save(Request $request) {
         // $id = Auth::user()->id;
         // $user = User::where($id);
         $user = Auth::user();
@@ -55,5 +59,13 @@ class profileController extends Controller
         $user->save();
         
         return redirect()->back()->with(['message' => 'Successfully updated!', 'message_type' => 'success']);
+    }
+
+    public function change_password () {
+        return view('backend.profile.change_password');
+    }
+    
+    public function change_password_save () {
+        return view('backend.profile.change_password');
     }
 }

@@ -63,7 +63,7 @@
         </div>
     </div>
 
-    <div style="padding-top: 57px !important;">
+    <div style="padding-top: 57px !important;" class="bg-light">
         @yield('content')
     </div>
     <!-- Back to Top -->

@@ -61,10 +61,12 @@
       <div class="my-3 post-like" data-id="{{ $post->id }}">
         @guest
         <a href="#!" class="btn btn-theme text-light rounded disabled" disabled>
+          <span id="post-like-count">{{ $post->likers()->count() }}</span>
+          <i class="fas fa-thumbs-up post-like-btn" aria-hidden="true"></i>
+        </a>
           @else
           <a href="javascript:void(0);"
             class="like-btn btn btn-theme text-light rounded @if ($post->isLikedBy(Auth::user()))liked @endif">
-            @endguest
             @if ($post->isLikedBy(Auth::user()))
             <i class="fas fa-thumbs-up post-like-btn" aria-hidden="true"></i>
             @else
@@ -72,6 +74,7 @@
             @endif
             <span id="post-like-count">{{ $post->likers()->count() }}</span>
           </a>
+          @endguest
       </div>
 
       <div class="comments">

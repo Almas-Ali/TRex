@@ -34,6 +34,10 @@ class postController extends Controller
         $comments    = Comment::where('post', '=', $post->id)
                                 ->whereNull('parent')->get();
         $replies     = Comment::whereNotNull('parent')->get();
+
+        $expiresAt = now()->addHours(1);
+        views($post)->cooldown($expiresAt)->record();
+
         return view('frontend.single_post', compact('post','tags', 'categories', 'comments', 'replies'));
     }
 
@@ -41,13 +45,7 @@ class postController extends Controller
         $posts       = Post::all();
         $tags        = Tag::all();
         $categories  = Category::all();
-        $first_news  = Post::first();
-        if (!is_null($first_news)){
-            $all_news  = Post::all()->except($first_news->id);
-        } else {
-            $all_news  = null;
-        }
-        return view('frontend.index', compact('posts', 'tags', 'categories', 'first_news', 'all_news'));
+        return view('frontend.index', compact('posts', 'tags', 'categories'));
     }
 
     public function about() {

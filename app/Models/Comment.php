@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class comment extends Model
+class Comment extends Model
 {
     use HasFactory;
     use Likeable;

@@ -89,7 +89,10 @@ Route::prefix('admin')->group(function () {
     Route::middleware('auth')->prefix('profile')->group(function() {
         Route::get('/', [profileController::class, 'profile'])->name('profile');
         Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings');
-        Route::post('/settings/update', [profileController::class, 'update_profile'])->name('update_profile');
+        Route::get('/settings/general', [profileController::class, 'profile_update'])->name('profile_update');
+        Route::post('/settings/general/save', [profileController::class, 'profile_update_save'])->name('profile_update_save');
+        Route::get('/settings/password', [profileController::class, 'change_password'])->name('change_password');
+        Route::get('/settings/password/save', [profileController::class, 'change_password_save'])->name('change_password_save');
     });
 
 });

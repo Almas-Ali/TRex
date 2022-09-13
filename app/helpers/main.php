@@ -5,13 +5,6 @@
 * 
 */
 
-// if (!function_exists("almas")) {
-//     function almas($str) 
-//     {
-//         Str::limit(strip_tags($str), 50);
-//     }
-// }
-
 use App\Models\User;
 use App\Models\settings;
 use App\Models\Category;
@@ -19,6 +12,7 @@ use App\Models\Comment;
 use App\Models\Post;
 use App\Models\SocialLinks;
 use Carbon\Carbon;
+
 
 if (!function_exists("website")) {
     function website() {
@@ -47,7 +41,7 @@ if (!function_exists("dateHuman")) {
 
 if (!function_exists("getUser")) {
     function getUser($id) {
-        $user = User::find($id);
+        $user = User::where('id', $id)->first();
 		return $user;
     }
 }
@@ -84,6 +78,20 @@ if (!function_exists("getSocial")) {
     }
 }
 
+if (!function_exists("postCountCategory")) {
+    function postCountCategory($id) {
+        $post = Post::where('category', $id)->count();
+        return $post;
+    }
+}
+
+// post views count 
+if (!function_exists("postViewCount")) {
+    function postViewCount($id) {
+        $post = Post::where('id', $id)->first();
+        return views($post)->unique()->count();
+    }
+}
 
 // 'website_name' => env('WEBSITE_NAME', 'CNPI Blog'),
 // 'website_author' => env('WEBSITE_AUTHOR', 'Md. Almas Ali'),
