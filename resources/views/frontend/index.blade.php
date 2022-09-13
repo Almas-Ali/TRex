@@ -35,7 +35,7 @@
                                         class="rounded border border-dark">
                                 </div>
                                 <div class="mn-content">
-                                    <a class="mn-title" href="{{ url('posts/'. $first_news->slug) }}"> {{
+                                    <a class="mn-title" href="{{ url('post/'. $first_news->slug) }}"> {{
                                         $first_news->title }} </a>
                                     <a class="mn-date" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                                         dateHuman($first_news->created_at)
@@ -60,7 +60,7 @@
                                             class="rounded border border-dark">
                                     </div>
                                     <div class="mn-content">
-                                        <a class="mn-title" href="{{ url('posts/'. $news->slug) }}"> {{ $news->title }}
+                                        <a class="mn-title" href="{{ url('post/'. $news->slug) }}"> {{ $news->title }}
                                         </a>
                                         <a class="mn-date" href="javascript:void(0);"><i class="far fa-clock"></i> {{
                                             dateHuman($news->created_at) }}

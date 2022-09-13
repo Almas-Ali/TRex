@@ -27,14 +27,14 @@ class postController extends Controller
         return [$height, $width];
     }
 
-    public function posts(Request $request, $slug) {
+    public function post(Request $request, $slug) {
         $post        = Post::where('slug', $slug)->first();
         $tags        = Tag::all();
         $categories  = Category::all();
         $comments    = Comment::where('post', '=', $post->id)
                                 ->whereNull('parent')->get();
         $replies     = Comment::whereNotNull('parent')->get();
-        return view('frontend.posts', compact('post','tags', 'categories', 'comments', 'replies'));
+        return view('frontend.single_post', compact('post','tags', 'categories', 'comments', 'replies'));
     }
 
     public function index() {

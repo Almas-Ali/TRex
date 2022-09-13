@@ -40,7 +40,7 @@
               @foreach ($posts as $post)
               <tr>
                 <td scope="row">{{ $i }}</th>
-                <td><a href="{{ url('posts/'. $post->slug) }}" target="_blank" rel="noopener noreferrer">
+                <td><a href="{{ url('post/'. $post->slug) }}" target="_blank" rel="noopener noreferrer">
                     {{ Str::limit(strip_tags($post->title), 40) }}
                   </a></td>
                 <td>{{ $post->created_at }}</td>

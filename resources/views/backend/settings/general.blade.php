@@ -8,13 +8,14 @@
 @include('backend.layouts.navbar')
 
 <div class="container-fluid">
+    <h1 align="center" class="mt-2">General Settings</h1>
     <div class="container mt-3">
         @if(isset($message))
-        <p class="alert alert-success">{{ $message }}</p>
+        <p class="alert alert-{{ session('type') }}">{{ $message }}</p>
         @endif
 
         @if (session('message'))
-        <div class="alert alert-success">
+        <div class="alert alert-{{ session('type') }}">
             {{ session('message') }}
         </div>
         @endif

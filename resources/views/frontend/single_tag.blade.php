@@ -34,7 +34,7 @@
         </div>
         <div class="card-title">
           <h4 class="mt-2 mx-3">
-            <a class="text-dark" href="{{ route('posts', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
+            <a class="text-dark" href="{{ route('post', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
           </h4>
         </div>
         <div class="card-body">
@@ -42,7 +42,7 @@
         </div>
         <div class="card-footer d-flex justify-content-between">
           <p>{{ dateHuman($post->created_at) }}</p>
-          <a type="button" class="btn btn-primary text-light" href="{{ route('posts', ['slug' => $post->slug]) }}">View
+          <a type="button" class="btn btn-primary text-light" href="{{ route('post', ['slug' => $post->slug]) }}">View
             Post</a>
         </div>
       </div>

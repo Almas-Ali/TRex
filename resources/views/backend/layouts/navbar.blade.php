@@ -52,7 +52,8 @@
         <a href="#" class="nav-link dropdown-toggle @stack('settings-active')" data-bs-toggle="dropdown"><i
             class="fa-solid fa-gears me-2"></i>Settings</a>
         <div class="dropdown-menu bg-transparent border-0">
-          <a href="{{ route('general_settings') }}" class="dropdown-item @stack('add-post-active')">General</a>
+          <a href="{{ route('general_settings') }}" class="dropdown-item @stack('general-settings-active')">General</a>
+          <a href="{{ route('social_settings') }}" class="dropdown-item @stack('social-settings-active')">Social</a>
         </div>
       </div>
     </div>

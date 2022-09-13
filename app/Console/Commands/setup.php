@@ -4,8 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\settings;
-use App\Models\post;
-use App\Models\category;
+use App\Models\Post;
+use App\Models\Category;
+use App\Models\SocialLinks;
 use App\Models\User;
 
 class setup extends Command
@@ -159,6 +160,19 @@ class setup extends Command
             echo "[!] Warning! requirements already satisfied!\n";
         }
 
-        // return True;
+         // Social Links
+         if (count(SocialLinks::all()) == 0) {
+            $social = new SocialLinks;
+            $social -> phone     = '+880 123 456 789';
+            $social -> facebook     = 'https://facebook.com/TRex';
+            $social -> instagram    = 'https://instagram.com/TRex';
+            $social -> twitter      = 'https://twitter.com/TRex';
+            $social -> linkedin     = 'https://linkedin.com/TRex';
+            $social -> save();
+            echo "[+] Successfully installed site default Social Links!\n";
+        } else {
+            echo "[!] Warning! requirements already satisfied!\n";
+        }
+
     }
 }

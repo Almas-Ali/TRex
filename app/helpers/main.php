@@ -17,6 +17,7 @@ use App\Models\settings;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\SocialLinks;
 use Carbon\Carbon;
 
 if (!function_exists("website")) {
@@ -74,6 +75,12 @@ if (!function_exists("getMetaTags")) {
         }
         $keywords = implode(",",$tags);
 		return $keywords;
+    }
+}
+
+if (!function_exists("getSocial")) {
+    function getSocial() {
+        return SocialLinks::orderBy('updated_at', 'desc')->first();
     }
 }
 

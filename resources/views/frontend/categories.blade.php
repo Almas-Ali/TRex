@@ -31,6 +31,7 @@
           </tr>
         </thead>
         <tbody>
+          @if (count($categories) > 0)
           @foreach ($categories as $category)
           <tr>
             <td>
@@ -40,6 +41,15 @@
             </td>
           </tr>
           @endforeach
+          @else
+          <tr>
+            <td>
+              <div class="alert alert-warning">
+                <h3 class="text-center">No categories found</h3>
+              </div>
+            </td>
+          </tr>
+          @endif
         </tbody>
       </table>
     </div>

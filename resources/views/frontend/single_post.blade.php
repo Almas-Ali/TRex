@@ -1,5 +1,5 @@
 @extends('frontend.layouts.main')
-@push('title')Posts @endpush
+@push('title')Post @endpush
 @push('home-active')active @endpush
 @push('scripts')
 <meta name="csrf-token" content="{{ csrf_token() }}">
