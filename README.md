@@ -54,6 +54,15 @@ install
 php artisan serve
 ```
 
+## Test database with demo
+
+```bash
+# import some demo data for testing this website in development
+php artisan db:seed
+```
+This will import some random for testing in development.
+<br>
+
 ## Some commands that you will need:
 
 To get the updated version of this project download it using git commands. <br>
