@@ -8,6 +8,7 @@ use App\Http\Controllers\contactController;
 use App\Http\Controllers\profileController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\installerController;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,9 +118,9 @@ Route::prefix('install')->group(function () {
 // Auth::routes(['verify' => true]);
 Auth::routes();
 
-Route::get('/home', function(){
-    return redirect('/');
-})->name('home');
+// Route::get('/home', function(){
+//     return redirect('/');
+// })->name('home');
 
 
 Route::get('/update', function (\Codedge\Updater\UpdaterManager $updater) {
