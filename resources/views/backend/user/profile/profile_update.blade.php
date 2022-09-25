@@ -1,4 +1,4 @@
-@extends('backend.layouts.main')
+@extends('backend.user.layouts.main')
 @push('title')Profile @endpush
 @push('dashboard-active')active @endpush
 @push('scripts')
@@ -9,7 +9,7 @@
 </style>
 @endpush
 @section('content')
-@include('backend.layouts.navbar')
+@include('backend.user.layouts.navbar')
 
 
 <div class="container-fluid">

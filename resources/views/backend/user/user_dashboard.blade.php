@@ -1,10 +1,9 @@
-@extends('frontend.layouts.main')
+@extends('backend.user.layouts.main')
 @push('title')User Dashboard @endpush
 @push('user_dashboard-active')active @endpush
 
 @section('content')
-@include('frontend.layouts.navbar')
-@include('backend.user.nav')
+@include('backend.user.layouts.navbar')
 
 <div class="container-fluid pt-4 px-4">
     <div class="bg-light text-center rounded p-3">
@@ -21,7 +20,5 @@
         </div>
     </div>
 </div>
-
-@include('frontend.layouts.footer')
 
 @endsection

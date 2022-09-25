@@ -1,12 +1,13 @@
-@extends('frontend.layouts.main')
+@extends('backend.user.layouts.main')
 @push('title')Profile @endpush
-@push('user_profile-active')active @endpush
-@push('scripts')
-    
-@endpush
+@push('dashboard-active')active @endpush
+
 @section('content')
-@include('frontend.layouts.navbar')
-@include('backend.user.nav')
+@include('backend.user.layouts.navbar')
+
+<style>
+
+</style>
 
 <div class="container-fluid">
     <div class="col d-flex justify-content-center">

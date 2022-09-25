@@ -4,7 +4,7 @@ body {
     background-color: #ffffff;
     font-family: "Nunito", sans-serif;
     font-size: 0.9rem;
-    line-height: 1.6rem;
+    line-height: 1.6rem;    
     /* overflow: hidden; */
 }
 
@@ -218,4 +218,57 @@ a {
     background: linear-gradient(to right, #2657eb, #de6161);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+}
+
+.sidebar {
+    margin: 36px 0 0 36px;
+}
+
+.s-title {
+    font-size: 35px;
+}
+
+.typewrite-main {
+    color: #fff;
+    font-size: 25px;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+    /* margin-left: 32%; */
+}
+
+.typewrite {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: orange
+    }
 }
