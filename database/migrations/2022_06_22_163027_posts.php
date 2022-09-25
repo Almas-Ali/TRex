@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('photo_name');
             $table->string('photo_path');
             $table->longText('content');
+            // $table->string('status')->default('draft');
             $table->timestamps();
             $table->softDeletes();
         });
