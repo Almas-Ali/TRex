@@ -32,17 +32,13 @@ class profileController extends Controller
         $user = Auth::user();
         $user->name  = $request->get('name');
         $user->email = $request->get('email');
-        $user->username = $request->get('username');
-
-
-        // $info = getimagesize($request->file('user_image'));
-        
+        // $user->username = $request->get('username');
         $image_name = $request->file('user_image');
         
         if($image_name) {
-
-            $fileSize = \File::size(public_path($image_name)); // Get file size
-            if ($fileSize > 2048) {
+            $fileSize = $image_name->getSize()/1024;
+            // return dd($fileSize);
+            if ($fileSize > 1024) {
                 return redirect()->back()->with(['message'=> 'Image size is too large. Please upload image less than 1MB', 'message_type' => 'danger']);
             }
 
@@ -66,6 +62,6 @@ class profileController extends Controller
     }
     
     public function change_password_save () {
-        return view('backend.profile.change_password');
+        return redirect()->back()->with(['message' => 'Function is not ready yet!', 'message_type' => 'danger']);
     }
 }

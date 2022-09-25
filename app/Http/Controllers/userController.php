@@ -29,9 +29,19 @@ class userController extends Controller
         return view('backend.user.profile.profile', compact('user', 'posts'));
     }
 
+    public function user_profile_update () {
+        // $id = Auth::user()->id;
+        $user = Auth::user();
+        return view('backend.user.profile.profile_update', compact('user'));
+    }
+
     public function user_profile_settings () {
         // $id = Auth::user()->id;
         $user = Auth::user();
         return view('backend.user.profile.profile_settings', compact('user'));
+    }
+
+    public function user_change_password () {
+        return view('backend.user.profile.change_password');
     }
 }
