@@ -35,15 +35,22 @@ Route::post('comment', [postController::class, 'create_comment'])->name('create_
 Route::post('reply', [postController::class, 'create_reply'])->name('create_reply')->middleware('auth');
 
 
+Route::middleware('auth')->prefix('users')->group(function () {
+    Route::get('dashboard', [userController::class, 'user_dashboard'])->name('user_dashboard');
+    Route::get('profile', [userController::class, 'user_profile'])->name('user_profile');
+    Route::get('profile/settings', [userController::class, 'user_profile_settings'])->name('user_profile_settings');
+    Route::get('/settings/general', [userController::class, 'user_profile_update'])->name('user_profile_update');
+
+    // Route::get('/', [profileController::class, 'profile'])->name('profile');
+    // Route::get('/settings', [profileController::class, 'profile_settings'])->name('profile_settings');
+    // Route::post('/settings/general/save', [profileController::class, 'profile_update_save'])->name('profile_update_save');
+    Route::get('/settings/password', [userController::class, 'user_change_password'])->name('user_change_password');
+    // Route::get('/settings/password/save', [profileController::class, 'change_password_save'])->name('change_password_save');
+});
+
 Route::prefix('admin')->group(function () {
     
     Route::get('dashboard/', [postController::class, 'dashboard'])->name('dashboard') ->middleware('auth', 'isAdminCheck');
-
-    Route::middleware('auth')->prefix('users')->group(function () {
-        Route::get('dashboard/', [userController::class, 'user_dashboard'])->name('user_dashboard');
-        Route::get('profile/', [userController::class, 'user_profile'])->name('user_profile');
-        Route::get('profile/settings', [userController::class, 'user_profile_settings'])->name('user_profile_settings');
-    });
 
     // CRUD of post 
     Route::middleware('auth', 'isAdminCheck')->prefix('post')->group(function () {
@@ -92,7 +99,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/settings/general', [profileController::class, 'profile_update'])->name('profile_update');
         Route::post('/settings/general/save', [profileController::class, 'profile_update_save'])->name('profile_update_save');
         Route::get('/settings/password', [profileController::class, 'change_password'])->name('change_password');
-        Route::get('/settings/password/save', [profileController::class, 'change_password_save'])->name('change_password_save');
+        Route::post('/settings/password/save', [profileController::class, 'change_password_save'])->name('change_password_save');
     });
 
 });
