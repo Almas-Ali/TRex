@@ -55,7 +55,7 @@
         ],
         "post-install-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "copy .env.example .env",
+            "cp .env.example .env",
             "@php artisan key:generate",
 
             "@php artisan migrate",
@@ -64,6 +64,9 @@
             
             "@php artisan optimize:clear",
             "@php artisan clear-compiled"
+        ],
+        "trex": [
+            "echo 'Welcome to Trex!'"
         ]
     },
     "extra": {

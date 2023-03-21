@@ -18,7 +18,6 @@
     </div>
     @endif
     <div class="container-fluid pt-2 px-2">
-      <a href="{{ route('add_post') }}" class="btn btn-primary mb-3" type="button">Add Post</a>
       <div class="bg-light text-center rounded p-4">
         <div class="d-flex align-items-center justify-content-between mb-4">
           <h6 class="mb-0">All Users</h6>
